@@ -6,25 +6,25 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-@Entity (name = "Student") // for hibernate
-@Table (name = "Student",
+@Entity (name = "Account") // for hibernate
+@Table (name = "Account",
         // specify the name of constraints
         uniqueConstraints = {
-        @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        @UniqueConstraint(name = "user_email_unique", columnNames = "email")
         }
 )   // for table
-public class Student {
+public class Account {
 
     @Id
     // these two annotations are for auto-generated PK
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "account_sequence",
+            sequenceName = "account_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "account_sequence"
     )
 
     @Column(
@@ -60,11 +60,11 @@ public class Student {
     @Transient
     private Integer age;
 
-    public Student() {
+    public Account() {
 
     }
 
-    public Student(String name, String email, LocalDate dob) {
+    public Account(String name, String email, LocalDate dob) {
         this.name = name;
         this.email = email;
         this.dob = dob;
@@ -110,11 +110,4 @@ public class Student {
         this.age = age;
     }
 
-    public Student(Long id, String name, String email, LocalDate dob, Integer age) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
-        this.age = age;
-    }
 }
