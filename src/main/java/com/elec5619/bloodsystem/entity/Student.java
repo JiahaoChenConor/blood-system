@@ -6,8 +6,13 @@ import java.time.LocalDate;
 import java.time.Period;
 
 
-@Entity  // for hibernate
-@Table   // for table
+@Entity (name = "Student") // for hibernate
+@Table (name = "Student",
+        // specify the name of constraints
+        uniqueConstraints = {
+        @UniqueConstraint(name = "student_email_unique", columnNames = "email")
+        }
+)   // for table
 public class Student {
 
     @Id
@@ -22,9 +27,32 @@ public class Student {
             generator = "student_sequence"
     )
 
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
+
+    @Column(
+            name = "name",
+            nullable = false,
+            columnDefinition ="Text"
+    )
     private String name;
+
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition ="Text"
+//            ,unique = true
+    )
     private String email;
+
+    @Column(
+            name = "dob",
+            nullable = false,
+            columnDefinition ="Text"
+    )
     private LocalDate dob;
 
     // age can be calculated from date of birth, change `get` method
