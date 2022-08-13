@@ -1,4 +1,4 @@
-package com.elec5619.bloodsystem.controller;
+package com.elec5619.bloodsystem.restcontroller;
 
 import com.elec5619.bloodsystem.service.StudentService;
 import com.elec5619.bloodsystem.entity.Student;
@@ -9,12 +9,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/student")
-public class StudentController {
+public class StudentRestController {
 
     private final StudentService studentService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentRestController(StudentService studentService) {
         this.studentService = studentService;
     }
 

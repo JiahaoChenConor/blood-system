@@ -1,6 +1,6 @@
 package com.elec5619.bloodsystem.config;
 
-import com.elec5619.bloodsystem.repository.StudentRepository;
+import com.elec5619.bloodsystem.dao.StudentRepository;
 import com.elec5619.bloodsystem.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;

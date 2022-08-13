@@ -1,6 +1,6 @@
 package com.elec5619.bloodsystem.service;
 
-import com.elec5619.bloodsystem.repository.StudentRepository;
+import com.elec5619.bloodsystem.dao.StudentRepository;
 import com.elec5619.bloodsystem.entity.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

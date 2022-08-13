@@ -1,4 +1,4 @@
-package com.elec5619.bloodsystem.repository;
+package com.elec5619.bloodsystem.dao;
 
 import com.elec5619.bloodsystem.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
