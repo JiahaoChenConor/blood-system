@@ -12,7 +12,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 
-// same with @Component
+// similar with @Component
 @Service
 public class AccountService {
     private final AccountRepository accountRepository;
@@ -51,7 +51,6 @@ public class AccountService {
     }
 
 
-    // which one to import?
     @Transactional
     public void updateAccount(Long accountId, String name, String email) {
         Account account = accountRepository.findById(accountId)

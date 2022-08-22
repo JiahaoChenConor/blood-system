@@ -73,9 +73,38 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-
                 <!-- Avatar -->
-                <a class="nav-link" href="/login"><i class="fas fa-user fa-lg"></i>  Log in  </a>
+                <div class="dropdown">
+                    <a
+                            class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuAvatar"
+                            role="button"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <!-- Avatar -->
+                        <div ><i class="fas fa-user fa-lg"></i>  User(jsp replace with username) </div>
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuAvatar"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="#">Profile</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">Health Info</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">History</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log out</a>
+                        </li>
+                    </ul>
+                </div>
+
 
 
             </div>
@@ -109,7 +138,7 @@
             </div>
 
 
-                                            <%-- 1320 * 583--%>
+            <%-- 1320 * 583--%>
             <!-- Single item -->
             <div class="carousel-item">
                 <img src="/img/index/carousel/slide2.jpg" class="d-block w-100" alt="Donate blood"/>
