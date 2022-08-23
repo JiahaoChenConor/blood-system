@@ -5,6 +5,7 @@ import com.elec5619.bloodsystem.dao.RoleRepository;
 import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class AccountService {
 
     @Autowired
     RoleRepository roleRepository;
+
+
+
 
     public Account getAccountById(int id){
         return accountRepository.findById(id);

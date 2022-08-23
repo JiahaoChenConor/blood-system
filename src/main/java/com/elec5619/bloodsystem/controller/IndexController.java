@@ -5,6 +5,7 @@ import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +20,8 @@ public class IndexController {
     @Autowired
     AccountService accountService;
 
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @RequestMapping("/")
     public String index() {
@@ -33,6 +36,11 @@ public class IndexController {
     @GetMapping("/index-user")
     public String indexAfterLogin(){
         return "index-user";
+    }
+
+    @GetMapping("/index-admin")
+    public String indexAfterLoginAdmin(){
+        return "index-admin";
     }
 
     @GetMapping("/logout")
@@ -63,11 +71,14 @@ public class IndexController {
 
         Account account = new Account();
         account.setEmail(email);
-        account.setPassword(password);
+        account.setPassword(passwordEncoder.encode(password));
 
 
         accountService.register(account);
 
         return "index";
     }
+
+
+
 }

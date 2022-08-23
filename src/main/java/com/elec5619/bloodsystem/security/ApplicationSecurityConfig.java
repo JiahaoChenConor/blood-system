@@ -21,11 +21,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
     private final AccountDetailService accountDetailService;
+    private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,AccountDetailService accountDetailService){
+    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
+                                     AccountDetailService accountDetailService,
+                                     CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler){
         this.passwordEncoder = passwordEncoder;
         this.accountDetailService = accountDetailService;
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
     }
 
     @Override
@@ -46,7 +50,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .usernameParameter("email").passwordParameter("password")
-                .defaultSuccessUrl("/index-user")
+                .successHandler(customAuthenticationSuccessHandler)
 //                .and()
 //                .rememberMe()
 //                // https://stackoverflow.com/questions/46421185/remember-me-not-working-throws-java-lang-illegalstateexception-userdetailsse
