@@ -1,11 +1,11 @@
 package com.elec5619.bloodsystem.security;
 
-import com.elec5619.bloodsystem.auth.ApplicationUserService;
-
+import com.elec5619.bloodsystem.auth.Role;
+import com.elec5619.bloodsystem.service.AccountDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -15,10 +15,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import java.util.concurrent.TimeUnit;
-
-import static com.elec5619.bloodsystem.security.ApplicationUserRole.NORMAL_USER;
-
 
 @Configuration
 @EnableWebSecurity
@@ -26,12 +22,12 @@ import static com.elec5619.bloodsystem.security.ApplicationUserRole.NORMAL_USER;
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final PasswordEncoder passwordEncoder;
-    private final ApplicationUserService applicationUserService;
+    private final AccountDetailService accountDetailService;
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder, ApplicationUserService applicationUserService){
+    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,AccountDetailService accountDetailService){
         this.passwordEncoder = passwordEncoder;
-        this.applicationUserService = applicationUserService;
+        this.accountDetailService = accountDetailService;
     }
 
     @Override
@@ -42,7 +38,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // permit index page for all users(non-user)
                 .antMatchers("/", "index", "/css/*", "/js/*", "/img/**").permitAll()
-                .antMatchers( "/api/**").hasRole(NORMAL_USER.name())
+                .antMatchers( "/api/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -52,10 +48,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login").permitAll()
                 .usernameParameter("email").passwordParameter("password")
                 .defaultSuccessUrl("/index-user")
-                .and()
-                .rememberMe()
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
-                .key("3231kjhgh312yy213gGGGKKSA") // for md5
+//                .and()
+//                .rememberMe()
+//                // https://stackoverflow.com/questions/46421185/remember-me-not-working-throws-java-lang-illegalstateexception-userdetailsse
+//
+//
+//                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+//                .key("3231kjhgh312yy213gGGGKKSA")// for md5
+//                .userDetailsService(accountDetailService) ;  // TODO: why it didn't pick the default from DaoAuthenticationProvider?
                 .and()
 
                 // log out settings
@@ -77,7 +77,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(passwordEncoder);
-        provider.setUserDetailsService(applicationUserService);
+        provider.setUserDetailsService(accountDetailService);
         return provider;
     }
 }

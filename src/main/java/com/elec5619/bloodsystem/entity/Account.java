@@ -1,74 +1,21 @@
 package com.elec5619.bloodsystem.entity;
 
 
+import com.elec5619.bloodsystem.auth.Role;
+
 import javax.persistence.*;
-import java.time.LocalDate;
-import java.time.Period;
+import java.util.Collection;
 
 
-@Entity (name = "Account") // for hibernate
-@Table (name = "Account",
-        // specify the name of constraints
-        uniqueConstraints = {
-        @UniqueConstraint(name = "user_email_unique", columnNames = "email")
-        }
-)   // for table
+@Entity
 public class Account {
-
     @Id
-    // these two annotations are for auto-generated PK
-    @SequenceGenerator(
-            name = "account_sequence",
-            sequenceName = "account_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "account_sequence"
-    )
-
-    @Column(
-            name = "id",
-            updatable = false
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(
-            name = "name",
-            nullable = false,
-            columnDefinition ="Text"
-    )
-    private String name;
-
-    @Column(
-            name = "email",
-            nullable = false,
-            columnDefinition ="Text"
-//            ,unique = true
-    )
+    @Column(name="email", unique=true)
     private String email;
-
-    @Column(
-            name = "dob",
-            nullable = false,
-            columnDefinition ="Text"
-    )
-    private LocalDate dob;
-
-    // age can be calculated from date of birth, change `get` method
-    // this will not be in the database anymore
-    @Transient
-    private Integer age;
-
-    public Account() {
-
-    }
-
-    public Account(String name, String email, LocalDate dob) {
-        this.name = name;
-        this.email = email;
-        this.dob = dob;
-    }
+    private String password;
 
     public Long getId() {
         return id;
@@ -76,14 +23,6 @@ public class Account {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getEmail() {
@@ -94,20 +33,28 @@ public class Account {
         this.email = email;
     }
 
-    public LocalDate getDob() {
-        return dob;
+    public String getPassword() {
+        return password;
     }
 
-    public void setDob(LocalDate dob) {
-        this.dob = dob;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public Integer getAge() {
-        return Period.between(dob, LocalDate.now()).getYears();
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "accounts_roles",
+            joinColumns = @JoinColumn(
+                    name = "account_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles;
 }

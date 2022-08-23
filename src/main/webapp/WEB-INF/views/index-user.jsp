@@ -84,7 +84,7 @@
                             aria-expanded="false"
                     >
                         <!-- Avatar -->
-                        <div ><i class="fas fa-user fa-lg"></i>  User(jsp replace with username) </div>
+                        <div ><i class="fas fa-user fa-lg"></i>  User </div>
                     </a>
                     <ul
                             class="dropdown-menu dropdown-menu-end"
