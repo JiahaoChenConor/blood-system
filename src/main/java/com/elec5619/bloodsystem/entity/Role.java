@@ -1,6 +1,7 @@
-package com.elec5619.bloodsystem.auth;
+package com.elec5619.bloodsystem.entity;
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.Privilege;
 
 import javax.persistence.*;
 import java.util.Collection;

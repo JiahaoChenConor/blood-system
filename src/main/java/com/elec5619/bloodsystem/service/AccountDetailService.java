@@ -1,8 +1,8 @@
 package com.elec5619.bloodsystem.service;
 
 import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.auth.Privilege;
-import com.elec5619.bloodsystem.auth.Role;
+import com.elec5619.bloodsystem.entity.Privilege;
+import com.elec5619.bloodsystem.entity.Role;
 import com.elec5619.bloodsystem.dao.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +18,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * This class is used for filtering by user role and authorities
+ *  load the user details during authentication
+ * The filter is implemented in `Security/ApplicationSecurityConfig`
+ *
+ *
+ * */
 @Service
 @Transactional  // WARNING: this is necessary!
 public class AccountDetailService implements UserDetailsService {
@@ -38,6 +45,7 @@ public class AccountDetailService implements UserDetailsService {
                 account.getEmail(), account.getPassword(), true, true, true,
                 true, getAuthorities(account.getRoles()));
     }
+
 
     private Collection<? extends GrantedAuthority> getAuthorities(
             Collection<Role> roles) {

@@ -1,4 +1,4 @@
-package com.elec5619.bloodsystem.auth;
+package com.elec5619.bloodsystem.entity;
 
 
 import javax.persistence.*;

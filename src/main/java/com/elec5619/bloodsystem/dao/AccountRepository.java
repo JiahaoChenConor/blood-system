@@ -17,6 +17,7 @@ public interface AccountRepository
     Account findAccountByEmail(String email);
 
 
+    Account findById(int id);
 //    @Query(value="select r.name from Role ur inner join (Role r, User u) on(ur.roleId = r.id  and ur.userId = u.id) where u.email = ?1", nativeQuery = true)
 //    List<String> findRolesByEmail(String email);
 //

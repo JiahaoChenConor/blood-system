@@ -1,9 +1,7 @@
 package com.elec5619.bloodsystem.security;
 
-import com.elec5619.bloodsystem.auth.Role;
 import com.elec5619.bloodsystem.service.AccountDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -38,6 +36,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // permit index page for all users(non-user)
                 .antMatchers("/", "index", "/css/*", "/js/*", "/img/**").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers( "/api/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()

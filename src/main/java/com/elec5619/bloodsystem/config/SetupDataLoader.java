@@ -1,9 +1,11 @@
-package com.elec5619.bloodsystem.auth;
+package com.elec5619.bloodsystem.config;
 
 import com.elec5619.bloodsystem.dao.AccountRepository;
 import com.elec5619.bloodsystem.dao.PrivilegeRepository;
 import com.elec5619.bloodsystem.dao.RoleRepository;
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.Privilege;
+import com.elec5619.bloodsystem.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
