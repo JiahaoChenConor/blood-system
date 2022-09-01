@@ -75,7 +75,7 @@
             <div class="d-flex align-items-center">
 
                 <!-- Avatar -->
-                <a class="nav-link" href="/login"><i class="fas fa-user fa-lg"></i>  Log in  </a>
+                <a class="nav-link" href="/login"><i class="fas fa-user fa-lg"></i>  LOGIN </a>
 
 
             </div>

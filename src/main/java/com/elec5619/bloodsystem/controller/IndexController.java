@@ -6,6 +6,8 @@ import com.elec5619.bloodsystem.security.PasswordValidation;
 import com.elec5619.bloodsystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,7 +47,17 @@ public class IndexController {
 
 
     @GetMapping("/index-user")
-    public String indexAfterLogin(){
+    public String indexAfterLogin(Model model){
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails)principal).getUsername();
+            model.addAttribute("username", username.split("@")[0]);
+        } else {
+            throw new IllegalStateException("No user details");
+        }
+
         return "index-user";
     }
 

@@ -84,7 +84,7 @@
                             aria-expanded="false"
                     >
                         <!-- Avatar -->
-                        <div ><i class="fas fa-user fa-lg"></i>  User </div>
+                        <div ><i class="fas fa-user fa-lg"></i> <%=request.getAttribute("username")%> </div>
                     </a>
                     <ul
                             class="dropdown-menu dropdown-menu-end"
