@@ -13,6 +13,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import java.util.concurrent.TimeUnit;
+
 
 @Configuration
 @EnableWebSecurity
@@ -56,14 +58,14 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("email").passwordParameter("password")
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
-//                .and()
-//                .rememberMe()
-//                // https://stackoverflow.com/questions/46421185/remember-me-not-working-throws-java-lang-illegalstateexception-userdetailsse
-//
-//
-//                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
-//                .key("3231kjhgh312yy213gGGGKKSA")// for md5
-//                .userDetailsService(accountDetailService) ;  // TODO: why it didn't pick the default from DaoAuthenticationProvider?
+                .and()
+
+                // remember implementation
+                .rememberMe()
+                // https://stackoverflow.com/questions/46421185/remember-me-not-working-throws-java-lang-illegalstateexception-userdetailsse
+                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+                .key("3231kjhgh312yy213gGGGKKSA")// for md5
+                .userDetailsService(accountDetailService)  // TODO: why it didn't pick the default from DaoAuthenticationProvider?
                 .and()
 
                 // log out settings

@@ -100,7 +100,7 @@ public class IndexController {
 
         model.addAttribute("registerStatus", SUCCESS_REGISTER.toString());
 
-        return "register";
+        return "login";
     }
 
 

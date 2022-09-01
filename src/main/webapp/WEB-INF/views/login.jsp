@@ -62,7 +62,13 @@
                     </div>
 
                     <div class="d-flex justify-content-around mt-5">
-                        <% if ((Boolean) request.getAttribute("loginError")){
+                        <%
+                            if (request.getAttribute("registerStatus") != null
+                                && request.getAttribute("registerStatus").equals("success_register")){
+                                out.println("<p class=\"text-primary\"> Register successfully, you can login</p>");
+                            }
+                            if (request.getAttribute("loginError") != null &&
+                                    (Boolean) request.getAttribute("loginError")){
                             out.println("<p class=\"text-warning\"> Wrong password or email </p>");
                         }%>
                     </div>
