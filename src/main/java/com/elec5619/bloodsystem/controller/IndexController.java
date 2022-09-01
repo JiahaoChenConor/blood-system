@@ -2,6 +2,7 @@ package com.elec5619.bloodsystem.controller;
 
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.security.PasswordValidation;
 import com.elec5619.bloodsystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -10,13 +11,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
+import java.util.regex.Pattern;
+
+import static com.elec5619.bloodsystem.status.RegisterStatus.*;
 
 @Controller
 
 
 public class IndexController {
+
 
 
     @Autowired
@@ -63,18 +67,29 @@ public class IndexController {
     @PostMapping("/register")
     public String register(@Param("email") String email,
                             @Param("password") String password,
-                           @Param("rePassword") String rePassword){
-        if (email == null || password == null || rePassword == null){
-            System.out.println(email);
-            System.out.println(password);
-            System.out.println(rePassword);
-            throw new IllegalStateException("register null");
+                           @Param("rePassword") String rePassword,
+                           Model model){
+
+        if (email == null || password == null || rePassword == null
+            || email.isEmpty() || password.isEmpty() || rePassword.isEmpty()){
+            model.addAttribute("registerStatus", EMPTY_ERROR.toString());
+            return "register";
         }
 
-
+        if (!PasswordValidation.isValid(password)){
+            model.addAttribute("registerStatus", PASSWORD_NOT_VALID.toString());
+            return "register";
+        }
         if (!password.equals(rePassword)){
-            throw new IllegalStateException("password not the same.");
+            model.addAttribute("registerStatus", PASSWORD_NOT_SAME.toString());
+            return "register";
         }
+
+        if (accountService.accountExists(email)){
+            model.addAttribute("registerStatus", EMAIL_EXISTS.toString());
+            return "register";
+        }
+
 
         Account account = new Account();
         account.setEmail(email);
@@ -83,7 +98,9 @@ public class IndexController {
 
         accountService.register(account);
 
-        return "index";
+        model.addAttribute("registerStatus", SUCCESS_REGISTER.toString());
+
+        return "register";
     }
 
 

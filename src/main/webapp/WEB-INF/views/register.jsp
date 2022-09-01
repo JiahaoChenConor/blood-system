@@ -75,6 +75,29 @@
                     <em>Sign up</em> you agree to our
                     <a href="" target="_blank">terms of service</a>
 
+                <div class="d-flex justify-content-around mt-5">
+                    <%
+                        String status = (String) request.getAttribute("registerStatus");
+                        if (status != null){
+                            if (status.equals("empty_error")){
+                                out.println("<p class=\"text-warning\"> Empty is not allowed</p>");
+                            }
+                            else if (status.equals("password_not_valid")){
+                                out.println("<p class=\"text-warning\"> Password not valid. </br> " +
+                                                    "At least 1 number and 1 lowercase and 1 uppercase letter</br>" +
+                                                    "length is between 8 to 20 </p>");
+                            }else if (status.equals("password_not_same")){
+                                out.println("<p class=\"text-warning\"> Password re-enter is not the same </p>");
+                            }else if (status.equals("email_exists")){
+                                out.println("<p class=\"text-warning\"> This email has been registered</p>");
+                            }else{
+                                out.println("<p class=\"text-primary\"> Congratulations. Register successfully </p>");
+                            }
+
+                        }
+
+                    %>
+                </div>
             </form>
             <!-- Default form register -->
 
