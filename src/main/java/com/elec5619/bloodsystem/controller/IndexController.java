@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 
@@ -28,10 +30,15 @@ public class IndexController {
         return "index";
     }
 
-    @RequestMapping("/login")
-    public String login(){
+    @GetMapping("/login")
+    // required=false, since if param not exists, there is error.
+    public String login(@RequestParam(required=false) boolean loginError,
+                        Model model)
+    {
+        model.addAttribute("loginError", loginError);
         return "login";
     }
+
 
     @GetMapping("/index-user")
     public String indexAfterLogin(){

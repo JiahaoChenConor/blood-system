@@ -38,7 +38,7 @@ public class AccountDetailService implements UserDetailsService {
 
         Account account = accountRepository.findAccountByEmail(email);
         if (account == null){
-            throw new IllegalStateException("No such user exists.");
+            throw new UsernameNotFoundException("user name not found");
         }
 
         return new User(

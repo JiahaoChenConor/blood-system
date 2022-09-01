@@ -22,14 +22,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
     private final AccountDetailService accountDetailService;
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
                                      AccountDetailService accountDetailService,
-                                     CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler){
+                                     CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler,
+                                     CustomAuthenticationFailureHandler customAuthenticationFailureHandler){
         this.passwordEncoder = passwordEncoder;
         this.accountDetailService = accountDetailService;
         this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
+        this.customAuthenticationFailureHandler = customAuthenticationFailureHandler;
     }
 
     @Override
@@ -40,7 +43,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // permit index page for all users(non-user)
                 .antMatchers("/", "index", "/css/*", "/js/*", "/img/**").permitAll()
-                .antMatchers("/register").permitAll()
+                .antMatchers("/register**").permitAll()
+                .antMatchers("/login**").permitAll()
                 .antMatchers( "/api/**").hasRole("USER")
                 .anyRequest()
                 .authenticated()
@@ -48,9 +52,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // login settings
                 .formLogin()
-                .loginPage("/login").permitAll()
+                .loginPage("/login").permitAll()      // It's important!! Otherwise
                 .usernameParameter("email").passwordParameter("password")
                 .successHandler(customAuthenticationSuccessHandler)
+                .failureHandler(customAuthenticationFailureHandler)
 //                .and()
 //                .rememberMe()
 //                // https://stackoverflow.com/questions/46421185/remember-me-not-working-throws-java-lang-illegalstateexception-userdetailsse

@@ -61,6 +61,12 @@
                         </div>
                     </div>
 
+                    <div class="d-flex justify-content-around mt-5">
+                        <% if ((Boolean) request.getAttribute("loginError")){
+                            out.println("<p class=\"text-warning\"> Wrong password or email </p>");
+                        }%>
+                    </div>
+
                     <!-- Sign in button -->
                     <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
 
