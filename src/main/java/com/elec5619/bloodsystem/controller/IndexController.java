@@ -14,17 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.util.regex.Pattern;
 
 import static com.elec5619.bloodsystem.status.RegisterStatus.*;
 
 @Controller
-
-
 public class IndexController {
-
-
-
     @Autowired
     AccountService accountService;
 

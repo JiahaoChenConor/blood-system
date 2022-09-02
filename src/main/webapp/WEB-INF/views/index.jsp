@@ -73,7 +73,7 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
-
+                <button type="button" class="btn btn-info" id="book">Book</button>
                 <!-- Avatar -->
                 <a class="nav-link" href="/login"><i class="fas fa-user fa-lg"></i>  LOGIN </a>
 
@@ -279,6 +279,11 @@
 <!-- MDB -->
 <script type="text/javascript" src="js/mdb.min.js"></script>
 <!-- Custom scripts -->
-<script type="text/javascript"></script>
+<script type="text/javascript">
+
+    document.getElementById("book").onclick = function () {
+        location.href = "/book";
+    };
+</script>
 </body>
 </html>
