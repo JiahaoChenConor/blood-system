@@ -1,13 +1,3 @@
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <jsp:include page="base/header.jsp"/>
-</head>
-<body>
-<!-- Start your project here-->
-
 <%--Nav bar--%>
 <div class="container-fluid height=300px">
     <!-- Navbar -->
@@ -41,7 +31,7 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -56,6 +46,7 @@
 
             <!-- Right elements -->
             <div class="d-flex align-items-center">
+
                 <button type="button" id="book" class="btn btn-secondary me-4">Book</button>
 
                 <!-- Avatar -->
@@ -102,81 +93,10 @@
 
 
 
-<!-- Jumbotron -->
-<div class="p-5 text-center bg-light">
-    <h1 class="mb-3">Book</h1>
-</div>
-<!-- Jumbotron -->
-
-
-<div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-md">
-        </div>
-
-
-        <div class="col-md">
-
-        </div>
-
-        <div class="col-md">
-        </div>
-    </div>
-</div>
-
-
-
-<div class="container mt-5 mb-5">
-    <div class="row">
-        <div class="col-md">
-        </div>
-
-        <div class="col-md">
-            <div class="card">
-                <img src="img/book/request.png" class="card-img-top" alt="Fissure in Sandstone"/>
-                <div class="card-body bg-light">
-                    <p class="card-text">If your want to reuqest blood, click this button</p>
-                    <a href="#!" class="btn btn-primary">Request</a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md">
-        </div>
-
-
-        <div class="col-md">
-            <div class="card">
-                <img src="img/book/donation.jpeg" class="card-img-top" alt="Fissure in Sandstone"/>
-                <div class="card-body bg-light">
-
-                    <p class="card-text">If your want to donate blood, click this button</p>
-                    <a href="#!" class="btn btn-primary">Donate</a>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md">
-        </div>
-
-    </div>
-</div>
-
-
-
-
-<jsp:include page="base/footer.jsp"/>
-<!-- Footer -->
-
-
-<!-- End your project here-->
-
-<!-- MDB -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
+
+    document.getElementById("book").onclick = function () {
+        location.href = "/book";
+    };
 </script>
-</body>
-</html>
