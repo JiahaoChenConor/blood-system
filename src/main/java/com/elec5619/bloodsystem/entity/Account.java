@@ -1,8 +1,11 @@
 package com.elec5619.bloodsystem.entity;
 
 
+import org.w3c.dom.ls.LSInput;
+
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
 
 
 @Entity
@@ -55,4 +58,25 @@ public class Account {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+
+
+
+    @OneToOne
+    @JoinColumn(name = "healthInfoId")
+    private HealthInfo healthInfo;
+
+    @OneToOne
+    @JoinColumn(name = "profileId")
+    private Profile profile;
+
+
+    @OneToMany(mappedBy = "account")
+    private List<HistoryRecord> historyRecords;
+
+    @OneToMany(mappedBy = "account")
+    private List<MessageRecord> messageRecords;
+
+
+
 }
