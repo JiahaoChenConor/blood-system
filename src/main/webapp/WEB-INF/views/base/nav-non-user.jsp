@@ -27,7 +27,7 @@
                 <!-- Navbar brand -->
                 <a class="navbar-brand mt-2 mt-lg-0" href="#">
                     <img
-                            src="img/blood-drop.png"
+                            src="/img/blood-drop.png"
                             height="25"
                             alt="MDB Logo"
                             loading="lazy"
@@ -65,7 +65,7 @@
 </div>
 
 <!-- MDB -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
     document.getElementById("book").onclick = function () {

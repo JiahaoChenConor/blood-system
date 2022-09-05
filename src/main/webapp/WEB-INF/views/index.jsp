@@ -64,7 +64,7 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-8">
-            <img src="img/bg.png" alt="bg">
+            <img src="/img/bg.png" alt="bg">
         </div>
         <div class="col-4 mt-5 mb-5">
             <h1> Who are we?</h1>

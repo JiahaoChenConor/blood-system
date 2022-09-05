@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <jsp:include page="base/header.jsp"/>
+</head>
+<body>
+<!-- Start your project here-->
+
+<jsp:include page="base/nav-user.jsp"/>
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-12">
+            <div class="wrapper-progressBar">
+                <ul class="progressBar">
+                    <li class="active">Check eligibility</li>
+                    <li>Select hospital</li>
+                    <li>Select date and time</li>
+                    <li>Confirm appointment</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<jsp:include page="base/footer.jsp"/>
+<!-- Footer -->
+
+
+<!-- End your project here-->
+
+<!-- MDB -->
+<script type="text/javascript" src="/js/mdb.min.js"></script>
+<!-- Custom scripts -->
+<script type="text/javascript">
+</script>
+</body>
+</html>

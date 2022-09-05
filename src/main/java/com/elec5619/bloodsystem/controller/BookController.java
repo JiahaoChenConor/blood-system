@@ -24,4 +24,22 @@ public class BookController {
 
         return "book";
     }
+
+
+    @GetMapping("/book/donate")
+    public String donate(Model model)
+    {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails)principal).getUsername();
+            model.addAttribute("username", username.split("@")[0]);
+        } else {
+            throw new IllegalStateException("No user details");
+        }
+
+        return "donate-step1";
+    }
+
+
+
 }
