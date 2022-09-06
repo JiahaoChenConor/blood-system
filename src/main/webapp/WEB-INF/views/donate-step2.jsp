@@ -77,7 +77,7 @@
     };
 
     document.getElementById("prev").onclick = function () {
-        location.href = "/book/donate-step1";
+        location.href = "/book/donate";
     };
 </script>
 </body>

@@ -17,6 +17,10 @@ public class HistoryRecord {
 
     private Double Measure;
 
+    @Enumerated(EnumType.STRING)
+    private BloodType bloodType;
+
+
     private String location;
 
     private String date;
@@ -83,5 +87,14 @@ public class HistoryRecord {
 
     public void setMessagesInHistory(List<MessageRecord> messagesInHistory) {
         this.messagesInHistory = messagesInHistory;
+    }
+
+
+    public BloodType getBloodType() {
+        return bloodType;
+    }
+
+    public void setBloodType(BloodType bloodType) {
+        this.bloodType = bloodType;
     }
 }

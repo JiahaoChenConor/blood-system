@@ -1,6 +1,7 @@
 package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.BloodType;
 import com.elec5619.bloodsystem.entity.HistoryRecord;
 import com.elec5619.bloodsystem.entity.HistoryType;
 import com.elec5619.bloodsystem.service.AccountService;
@@ -43,7 +44,7 @@ public class BookController {
     public String donate(Model model)
     {
         donate = new HistoryRecord();
-        donate.setMeasure(DEFAULT_DONATE);
+
         donate.setHistoryType(HistoryType.DONATE);
 
         Account curUser = accountService.getAccountByEmail(getCurrentUser());
@@ -54,8 +55,23 @@ public class BookController {
     }
 
     @GetMapping("/book/donate-step2")
-    public String donateStepTwo(Model model)
+    public String donateStepTwo(Model model,
+                                @RequestParam(name="bloodType", required = false) String bloodType,
+                                @RequestParam(name="cc", required = false) String cc)
     {
+
+        donate.setMeasure(Double.parseDouble(cc));
+        if (bloodType != null){
+            switch (bloodType) {
+                case "A" -> donate.setBloodType(BloodType.A);
+                case "B" -> donate.setBloodType(BloodType.B);
+                case "AB" -> donate.setBloodType(BloodType.AB);
+                case "O" -> donate.setBloodType(BloodType.O);
+            }
+        }else{
+            donate.setBloodType(null);
+        }
+
         addCurrentUser(model);
         return "donate-step2";
     }
