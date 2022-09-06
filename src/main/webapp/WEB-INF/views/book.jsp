@@ -39,10 +39,10 @@
 
         <div class="col-md">
             <div class="card">
-                <img src="img/book/request.png" class="card-img-top" alt="Fissure in Sandstone"/>
+                <img src="/img/book/request.png" class="card-img-top" alt="Fissure in Sandstone"/>
                 <div class="card-body bg-light">
-                    <p class="card-text">If your want to reuqest blood, click this button</p>
-                    <a href="/book/donate" class="btn btn-primary">Request</a>
+                    <p class="card-text">If your want to request blood, click this button</p>
+                    <a href="/book/request" class="btn btn-primary">Request</a>
                 </div>
             </div>
         </div>
@@ -54,11 +54,11 @@
 
         <div class="col-md">
             <div class="card">
-                <img src="img/book/donation.jpeg" class="card-img-top" alt="Fissure in Sandstone"/>
+                <img src="/img/book/donation.jpeg" class="card-img-top" alt="Fissure in Sandstone"/>
                 <div class="card-body bg-light">
 
                     <p class="card-text">If your want to donate blood, click this button</p>
-                    <a href="#!" class="btn btn-primary">Donate</a>
+                    <a href="/book/donate" class="btn btn-primary">Donate</a>
                 </div>
             </div>
         </div>
@@ -80,7 +80,7 @@
 <!-- End your project here-->
 
 <!-- MDB -->
-<script type="text/javascript" src="js/mdb.min.js"></script>
+<script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
 </script>

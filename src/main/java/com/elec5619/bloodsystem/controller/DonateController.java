@@ -5,32 +5,29 @@ import com.elec5619.bloodsystem.entity.BloodType;
 import com.elec5619.bloodsystem.entity.HistoryRecord;
 import com.elec5619.bloodsystem.entity.HistoryType;
 import com.elec5619.bloodsystem.service.AccountService;
-import com.elec5619.bloodsystem.service.DonateService;
+import com.elec5619.bloodsystem.service.HistoryRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 
 @Controller
-public class BookController {
+public class DonateController {
 
 
     @Autowired
-    DonateService donateService;
+    HistoryRecordService historyRecordService;
 
     @Autowired
     AccountService accountService;
 
 
     private HistoryRecord donate;
-    private final double DEFAULT_DONATE = 400.0;
 
     @GetMapping("/book")
     public String login(Model model)
@@ -60,7 +57,13 @@ public class BookController {
                                 @RequestParam(name="cc", required = false) String cc)
     {
 
-        donate.setMeasure(Double.parseDouble(cc));
+        if (cc != null){
+            donate.setMeasure(Double.parseDouble(cc));
+        }else{
+            donate.setMeasure(null);
+        }
+
+
         if (bloodType != null){
             switch (bloodType) {
                 case "A" -> donate.setBloodType(BloodType.A);
@@ -109,7 +112,7 @@ public class BookController {
             && donate.getDate() != null
             && donate.getMeasure() != null){
             // save to db.
-            donateService.saveDonateRequest(donate);
+            historyRecordService.saveHistoryRecord(donate);
         }
         addCurrentUser(model);
         return "index-user";

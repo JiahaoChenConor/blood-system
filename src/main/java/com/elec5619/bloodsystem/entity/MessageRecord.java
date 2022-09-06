@@ -12,7 +12,8 @@ public class MessageRecord {
 
     private String receiver;
 
-    private String subject;
+    @Enumerated(EnumType.STRING)
+    private Subject subject;
 
     private String content;
 
@@ -52,11 +53,11 @@ public class MessageRecord {
         this.receiver = receiver;
     }
 
-    public String getSubject() {
+    public Subject getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    public void setSubject(Subject subject) {
         this.subject = subject;
     }
 
