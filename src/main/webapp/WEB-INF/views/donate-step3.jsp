@@ -85,15 +85,16 @@
 <br/>
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-md">
+        <div class="col-8">
+            <button type="button" class="btn btn-primary" id="prev">Prev</button>
         </div>
 
 
-        <div class="col-md">
+        <div class="col-3">
 
         </div>
 
-        <div class="col-md">
+        <div class="col-1">
             <button type="button" class="btn btn-primary" id="next">Next</button>
 <%--            <a href="/book/donate-step4" class="btn btn-primary">Next</a>--%>
         </div>
@@ -114,6 +115,10 @@
 
     document.getElementById("next").onclick = function () {
         location.href = "/book/donate-step4?time=" + document.getElementById("time").value;
+    };
+
+    document.getElementById("prev").onclick = function () {
+        location.href = "/book/donate-step2";
     };
 
 

@@ -26,23 +26,33 @@
     </div>
 </div>
 
+<div class="container mt-5 mb-5">
+    <div class="row">
 
+        <div class="col-6">
+
+        </div>
+        <div class="col-6">
+            <input id="location" value="sydney" />
+        </div>
+
+    </div>
+</div>
 
 <br/>
 <br/>
 <br/>
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-md">
+        <div class="col-8">
+            <button type="button" class="btn btn-primary" id="prev">Prev</button>
         </div>
 
 
-        <div class="col-md">
-
-            <input id="location" value="sydney" />
+        <div class="col-3">
         </div>
 
-        <div class="col-md">
+        <div class="col-1">
             <button type="button" class="btn btn-primary" id="next">Next</button>
 
         </div>
@@ -64,6 +74,10 @@
 
     document.getElementById("next").onclick = function () {
         location.href = "/book/donate-step3?location=" + document.getElementById("location").value;
+    };
+
+    document.getElementById("prev").onclick = function () {
+        location.href = "/book/donate-step1";
     };
 </script>
 </body>

@@ -14,9 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -64,7 +62,9 @@ public class BookController {
 
     @GetMapping("/book/donate-step3")
     public String donateStepThree(Model model,
-                                  @RequestParam(name="location") String location)
+                                  @RequestParam(name="location", required = false) String location)
+                                    // when back, we reset the location into null
+                                    // So we can check all in last confirmation
     {
 
         donate.setLocation(location);
@@ -74,7 +74,7 @@ public class BookController {
 
     @GetMapping("/book/donate-step4")
     public String donateStepFour(Model model,
-                                 @RequestParam(name="time") String time)
+                                 @RequestParam(name="time", required = false) String time)
     {
 
         donate.setDate(time);
@@ -87,7 +87,11 @@ public class BookController {
     public String donateStepConfirm(Model model)
     {
 
-        if (donate != null){
+        if (donate != null
+            && donate.getAccount() != null
+            && donate.getLocation() != null
+            && donate.getDate() != null
+            && donate.getMeasure() != null){
             // save to db.
             donateService.saveDonateRequest(donate);
         }

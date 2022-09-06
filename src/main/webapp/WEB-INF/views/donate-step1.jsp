@@ -31,15 +31,15 @@
 <br/>
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-md">
+        <div class="col-8">
         </div>
 
 
-        <div class="col-md">
+        <div class="col-3">
 
         </div>
 
-        <div class="col-md">
+        <div class="col-1">
             <a href="/book/donate-step2" class="btn btn-primary">Next</a>
         </div>
     </div>

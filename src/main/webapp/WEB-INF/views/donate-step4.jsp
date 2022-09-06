@@ -44,7 +44,6 @@
 
         </div>
         <div class="col-2">
-            Pick Date
         </div>
 
         <div class="col-8">
@@ -60,15 +59,16 @@
 <br/>
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-md">
+        <div class="col-8">
+            <button type="button" class="btn btn-primary" id="prev">Prev</button>
         </div>
 
 
-        <div class="col-md">
+        <div class="col-3">
 
         </div>
 
-        <div class="col-md">
+        <div class="col-1">
             <a href="/book/donate-confirm" class="btn btn-primary">Confirm</a>
         </div>
     </div>
@@ -85,6 +85,9 @@
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
+    document.getElementById("prev").onclick = function () {
+        location.href = "/book/donate-step3";
+    };
 </script>
 </body>
 </html>
