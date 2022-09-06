@@ -11,6 +11,8 @@ public class HistoryRecord {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long historyId;
 
+
+    @Enumerated(EnumType.STRING)
     private HistoryType historyType;
 
     private Double Measure;

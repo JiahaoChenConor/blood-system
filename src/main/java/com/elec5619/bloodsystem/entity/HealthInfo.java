@@ -2,10 +2,7 @@ package com.elec5619.bloodsystem.entity;
 
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class HealthInfo {
@@ -14,6 +11,7 @@ public class HealthInfo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long healthInfoId;
 
+    @Enumerated(EnumType.STRING)
     private BloodType bloodType;
 
     private int age;

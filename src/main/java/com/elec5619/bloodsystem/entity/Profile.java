@@ -1,10 +1,7 @@
 package com.elec5619.bloodsystem.entity;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Profile {
@@ -18,6 +15,7 @@ public class Profile {
 
     private String lastName;
 
+    @Enumerated(EnumType.STRING)
     private Gender gender;
 
     private String mobileNum;
