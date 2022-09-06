@@ -3,18 +3,6 @@
 <head>
     <jsp:include page="base/header.jsp"/>
 
-<%--    extra header for date and time picker--%>
-    <link href="css/datetimepicker.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/js/datetimepicker.js"></script>
-
-    <script type="text/javascript">
-        $(document).ready( function () {
-            $('#picker').dateTimePicker();
-        })
-    </script>
 
 </head>
 <body>
@@ -51,7 +39,7 @@
 
         <div class="col-md">
 
-            <input type="hidden" id="location" value="sydney" />
+            <input id="location" value="sydney" />
         </div>
 
         <div class="col-md">
@@ -60,6 +48,7 @@
         </div>
     </div>
 </div>
+
 
 
 <jsp:include page="base/footer.jsp"/>
