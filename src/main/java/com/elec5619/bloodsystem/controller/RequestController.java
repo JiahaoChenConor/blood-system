@@ -2,6 +2,7 @@ package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.entity.*;
 import com.elec5619.bloodsystem.service.AccountService;
+import com.elec5619.bloodsystem.service.EmailService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class RequestController {
     @Autowired
     MessageRecordService messageRecordService;
 
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     HistoryRecordService historyRecordService;
@@ -143,6 +146,14 @@ public class RequestController {
 
                     messageRecordService.saveMessageRecord(messageRecord);
                     System.out.println("save to db2");
+
+                    // send email through third-party gmail
+                    EmailDetails emailDetails = new EmailDetails();
+                    emailDetails.setRecipient(matchedDonate.getEmail());
+                    emailDetails.setSubject(messageRecord.getSubject().toString());
+                    emailDetails.setMsgBody(message);
+
+                    emailService.sendSimpleMail(emailDetails);
                 }
             }
         }
