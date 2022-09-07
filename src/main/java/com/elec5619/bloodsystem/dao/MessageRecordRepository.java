@@ -1,8 +1,10 @@
 package com.elec5619.bloodsystem.dao;
 
+import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.BloodType;
 import com.elec5619.bloodsystem.entity.HistoryRecord;
 import com.elec5619.bloodsystem.entity.MessageRecord;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -17,5 +19,6 @@ public interface MessageRecordRepository extends JpaRepository<MessageRecord, In
     @Override
     <S extends MessageRecord> S save(S entity);
 
-
+    @Query ("SELECT m FROM MessageRecord m WHERE m.receiver = ?1")
+    List<MessageRecord> findAllByReceiver(String receiver);
 }

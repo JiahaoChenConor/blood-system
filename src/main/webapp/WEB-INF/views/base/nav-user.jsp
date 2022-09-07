@@ -75,6 +75,10 @@
                         <li>
                             <a class="dropdown-item" href="#">History</a>
                         </li>
+
+                        <li>
+                            <a class="dropdown-item" href="/messages">Messages</a>
+                        </li>
                         <li>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log out</a>
                         </li>
