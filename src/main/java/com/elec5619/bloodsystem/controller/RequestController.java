@@ -152,7 +152,6 @@ public class RequestController {
                     emailDetails.setRecipient(matchedDonate.getEmail());
                     emailDetails.setSubject(messageRecord.getSubject().toString());
                     emailDetails.setMsgBody(message);
-
                     emailService.sendSimpleMail(emailDetails);
                 }
             }

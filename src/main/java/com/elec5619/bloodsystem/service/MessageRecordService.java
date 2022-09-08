@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -22,6 +23,11 @@ public class MessageRecordService {
 
     public List<MessageRecord> findAllMessagesByReceiver(String receiver){
         return messageRecordRepository.findAllByReceiver(receiver);
+    }
+
+    public MessageRecord findMessageById(Long id){
+        Optional<MessageRecord> messageRecord = messageRecordRepository.findById(id);
+        return messageRecord.orElse(null);
     }
 
 

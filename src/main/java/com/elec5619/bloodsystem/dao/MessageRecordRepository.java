@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MessageRecordRepository extends JpaRepository<MessageRecord, Integer> {
 
@@ -21,4 +22,8 @@ public interface MessageRecordRepository extends JpaRepository<MessageRecord, In
 
     @Query ("SELECT m FROM MessageRecord m WHERE m.receiver = ?1")
     List<MessageRecord> findAllByReceiver(String receiver);
+
+
+    @Query ("SELECT m FROM MessageRecord m WHERE m.messageId = ?1")
+    Optional<MessageRecord> findById(Long id);
 }

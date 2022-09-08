@@ -23,6 +23,18 @@ public class MessageRecord {
     @JoinColumn(name = "accountId")
     private Account account;
 
+    public MessageRecord(String sender, String receiver, Subject subject, String content, String date, Account account, HistoryRecord historyRecord) {
+        this.sender = sender;
+        this.receiver = receiver;
+        this.subject = subject;
+        this.content = content;
+        this.date = date;
+        this.account = account;
+        this.historyRecord = historyRecord;
+    }
+
+    public MessageRecord() {
+    }
 
     @ManyToOne
     @JoinColumn(name = "historyRecordId")

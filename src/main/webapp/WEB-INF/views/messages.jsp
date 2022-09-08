@@ -65,8 +65,9 @@
                             "                    </div>\n" +
                             "                </td>\n" +
                             "                <td>\n" +
-                            "                    <p class=\"fw-normal mb-1 \">" + entry.getSubject() + "</p>\n" +
-                            "\n" +
+                            "                   <a href=\"messages/" + entry.getMessageId() + "\">" +
+                            "                       <p class=\"fw-normal mb-1 \">" + entry.getSubject() + "</p>\n" +
+                        "                       </a>" +
                             "                </td>\n" +
                     "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getDate() + "</p>\n" +
