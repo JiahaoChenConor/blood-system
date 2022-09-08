@@ -2,6 +2,7 @@ package com.elec5619.bloodsystem.controller;
 
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.MessageRecord;
 import com.elec5619.bloodsystem.security.PasswordValidation;
 import com.elec5619.bloodsystem.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +15,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.elec5619.bloodsystem.status.RegisterStatus.*;
 
 @Controller
 public class IndexController {
+    @Autowired
+    Helper helper;
+
+
     @Autowired
     AccountService accountService;
 
@@ -56,7 +64,18 @@ public class IndexController {
     }
 
     @GetMapping("/index-admin")
-    public String indexAfterLoginAdmin(){
+    public String indexAfterLoginAdmin(Model model){
+
+        helper.addCurrentUser(model);
+
+        List<Account> accounts = accountService.getAllAccounts();
+
+        Map<String, List<Account>> messages = new HashMap<>() {{
+            put("users", accounts);
+        }};
+
+        model.addAttribute("users", messages);
+
         return "index-admin";
     }
 

@@ -30,6 +30,10 @@ public class MessageRecordService {
         return messageRecord.orElse(null);
     }
 
+    public void deleteById(Long id){
+        messageRecordRepository.deleteById(id);
+    }
+
 
 
 

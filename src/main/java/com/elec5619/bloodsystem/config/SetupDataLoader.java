@@ -62,7 +62,7 @@ public class SetupDataLoader implements
         Account accountUser = new Account();
 
         accountUser.setPassword(passwordEncoder.encode("Password123"));
-        accountUser.setEmail("example@gmail.com");
+        accountUser.setEmail("jche4519@uni.sydney.edu.au");
         accountUser.setRoles(List.of(userRole));
         accountRepository.save(accountUser);
 

@@ -22,7 +22,7 @@ public class AccountService {
 
 
 
-    public Account getAccountById(int id){
+    public Account getAccountById(Long id){
         return accountRepository.findById(id);
     }
 

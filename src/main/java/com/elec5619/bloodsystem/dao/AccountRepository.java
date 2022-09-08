@@ -16,8 +16,8 @@ public interface AccountRepository
     @Query("SELECT s FROM Account s WHERE s.email = ?1")
     Account findAccountByEmail(String email);
 
-
-    Account findById(int id);
+    @Query("SELECT s FROM Account s WHERE s.id = ?1")
+    Account findById(Long id);
 //    @Query(value="select r.name from Role ur inner join (Role r, User u) on(ur.roleId = r.id  and ur.userId = u.id) where u.email = ?1", nativeQuery = true)
 //    List<String> findRolesByEmail(String email);
 //
