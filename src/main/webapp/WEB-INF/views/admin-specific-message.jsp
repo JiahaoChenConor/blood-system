@@ -59,7 +59,7 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-8">
-            <button type="button" class="btn btn-primary" id="back" >Back</button>
+            <button type="button" class="btn btn-primary" id="back" onclick="history.back()">Back</button>
         </div>
 
 
