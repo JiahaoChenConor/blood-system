@@ -31,7 +31,7 @@
                 <!-- Left links -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">About</a>
@@ -49,6 +49,7 @@
 
                 <button type="button" id="book" class="btn btn-secondary me-4">Book</button>
 
+
                 <!-- Avatar -->
                 <div class="dropdown">
                     <a
@@ -60,7 +61,7 @@
                             aria-expanded="false"
                     >
                         <!-- Avatar -->
-                        <div ><i class="fas fa-user fa-lg"></i> <%=request.getAttribute("username")%> </div>
+                        <div ><i class="fas fa-user fa-lg"></i>  <%=request.getAttribute("username")%> </div>
                     </a>
                     <ul
                             class="dropdown-menu dropdown-menu-end"
@@ -75,10 +76,10 @@
                         <li>
                             <a class="dropdown-item" href="#">History</a>
                         </li>
-
                         <li>
                             <a class="dropdown-item" href="/messages">Messages</a>
                         </li>
+
                         <li>
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/logout">Log out</a>
                         </li>
@@ -96,9 +97,8 @@
 </div>
 
 
-<script type="text/javascript" src="/js/mdb.min.js"></script>
 
-<!-- Custom scripts -->
+
 <script type="text/javascript">
 
     document.getElementById("book").onclick = function () {
