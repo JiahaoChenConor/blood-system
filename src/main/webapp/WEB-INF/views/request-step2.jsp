@@ -3,7 +3,8 @@
 <head>
     <jsp:include page="base/header.jsp"/>
 
-
+    <link rel="stylesheet" type="text/css" href="/css/map.css" />
+    <script type="module" src="/js/map.js"></script>
 </head>
 <body>
 <!-- Start your project here-->
@@ -26,18 +27,7 @@
     </div>
 </div>
 
-<div class="container mt-5 mb-5">
-    <div class="row">
-
-        <div class="col-6">
-
-        </div>
-        <div class="col-6">
-            <input id="location" value="sydney" />
-        </div>
-
-    </div>
-</div>
+<jsp:include page="map.jsp"/>
 
 <br/>
 <br/>
@@ -73,7 +63,7 @@
 <script type="text/javascript">
 
     document.getElementById("next").onclick = function () {
-        location.href = "/book/request-step3?location=" + document.getElementById("location").value;
+        location.href = "/book/request-step3?location=" + document.getElementById("pac-input").value;
     };
 
     document.getElementById("prev").onclick = function () {

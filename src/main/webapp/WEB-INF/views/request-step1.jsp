@@ -37,7 +37,7 @@
         </div>
 
         <div class="col-4">
-            <select class="blood-type" id="blood-type" aria-label="Default select example">
+            <select class="form-select" id="blood-type" aria-label="Default select example">
                 <option value="A" selected>A</option>
                 <option value="B">B</option>
                 <option value="AB">AB</option>
@@ -61,7 +61,7 @@
         </div>
 
         <div class="col-4">
-            <select class="cc" id="cc" aria-label="Default select example">
+            <select class="form-select" id="cc" aria-label="Default select example">
                 <option value="200">200</option>
                 <option value="400" selected>400</option>
             </select>

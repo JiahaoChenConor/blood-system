@@ -3,7 +3,10 @@
 <head>
     <jsp:include page="base/header.jsp"/>
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+    <link rel="stylesheet" type="text/css" href="/css/map.css" />
+    <script type="module" src="/js/map.js"></script>
 </head>
 <body>
 <!-- Start your project here-->
@@ -26,18 +29,9 @@
     </div>
 </div>
 
-<div class="container mt-5 mb-5">
-    <div class="row">
 
-        <div class="col-6">
+<jsp:include page="map.jsp"/>
 
-        </div>
-        <div class="col-6">
-            <input id="location" value="sydney" />
-        </div>
-
-    </div>
-</div>
 
 <br/>
 <br/>
@@ -61,6 +55,7 @@
 
 
 
+
 <jsp:include page="base/footer.jsp"/>
 <!-- Footer -->
 
@@ -73,7 +68,7 @@
 <script type="text/javascript">
 
     document.getElementById("next").onclick = function () {
-        location.href = "/book/donate-step3?location=" + document.getElementById("location").value;
+        location.href = "/book/donate-step3?location=" + document.getElementById("pac-input").value;
     };
 
     document.getElementById("prev").onclick = function () {

@@ -26,22 +26,33 @@
     </div>
 </div>
 
+
+
+
+
 <div class="container mt-5 mb-5">
     <div class="row">
-
-        <div class="col-6">
-
+        <div class="col-4">
         </div>
-        <div class="col-6">
-            <p> Are you urgent? </p>
-            <select class="subject" id="subject" aria-label="Default select example">
+
+
+        <div class="col-4 justify-content-center">
+            <h1> Are you urgent? </h1>
+            <br/>
+            <select class="form-select" id="subject" aria-label="Default select example">
                 <option value="Urgent-request">Yes</option>
                 <option value="Blood-Request" selected>No</option>
             </select>
+
         </div>
 
+        <div class="col-4">
+
+        </div>
     </div>
 </div>
+
+
 
 <br/>
 <br/>
