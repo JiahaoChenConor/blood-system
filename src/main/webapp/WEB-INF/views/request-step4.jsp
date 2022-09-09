@@ -87,6 +87,10 @@
     </div>
 </div>
 
+
+<jsp:include page="base/modal.jsp"/>
+
+
 <br/>
 <br/>
 <br/>
@@ -102,7 +106,7 @@
         </div>
 
         <div class="col-1">
-            <button type="button" class="btn btn-primary" id="confirm">Confirm</button>
+            <button type="button" class="btn btn-primary" id="confirm" data-mdb-toggle="modal" data-mdb-target="#exampleModal">Confirm</button>
 <%--            <a href="/book/request-confirm" class="btn btn-primary">Confirm</a>--%>
         </div>
     </div>
