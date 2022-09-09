@@ -23,9 +23,6 @@ import static com.elec5619.bloodsystem.status.RegisterStatus.*;
 
 @Controller
 public class IndexController {
-    @Autowired
-    Helper helper;
-
 
     @Autowired
     AccountService accountService;
@@ -66,7 +63,7 @@ public class IndexController {
     @GetMapping("/index-admin")
     public String indexAfterLoginAdmin(Model model){
 
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
         List<Account> accounts = accountService.getAllAccounts();
 

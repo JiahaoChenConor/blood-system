@@ -22,12 +22,10 @@ public class AdminController {
     @Autowired
     MessageRecordService messageRecordService;
 
-    @Autowired
-    Helper helper;
 
     @GetMapping("/admin/user-message/{userId}")
     public String userMessages(@PathVariable String userId, Model model){
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
 
         Account account = accountService.getAccountById(Long.parseLong(userId));
@@ -45,7 +43,7 @@ public class AdminController {
 
     @GetMapping("/admin/messages/{messageId}")
     public String specificMessage(@PathVariable String messageId, Model model){
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
         MessageRecord messageRecord = messageRecordService.findMessageById(Long.parseLong(messageId));
 

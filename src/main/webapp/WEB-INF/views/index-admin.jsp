@@ -10,7 +10,7 @@
 <body>
 <!-- Start your project here-->
 
-<jsp:include page="base/nav-user.jsp"/>
+<jsp:include page="base/nav-admin.jsp"/>
 
 
 <div class="container mt-5 mb-5">

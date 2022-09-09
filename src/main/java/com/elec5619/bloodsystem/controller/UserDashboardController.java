@@ -3,6 +3,7 @@ package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.entity.EmailDetails;
 import com.elec5619.bloodsystem.entity.MessageRecord;
+import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.EmailService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class UserDashboardController {
     EmailService emailService;
 
     @Autowired
-    Helper helper;
+    AccountService accountService;
 
     @Autowired
     MessageRecordService messageRecordService;
@@ -31,9 +32,9 @@ public class UserDashboardController {
     @GetMapping("/messages")
     public String allMessages(Model model){
 
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
-        List<MessageRecord> messageRecordList = messageRecordService.findAllMessagesByReceiver(helper.getCurrentUserEmail());
+        List<MessageRecord> messageRecordList = messageRecordService.findAllMessagesByReceiver(accountService.getCurrentUserEmail());
 
         Map<String, List<MessageRecord>> messages = new HashMap<>() {{
             put("messages", messageRecordList);
@@ -46,7 +47,7 @@ public class UserDashboardController {
 
     @GetMapping("/messages/{messageId}")
     public String specificMessage(@PathVariable String messageId, Model model){
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
         MessageRecord messageRecord = messageRecordService.findMessageById(Long.parseLong(messageId));
 
@@ -58,7 +59,7 @@ public class UserDashboardController {
 
     @GetMapping("messages/{messageId}/reply")
     public String toReplyPage(@PathVariable String messageId, Model model){
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
         model.addAttribute("messageId", messageId);
 
@@ -70,7 +71,7 @@ public class UserDashboardController {
     public String reply(Model model,
                         @RequestParam(name = "message") String message,
                         @PathVariable String messageId){
-        helper.addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
         // send email
         MessageRecord originalMessage = messageRecordService.findMessageById(Long.parseLong(messageId));
@@ -81,7 +82,7 @@ public class UserDashboardController {
                                                 originalMessage.getSubject(),
                                                 message,
                                                 getCurDate(),
-                                                helper.getCurrentAccount(),
+                                                accountService.getCurrentAccount(),
                                                 originalMessage.getHistoryRecord());
 
         messageRecordService.saveMessageRecord(reply);

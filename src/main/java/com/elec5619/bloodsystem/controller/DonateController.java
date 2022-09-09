@@ -32,7 +32,7 @@ public class DonateController {
     @GetMapping("/book")
     public String login(Model model)
     {
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "book";
     }
 
@@ -44,10 +44,11 @@ public class DonateController {
 
         donate.setHistoryType(HistoryType.DONATE);
 
-        Account curUser = accountService.getAccountByEmail(getCurrentUser());
+        Account curUser = accountService.getAccountByEmail(accountService.getCurrentUserEmail());
+
         donate.setAccount(curUser);
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "donate-step1";
     }
 
@@ -75,7 +76,7 @@ public class DonateController {
             donate.setBloodType(null);
         }
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "donate-step2";
     }
 
@@ -87,7 +88,7 @@ public class DonateController {
     {
 
         donate.setLocation(location);
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "donate-step3";
     }
 
@@ -98,7 +99,7 @@ public class DonateController {
 
         donate.setDate(time);
         System.out.println(time);
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "donate-step4";
     }
 
@@ -114,28 +115,11 @@ public class DonateController {
             // save to db.
             historyRecordService.saveHistoryRecord(donate);
         }
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "index-user";
     }
 
-    private void addCurrentUser(Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("username", username.split("@")[0]);
-        } else {
-            throw new IllegalStateException("No user details");
-        }
-    }
 
-    private String getCurrentUser(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            return ((UserDetails)principal).getUsername();
-        } else {
-            throw new IllegalStateException("No user details");
-        }
-    }
 
 
 }

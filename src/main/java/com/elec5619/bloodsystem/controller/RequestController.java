@@ -45,10 +45,10 @@ public class RequestController {
 
         request.setHistoryType(HistoryType.REQUEST);
 
-        Account curUser = accountService.getAccountByEmail(getCurrentUserEmail());
+        Account curUser = accountService.getAccountByEmail(accountService.getCurrentUserEmail());
         request.setAccount(curUser);
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "request-step1";
     }
 
@@ -75,7 +75,7 @@ public class RequestController {
             request.setBloodType(null);
         }
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "request-step2";
     }
 
@@ -85,7 +85,7 @@ public class RequestController {
     {
 
         request.setLocation(location);
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "request-step3";
     }
 
@@ -103,7 +103,7 @@ public class RequestController {
             messageRecord.setSubject(null);
         }
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "request-step4";
     }
 
@@ -114,7 +114,7 @@ public class RequestController {
 
         System.out.println(message);
 
-        request.setDate(getCurDate());
+        request.setDate(accountService.getCurDate());
         if (request != null
                 && request.getAccount() != null
                 && request.getLocation() != null
@@ -140,9 +140,9 @@ public class RequestController {
                     messageRecord.setContent(message);
                     messageRecord.setHistoryRecord(historyRecord);
                     messageRecord.setReceiver(matchedDonate.getEmail());
-                    messageRecord.setAccount(accountService.getAccountByEmail(getCurrentUserEmail()));
-                    messageRecord.setSender(getCurrentUserEmail());
-                    messageRecord.setDate(getCurDate());
+                    messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
+                    messageRecord.setSender(accountService.getCurrentUserEmail());
+                    messageRecord.setDate(accountService.getCurDate());
 
                     messageRecordService.saveMessageRecord(messageRecord);
                     System.out.println("save to db2");
@@ -158,7 +158,7 @@ public class RequestController {
         }
 
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
 
         return "";
     }
@@ -167,33 +167,9 @@ public class RequestController {
     public String returnIndex(Model model)
     {
 
-        addCurrentUser(model);
+        accountService.addCurrentUser(model);
         return "index-user";
     }
 
-    private void addCurrentUser(Model model){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("username", username.split("@")[0]);
-        } else {
-            throw new IllegalStateException("No user details");
-        }
-    }
 
-    private String getCurrentUserEmail(){
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            return ((UserDetails)principal).getUsername();
-        } else {
-            throw new IllegalStateException("No user details");
-        }
-    }
-
-    private String getCurDate(){
-        // default cur time
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
-        LocalDateTime now = LocalDateTime.now();
-        return dtf.format(now);
-    }
 }
