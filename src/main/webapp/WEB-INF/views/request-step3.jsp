@@ -75,6 +75,7 @@
 </div>
 
 
+<jsp:include page="base/modal-no-matchers.jsp"/>
 
 <jsp:include page="base/footer.jsp"/>
 <!-- Footer -->
@@ -86,11 +87,31 @@
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
-    console.log("bbbbb");
     console.log(document.getElementById("subject").value);
-    console.log("ccccc");
+
     document.getElementById("next").onclick = function () {
-        location.href = "/book/request-step4?subject=" + document.getElementById("subject").value;
+        // TODO: get matchers from server, if no
+
+        $.ajax({
+            type : "POST",
+            url : "${pageContext.request.contextPath}/book/getMatchers",
+            data: { },  // data to submit
+            success: function (data, status, xhr) {
+                if (data === "true"){
+                    // success get some matchers
+                    location.href = "/book/request-step4?subject=" + document.getElementById("subject").value;
+                }else{
+                    $('#non-user-modal').modal('show');
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                $('p').append('Error' + errorMessage);
+            }
+
+        });
+
+
     };
 
     document.getElementById("prev").onclick = function () {

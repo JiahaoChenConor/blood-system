@@ -107,6 +107,20 @@ public class RequestController {
         return "request-step4";
     }
 
+
+    @PostMapping("/book/getMatchers")
+    @ResponseBody
+    public String existMatchers(Model model){
+        // find matchers
+        List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
+
+        if (donates.size() == 0) {
+            System.out.println("called ");
+            return "false";
+        }
+        else {return "true";}
+    }
+
     @PostMapping("/book/request-confirm")
     @ResponseBody
     public String donateStepConfirm(Model model,
@@ -121,15 +135,14 @@ public class RequestController {
                 && request.getMeasure() != null){
             System.out.println("save to db");
             // save to db.
+            request.setMatched(false);
             HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
             // find matchers
             List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
 
-
-
             if (donates.size() == 0){
-                System.out.println("No matcher");
+                throw new IllegalStateException("no matchers");
             }else {
 
                 // filter nearest and most recent donate
@@ -153,6 +166,7 @@ public class RequestController {
                     emailDetails.setSubject(messageRecord.getSubject().toString());
                     emailDetails.setMsgBody(message);
                     emailService.sendSimpleMail(emailDetails);
+                    // TODO: mark both of them(history record) as finished
                 }
             }
         }
@@ -160,7 +174,7 @@ public class RequestController {
 
         accountService.addCurrentUser(model);
 
-        return "";
+        return "success";
     }
 
     @GetMapping("/book/request-confirm")

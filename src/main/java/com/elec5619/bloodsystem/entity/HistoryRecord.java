@@ -25,6 +25,9 @@ public class HistoryRecord {
 
     private String date;
 
+    private Boolean matched;
+
+
     @ManyToOne
     @JoinColumn(name = "accountId")
     private Account account;
@@ -97,4 +100,13 @@ public class HistoryRecord {
     public void setBloodType(BloodType bloodType) {
         this.bloodType = bloodType;
     }
+
+    public Boolean getMatched() {
+        return matched;
+    }
+
+    public void setMatched(Boolean matched) {
+        this.matched = matched;
+    }
+
 }

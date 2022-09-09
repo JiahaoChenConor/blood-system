@@ -113,6 +113,7 @@ public class DonateController {
             && donate.getDate() != null
             && donate.getMeasure() != null){
             // save to db.
+            donate.setMatched(false);
             historyRecordService.saveHistoryRecord(donate);
         }
         accountService.addCurrentUser(model);
