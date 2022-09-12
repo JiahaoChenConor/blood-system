@@ -25,8 +25,6 @@ public class AccountService {
     RoleRepository roleRepository;
 
 
-
-
     public Account getAccountById(Long id){
         return accountRepository.findById(id);
     }
