@@ -2,7 +2,8 @@ package com.elec5619.bloodsystem.entity;
 
 public enum Gender {
     MALE("male"),
-    FEMALE("female");
+    FEMALE("female"),
+    OTHER("other");
 
 
     private String gender;

@@ -90,7 +90,7 @@
                             aria-labelledby="navbarDropdownMenuAvatar"
                     >
                         <li>
-                            <a class="dropdown-item" href="#">Profile</a>
+                            <a class="dropdown-item" href="/profile">Profile</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="#">Health Info</a>
