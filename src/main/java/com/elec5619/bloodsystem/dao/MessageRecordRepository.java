@@ -35,4 +35,9 @@ public interface MessageRecordRepository extends JpaRepository<MessageRecord, In
     @Modifying
     @Query("DELETE FROM MessageRecord m where m.messageId=?1")
     void deleteById(Long id);
+
+
+    @Modifying
+    @Query("UPDATE MessageRecord m set m.haveRead=?1 WHERE m.messageId=?2")
+    void updateMessageRecordHaveRead(Boolean read, Long id);
 }

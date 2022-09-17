@@ -5,6 +5,7 @@ import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.MessageRecord;
 import com.elec5619.bloodsystem.security.PasswordValidation;
 import com.elec5619.bloodsystem.service.AccountService;
+import com.elec5619.bloodsystem.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -30,6 +31,10 @@ public class IndexController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+
+    @Autowired
+    MessageRecordService messageRecordService;
+
     @RequestMapping("/")
     public String index() {
         return "index";
@@ -53,9 +58,16 @@ public class IndexController {
         if (principal instanceof UserDetails) {
             String username = ((UserDetails)principal).getUsername();
             model.addAttribute("username", username.split("@")[0]);
+
+            // add attribute about new messages
+            int unreadMessages = messageRecordService.newMessages(username);
+            model.addAttribute("newMessages", unreadMessages);
+
         } else {
             throw new IllegalStateException("No user details");
         }
+
+
 
         return "index-user";
     }

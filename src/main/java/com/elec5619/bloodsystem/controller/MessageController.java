@@ -56,6 +56,9 @@ public class MessageController {
 
         MessageRecord messageRecord = messageRecordService.findMessageById(Long.parseLong(messageId));
 
+        // set message as already read
+        messageRecordService.setMessageAsRead(messageRecord.getMessageId());
+
         model.addAttribute("message", messageRecord.getContent());
 
         return "specific-message";
@@ -88,7 +91,7 @@ public class MessageController {
                                                 message,
                                                 getCurDate(),
                                                 accountService.getCurrentAccount(),
-                                                originalMessage.getHistoryRecord());
+                                                originalMessage.getHistoryRecord(), false);
 
         messageRecordService.saveMessageRecord(reply);
         System.out.println("save to db2");

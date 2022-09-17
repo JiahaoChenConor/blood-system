@@ -49,6 +49,28 @@
 
                 <button type="button" id="book" class="btn btn-secondary me-4">Book</button>
 
+                <!-- Notification -->
+                <div class="dropdown">
+                    <a
+                            class="text-reset me-3 dropdown-toggle hidden-arrow"
+                            href="#"
+                            id="navbarDropdownMenuLink"
+                            role="button"
+                            data-mdb-toggle="dropdown"
+                            aria-expanded="false"
+                    >
+                        <i class="fas fa-bell"></i>
+                        <span class="badge rounded-pill badge-notification bg-danger"><%=request.getAttribute("newMessages")%></span>
+                    </a>
+                    <ul
+                            class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="navbarDropdownMenuLink"
+                    >
+                        <li>
+                            <a class="dropdown-item" href="/messages">Messages</a>
+                        </li>
+                    </ul>
+                </div>
 
                 <!-- Avatar -->
                 <div class="dropdown">
@@ -60,7 +82,7 @@
                             data-mdb-toggle="dropdown"
                             aria-expanded="false"
                     >
-                        <!-- Avatar -->
+
                         <div ><i class="fas fa-user fa-lg"></i>  <%=request.getAttribute("username")%> </div>
                     </a>
                     <ul

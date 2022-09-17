@@ -35,7 +35,7 @@ public class RequestController {
     private MessageRecord messageRecord;
 
     @GetMapping("/book/request")
-    public String donate(Model model)
+    public String request(Model model)
     {
         request = new HistoryRecord();
         messageRecord = new MessageRecord();
@@ -50,7 +50,7 @@ public class RequestController {
     }
 
     @GetMapping("/book/request-step2")
-    public String donateStepTwo(Model model,
+    public String requestStepTwo(Model model,
                                 @RequestParam(name="bloodType", required = false) String bloodType,
                                 @RequestParam(name="cc", required = false) String cc)
     {
@@ -77,7 +77,7 @@ public class RequestController {
     }
 
     @GetMapping("/book/request-step3")
-    public String donateStepThree(Model model,
+    public String requestStepThree(Model model,
                                   @RequestParam(name="location", required = false) String location)
     {
 
@@ -87,7 +87,7 @@ public class RequestController {
     }
 
     @GetMapping("/book/request-step4")
-    public String donateStepFour(Model model,
+    public String requestStepFour(Model model,
                                 @RequestParam(name="subject", required = false) String subject)
     {
 
@@ -120,7 +120,7 @@ public class RequestController {
 
     @PostMapping("/book/request-confirm")
     @ResponseBody
-    public String donateStepConfirm(Model model,
+    public String requestStepConfirm(Model model,
                                     @RequestParam(name="message") String message){
 
         System.out.println(message);
@@ -148,10 +148,13 @@ public class RequestController {
                 // then save message to db
                 if (messageRecord != null && messageRecord.getSubject() != null){ // more checking
                     // subject already set
+                    messageRecord.setHaveRead(false);
+                    messageRecord.setHistoryRecord(historyRecord);
+
                     long historyRecordId = messageRecord.getHistoryRecord().getHistoryId();
                     messageRecord.setContent("[The matched donated ID: " + historyRecordId + " ]\n"
                             + message);
-                    messageRecord.setHistoryRecord(historyRecord);
+
                     messageRecord.setReceiver(matchedDonate.getEmail());
                     messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
                     messageRecord.setSender(accountService.getCurrentUserEmail());
@@ -164,7 +167,7 @@ public class RequestController {
                     EmailDetails emailDetails = new EmailDetails();
                     emailDetails.setRecipient(matchedDonate.getEmail());
                     emailDetails.setSubject(messageRecord.getSubject().toString());
-                    emailDetails.setMsgBody(message);
+                    emailDetails.setMsgBody(messageRecord.getContent());
                     emailService.sendSimpleMail(emailDetails);
                     // TODO: mark both of them(history record) as finished
                 }

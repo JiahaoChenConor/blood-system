@@ -19,11 +19,15 @@ public class MessageRecord {
 
     private String date;
 
+    private Boolean haveRead;
+
+
+
     @ManyToOne
     @JoinColumn(name = "accountId")
     private Account account;
 
-    public MessageRecord(String sender, String receiver, Subject subject, String content, String date, Account account, HistoryRecord historyRecord) {
+    public MessageRecord(String sender, String receiver, Subject subject, String content, String date, Account account, HistoryRecord historyRecord, Boolean haveRead) {
         this.sender = sender;
         this.receiver = receiver;
         this.subject = subject;
@@ -31,6 +35,7 @@ public class MessageRecord {
         this.date = date;
         this.account = account;
         this.historyRecord = historyRecord;
+        this.haveRead = haveRead;
     }
 
     public MessageRecord() {
@@ -104,4 +109,13 @@ public class MessageRecord {
     public void setHistoryRecord(HistoryRecord historyRecord) {
         this.historyRecord = historyRecord;
     }
+
+    public Boolean getHaveRead() {
+        return haveRead;
+    }
+
+    public void setHaveRead(Boolean haveRead) {
+        this.haveRead = haveRead;
+    }
+
 }

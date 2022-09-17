@@ -1,7 +1,6 @@
 package com.elec5619.bloodsystem.service;
 
 import com.elec5619.bloodsystem.dao.MessageRecordRepository;
-import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.MessageRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,15 @@ public class MessageRecordService {
         messageRecordRepository.deleteById(id);
     }
 
+    public void setMessageAsRead(Long id){
+        messageRecordRepository.updateMessageRecordHaveRead(true, id);
+    }
 
+    public int newMessages(String email){
+        List<MessageRecord> allMessages = findAllMessagesByReceiver(email);
+        List<MessageRecord> unread = allMessages.stream().filter(messageRecord -> !messageRecord.getHaveRead()).toList();
+        return unread.size();
+    }
 
 
 

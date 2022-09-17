@@ -24,6 +24,9 @@ public class AccountService {
     @Autowired
     RoleRepository roleRepository;
 
+    @Autowired
+    MessageRecordService messageRecordService;
+
 
     public Account getAccountById(Long id){
         return accountRepository.findById(id);
@@ -59,6 +62,11 @@ public class AccountService {
         if (principal instanceof UserDetails) {
             String username = ((UserDetails)principal).getUsername();
             model.addAttribute("username", username.split("@")[0]);
+
+            // add attribute about new messages
+            int unreadMessages = messageRecordService.newMessages(username);
+            model.addAttribute("newMessages", unreadMessages);
+
         } else {
             throw new IllegalStateException("No user details");
         }
