@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 @Controller
 public class RequestController {
@@ -135,6 +137,7 @@ public class RequestController {
 
             // find matchers
             List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
+
 
             if (donates.size() == 0){
                 throw new IllegalStateException("no matchers");

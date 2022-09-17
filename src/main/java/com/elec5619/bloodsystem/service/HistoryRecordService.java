@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -24,7 +25,11 @@ public class HistoryRecordService {
 
 
     public List<HistoryRecord> getMatchDonateRecord(BloodType bloodType){
-        return historyRecordRepository.findHistoryRecordByBloodTypeAndHistoryType(bloodType, HistoryType.DONATE);
+        List<HistoryRecord> historyRecords = historyRecordRepository.findHistoryRecordByBloodTypeAndHistoryType(bloodType, HistoryType.DONATE);
+        // add some filter
+        historyRecords = historyRecords.stream().filter(historyRecord1 -> !historyRecord1.getMatched()).collect(Collectors.toList());
+
+        return historyRecords;
     }
 
     public List<HistoryRecord> findUserHistoryRecord(Account account){
