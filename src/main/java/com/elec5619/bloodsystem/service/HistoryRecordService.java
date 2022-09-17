@@ -31,5 +31,13 @@ public class HistoryRecordService {
         return historyRecordRepository.findHistoryRecordByAccount(account);
     }
 
+    public HistoryRecord findHistoryRecordById(long id){
+        return historyRecordRepository.findById(id).get();
+    }
+
+    public void updateHistoryRecordStatus(long id, boolean matched){
+        historyRecordRepository.updateHistoryRecordStatus(matched, id);
+    }
+
 
 }

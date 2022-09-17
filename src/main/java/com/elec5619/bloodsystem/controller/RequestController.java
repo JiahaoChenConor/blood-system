@@ -145,7 +145,9 @@ public class RequestController {
                 // then save message to db
                 if (messageRecord != null && messageRecord.getSubject() != null){ // more checking
                     // subject already set
-                    messageRecord.setContent(message);
+                    long historyRecordId = messageRecord.getHistoryRecord().getHistoryId();
+                    messageRecord.setContent("[The matched donated ID: " + historyRecordId + " ]\n"
+                            + message);
                     messageRecord.setHistoryRecord(historyRecord);
                     messageRecord.setReceiver(matchedDonate.getEmail());
                     messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));

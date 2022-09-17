@@ -20,7 +20,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class UserDashboardController {
+public class MessageController {
     @Autowired
     EmailService emailService;
 
@@ -114,21 +114,6 @@ public class UserDashboardController {
 
 
 
-    @GetMapping("/history")
-    public String allHistory(Model model){
-
-        accountService.addCurrentUser(model);
-
-        List<HistoryRecord> historyRecords = historyRecordService.findUserHistoryRecord(accountService.getCurrentAccount());
-
-        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
-            put("history", historyRecords);
-        }};
-
-        model.addAttribute("history", messages);
-
-        return "history";
-    }
 
 
 

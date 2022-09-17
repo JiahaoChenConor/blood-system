@@ -44,6 +44,7 @@
         <th>History Type</th>
         <th>Date</th>
         <th>Matched</th>
+        <th>Action</th>
 
 
     </tr>
@@ -52,9 +53,25 @@
 
 
 
-    <% Map<String, List<HistoryRecord>> data = (Map<String, List<HistoryRecord>>) request.getAttribute("history");
+    <%
+
+
+        Map<String, List<HistoryRecord>> data = (Map<String, List<HistoryRecord>>) request.getAttribute("history");
         List<HistoryRecord> historyRecords = data.get("history");
         for (HistoryRecord entry : historyRecords) {
+            String button;
+            if (entry.getMatched()){
+                button = "<button type=\"button\" class=\"btn btn-outline-warning\" data-mdb-ripple-color=\"dark\" onclick=unsetMatch(" +
+                        entry.getHistoryId() +
+                        ")>Unset Matched</button>";
+            }else{
+                button = "<button type=\"button\" class=\"btn btn-outline-success\" data-mdb-ripple-color=\"dark\" onclick=setMatch(" +
+                        entry.getHistoryId() +
+                        ")>Set Matched</button>";
+
+            }
+
+
             out.println(
                     "<tr>\n" +
                             "                <td>\n" +
@@ -75,6 +92,11 @@
                             "                </td>\n" +
                     "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getMatched() + "</p>\n" +
+                            "\n" +
+                            "                </td>\n" +
+
+                    "                <td>\n" +
+                            button +
                             "\n" +
                             "                </td>\n"
 
@@ -114,6 +136,41 @@
         location.href = "/book/request-step2?bloodType=" + document.getElementById("blood-type").value
             + "&cc=" + document.getElementById("cc").value;
     };
+
+
+    function setMatch(historyId){
+        $.ajax({
+            type : "POST",
+            url : "${pageContext.request.contextPath}/history?recordId=" + historyId + "&matched=true",
+            data: { },  // data to submit
+            success: function (data, status, xhr) {
+                console.log(data);
+                window.location.href = "/history";
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                $('p').append('Error' + errorMessage);
+            }
+
+        });
+
+    }
+
+    function unsetMatch(historyId){
+        $.ajax({
+            type : "POST",
+            url : "${pageContext.request.contextPath}/history?recordId=" + historyId + "&matched=false",
+            data: { },  // data to submit
+            success: function (data, status, xhr) {
+                console.log(data);
+                window.location.href = "/history";
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                $('p').append('Error' + errorMessage);
+            }
+
+        });
+
+    }
 </script>
 </body>
 </html>
