@@ -42,12 +42,12 @@
     <div class="col-2">First Name</div>
     <div class="col-2">
         <div class="form-outline">
-            <input type="text" id="firstNameForm" class="form-control" />
-            <label class="form-label" for="firstNameForm">First Name</label>
+            <input type="text" id="firstName" class="form-control" />
+            <label class="form-label" for="firstNameForm" ><%= request.getAttribute("firstName")%></label>
         </div>
     </div>
     <div class="col-1">
-        <i class="fas fa-pencil-alt fa-lg"></i>
+        <i class="fas fa-pencil-alt fa-lg" onclick="editFirstName()"></i>
     </div>
     <div class="col-5"></div>
 </div>
@@ -59,7 +59,7 @@
     <div class="col-2">
         <div class="form-outline">
             <input type="text" id="lastNameForm" class="form-control" />
-            <label class="form-label" for="lastNameForm">Last Name</label>
+            <label class="form-label" for="lastNameForm"><%= request.getAttribute("lastName")%></label>
         </div>
     </div>
     <div class="col-1">
@@ -75,7 +75,7 @@
     <div class="col-2">
         <div class="form-outline">
             <input type="text" id="dateOfBirth" class="form-control" />
-            <label class="form-label" for="dateOfBirth">00/00/0000</label>
+            <label class="form-label" for="dateOfBirth"><%= request.getAttribute("dob")%></label>
         </div>
     </div>
     <div class="col-1">
@@ -114,7 +114,7 @@
                     aria-label="disabled input example"
                     disabled
             />
-            <label class="form-label" for="formControlDisabled">Disabled</label>
+            <label class="form-label" for="formControlDisabled"><%= request.getAttribute("email")%></label>
         </div>
     </div>
     <div class="col-6"></div>
@@ -127,7 +127,7 @@
     <div class="col-2">
         <div class="form-outline">
             <input type="text" id="phoneNumber" class="form-control" />
-            <label class="form-label" for="phoneNumber"></label>
+            <label class="form-label" for="phoneNumber"><%= request.getAttribute("mobileNum")%></label>
         </div>
     </div>
     <div class="col-1">
@@ -151,6 +151,33 @@
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
+
+    function editFirstName(){
+        let firstName = document.getElementById("firstName").value;
+
+        $.ajax({
+            type : "POST",
+            url : "${pageContext.request.contextPath}/profile?firstName=" + firstName ,
+            data: { },  // data to submit
+            success: function (data, status, xhr) {
+                if (data === "true"){
+                    alert("Edit Success");
+
+                }
+
+            },
+            error: function (jqXhr, textStatus, errorMessage) {
+                $('p').append('Error' + errorMessage);
+            }
+
+        });
+    }
+
+    function test(){
+        alert("Hello");
+    }
+
+
 </script>
 </body>
 </html>

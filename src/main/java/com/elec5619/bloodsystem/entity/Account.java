@@ -77,6 +77,35 @@ public class Account {
     @OneToMany(mappedBy = "account")
     private List<MessageRecord> messageRecords;
 
+    public HealthInfo getHealthInfo() {
+        return healthInfo;
+    }
 
+    public void setHealthInfo(HealthInfo healthInfo) {
+        this.healthInfo = healthInfo;
+    }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
+    public List<HistoryRecord> getHistoryRecords() {
+        return historyRecords;
+    }
+
+    public void setHistoryRecords(List<HistoryRecord> historyRecords) {
+        this.historyRecords = historyRecords;
+    }
+
+    public List<MessageRecord> getMessageRecords() {
+        return messageRecords;
+    }
+
+    public void setMessageRecords(List<MessageRecord> messageRecords) {
+        this.messageRecords = messageRecords;
+    }
 }

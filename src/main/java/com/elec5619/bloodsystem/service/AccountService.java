@@ -3,6 +3,7 @@ package com.elec5619.bloodsystem.service;
 import com.elec5619.bloodsystem.dao.AccountRepository;
 import com.elec5619.bloodsystem.dao.RoleRepository;
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.Profile;
 import com.elec5619.bloodsystem.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -94,6 +95,9 @@ public class AccountService {
         return getAccountByEmail(getCurrentUserEmail());
     }
 
+    public void setProfile(Profile profile, Long accountId){
+        accountRepository.setProfileId(profile, accountId);
+    }
 
 
 
