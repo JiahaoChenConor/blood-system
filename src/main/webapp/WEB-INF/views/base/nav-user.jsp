@@ -74,7 +74,7 @@
                             <a class="dropdown-item" href="#">Health Info</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">History</a>
+                            <a class="dropdown-item" href="/history">History</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="/messages">Messages</a>

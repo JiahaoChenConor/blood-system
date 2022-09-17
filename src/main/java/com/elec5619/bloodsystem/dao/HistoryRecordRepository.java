@@ -24,4 +24,7 @@ public interface HistoryRecordRepository
 
     @Query("SELECT r FROM HistoryRecord r WHERE r.bloodType = ?1 and r.historyType = ?2")
     List<HistoryRecord> findHistoryRecordByBloodTypeAndHistoryType(BloodType bloodType, HistoryType historyType);
+
+    @Query("SELECT r FROM HistoryRecord r WHERE r.account = ?1")
+    List<HistoryRecord> findHistoryRecordByAccount(Account account);
 }

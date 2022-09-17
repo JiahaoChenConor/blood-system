@@ -2,9 +2,11 @@ package com.elec5619.bloodsystem.controller;
 
 
 import com.elec5619.bloodsystem.entity.EmailDetails;
+import com.elec5619.bloodsystem.entity.HistoryRecord;
 import com.elec5619.bloodsystem.entity.MessageRecord;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.EmailService;
+import com.elec5619.bloodsystem.service.HistoryRecordService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,9 @@ public class UserDashboardController {
 
     @Autowired
     MessageRecordService messageRecordService;
+
+    @Autowired
+    HistoryRecordService historyRecordService;
 
 
     @GetMapping("/messages")
@@ -105,6 +110,24 @@ public class UserDashboardController {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
+    }
+
+
+
+    @GetMapping("/history")
+    public String allHistory(Model model){
+
+        accountService.addCurrentUser(model);
+
+        List<HistoryRecord> historyRecords = historyRecordService.findUserHistoryRecord(accountService.getCurrentAccount());
+
+        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
+            put("history", historyRecords);
+        }};
+
+        model.addAttribute("history", messages);
+
+        return "history";
     }
 
 

@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 
 
 @Repository
@@ -18,4 +19,7 @@ public interface AccountRepository
 
     @Query("SELECT s FROM Account s WHERE s.id = ?1")
     Account findById(Long id);
+
+    @Query("SELECT s FROM Account s")
+    List<Account> findAll();
 }

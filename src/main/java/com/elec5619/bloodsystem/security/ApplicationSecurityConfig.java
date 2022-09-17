@@ -46,10 +46,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 // permit index page for all users(non-user)
                 .antMatchers("/", "index", "/css/*", "/js/*", "/img/**").permitAll()
                 .antMatchers("/register**").permitAll()
+                .antMatchers( "/api/**").permitAll()
                 .antMatchers("/login**").permitAll()
                 .antMatchers("/index-admin").hasRole("ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers( "/api/**").hasRole("USER")
                 .antMatchers("/**").hasRole("USER")
 
                 .anyRequest()
