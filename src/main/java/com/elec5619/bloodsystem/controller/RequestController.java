@@ -148,6 +148,7 @@ public class RequestController {
                 // then save message to db
                 if (messageRecord != null && messageRecord.getSubject() != null){ // more checking
                     // subject already set
+                    // TODO: better to set before and check it is not null in if
                     messageRecord.setHaveRead(false);
                     messageRecord.setHistoryRecord(historyRecord);
 
