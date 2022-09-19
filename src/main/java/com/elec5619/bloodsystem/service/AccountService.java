@@ -4,6 +4,7 @@ import com.elec5619.bloodsystem.dao.AccountRepository;
 import com.elec5619.bloodsystem.dao.RoleRepository;
 import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.Profile;
+import com.elec5619.bloodsystem.entity.Provider;
 import com.elec5619.bloodsystem.entity.Role;
 import com.elec5619.bloodsystem.security.CustomOAuth2User;
 import org.checkerframework.checker.units.qual.A;
@@ -20,7 +21,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
-@Transactional
+//@Transactional
 public class AccountService {
 
     @Autowired
@@ -72,7 +73,9 @@ public class AccountService {
             int unreadMessages = messageRecordService.newMessages(username);
             model.addAttribute("newMessages", unreadMessages);
 
-        } else if (principal instanceof CustomOAuth2User) {
+        }
+
+        else if (principal instanceof CustomOAuth2User) {
             String email = ((CustomOAuth2User)principal).getEmail();
             model.addAttribute("username", email.split("@")[0]);
 
@@ -80,7 +83,9 @@ public class AccountService {
             int unreadMessages = messageRecordService.newMessages(email);
             model.addAttribute("newMessages", unreadMessages);
 
-        }else{
+        }
+
+        else{
             throw new IllegalStateException("No user details");
         }
     }
@@ -89,9 +94,13 @@ public class AccountService {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             return ((UserDetails)principal).getUsername();
-        } else if (principal instanceof CustomOAuth2User) {
+        }
+
+        else if (principal instanceof CustomOAuth2User) {
             return ((CustomOAuth2User)principal).getEmail();
-        }else {
+        }
+
+        else {
             throw new IllegalStateException("No user details");
         }
     }
@@ -117,7 +126,7 @@ public class AccountService {
     public void processOAuthPostLogin(String email) {
         Account account = new Account();
         account.setEmail(email);
-
+        account.setProvider(Provider.GOOGLE);
         if (!accountExists(account.getEmail())){
             Role userRole = roleRepository.findByName("ROLE_USER");
             account.setRoles(List.of(userRole));

@@ -78,8 +78,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
 
 
-
-                // remember implementation
+        // remember implementation
                 .rememberMe()
                 // https://stackoverflow.com/questions/46421185/remember-me-not-working-throws-java-lang-illegalstateexception-userdetailsse
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
@@ -94,29 +93,29 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/index");
 
-                .and()
-
-                // Google
-                .oauth2Login()
-                .loginPage("/login")
-                .userInfoEndpoint()
-                .userService(oauthUserService)
-                .and()
-                .successHandler(new AuthenticationSuccessHandler() {
-
-                    @Override
-                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-                                                        Authentication authentication) throws IOException, ServletException {
-
-                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-
-                        accountService.processOAuthPostLogin(oauthUser.getEmail());
-
-                        response.sendRedirect("/index-user");
-                    }
-                });
+//        // Google
+//                .oauth2Login()
+//                .loginPage("/login")
+//                .userInfoEndpoint()
+//                .userService(oauthUserService)
+//                .and()
+//                .successHandler(new AuthenticationSuccessHandler() {
+//
+//                    @Override
+//                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+//                                                        Authentication authentication) throws IOException, ServletException {
+//
+//                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+//
+//                        accountService.processOAuthPostLogin(oauthUser.getEmail());
+//
+//                        response.sendRedirect("/index-user");
+//                    }
+//                })
+//
+//                .and()
 
 
 

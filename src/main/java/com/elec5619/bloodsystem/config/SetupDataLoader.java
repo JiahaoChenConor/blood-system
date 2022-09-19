@@ -5,6 +5,7 @@ import com.elec5619.bloodsystem.dao.PrivilegeRepository;
 import com.elec5619.bloodsystem.dao.RoleRepository;
 import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.Privilege;
+import com.elec5619.bloodsystem.entity.Provider;
 import com.elec5619.bloodsystem.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -55,6 +56,8 @@ public class SetupDataLoader implements
 
         account.setPassword(passwordEncoder.encode("admin"));
         account.setEmail("admin@admin.com");
+
+
         account.setRoles(List.of(adminRole));
 
 
@@ -63,12 +66,14 @@ public class SetupDataLoader implements
 
         accountUser.setPassword(passwordEncoder.encode("Password123"));
         accountUser.setEmail("jche4519@uni.sydney.edu.au");
+
         accountUser.setRoles(List.of(userRole));
         accountRepository.save(accountUser);
 
         accountUser = new Account();
         accountUser.setPassword(passwordEncoder.encode("Password123"));
         accountUser.setEmail("jiahaochen775@gmail.com");
+
         accountUser.setRoles(List.of(userRole));
 
 
