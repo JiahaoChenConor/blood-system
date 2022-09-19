@@ -1,7 +1,6 @@
 package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.Gender;
 import com.elec5619.bloodsystem.entity.Profile;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.ProfileService;
@@ -74,73 +73,19 @@ public class ProfileController {
 
     @PostMapping("/profile")
     @ResponseBody
-    public String editProfile(@RequestParam(value = "firstName", required = false) String firstName,
-                              @RequestParam(value = "lastName", required = false) String lastName,
-                              @RequestParam(value = "gender", required = false) String gender,
-                              @RequestParam(value = "dateOfBirth", required = false) String dateOfBirth,
-                              @RequestParam(value = "mobileNum", required = false) String mobileNum){
-
+    public String editProfile(@RequestParam("firstName") String firstName){
         Account account = accountService.getCurrentAccount();
+        System.out.println(firstName + "XXXXXXX");
 
         if (account.getProfile() == null){
             Profile profile = new Profile();
-            if (firstName != null){
-                profile.setFirstName(firstName);
-            }
-            if (lastName != null){
-                profile.setLastName(lastName);
-            }
-
-            if (gender != null){
-                if (gender.equals("male")){
-                    profile.setGender(Gender.MALE);
-                }else if (gender.equals("female")){
-                    profile.setGender(Gender.FEMALE);
-                }else{
-                    profile.setGender(Gender.OTHER);
-                }
-            }
-
-            if (dateOfBirth != null){
-                profile.setDateOfBirth(dateOfBirth);
-            }
-
-            if (mobileNum != null){
-                profile.setMobileNum(mobileNum);
-            }
-
+            profile.setFirstName(firstName);
             profileService.saveProfile(profile);
             accountService.setProfile(profile, account.getId());
-
         }else{
             Profile profile = account.getProfile();
             Long profileId = profile.getProfileId();
-
-            if (firstName != null){
-                profileService.updateFirstNameById(profileId, firstName);
-            }
-            if (lastName != null){
-                profileService.updateLastNameById(profileId, lastName);
-            }
-
-            if (gender != null){
-                if (gender.equals("male")){
-                    profileService.updateGenderById(profileId, Gender.MALE);
-                }else if (gender.equals("female")){
-                    profileService.updateGenderById(profileId, Gender.FEMALE);
-                }else{
-                    profileService.updateGenderById(profileId, Gender.OTHER);
-                }
-            }
-
-            if (dateOfBirth != null){
-                profileService.updateDateOfBirthById(profileId, dateOfBirth);
-            }
-
-            if (mobileNum != null){
-                profileService.updateMobileNumById(profileId, mobileNum);
-            }
-
+            profileService.updateFirstNameById(profileId, firstName);
             // edit profile
         }
         return "true";

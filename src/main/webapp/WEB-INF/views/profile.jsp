@@ -43,7 +43,7 @@
     <div class="col-2">
         <div class="form-outline">
             <input type="text" id="firstName" class="form-control" />
-            <label class="form-label" for="firstName" ><%= request.getAttribute("firstName")%></label>
+            <label class="form-label" for="firstNameForm" ><%= request.getAttribute("firstName")%></label>
         </div>
     </div>
     <div class="col-1">
@@ -58,12 +58,12 @@
     <div class="col-2">Last Name</div>
     <div class="col-2">
         <div class="form-outline">
-            <input type="text" id="lastName" class="form-control" />
-            <label class="form-label" for="lastName"><%= request.getAttribute("lastName")%></label>
+            <input type="text" id="lastNameForm" class="form-control" />
+            <label class="form-label" for="lastNameForm"><%= request.getAttribute("lastName")%></label>
         </div>
     </div>
     <div class="col-1">
-        <i class="fas fa-pencil-alt fa-lg" onclick="editLastName()"></i>
+        <i class="fas fa-pencil-alt fa-lg"></i>
     </div>
     <div class="col-5"></div>
 </div>
@@ -79,7 +79,7 @@
         </div>
     </div>
     <div class="col-1">
-        <i class="fas fa-pencil-alt fa-lg" onclick="editDateOfBirth()"></i>
+        <i class="fas fa-pencil-alt fa-lg"></i>
     </div>
     <div class="col-5"></div>
 </div>
@@ -88,14 +88,14 @@
     <div class="col-4"></div>
     <div class="col-2">Gender</div>
     <div class="col-2">
-        <select class="form-select" aria-label="Default select example" id="gender">
+        <select class="form-select" aria-label="Default select example">
             <option value="male" selected>Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
         </select>
     </div>
     <div class="col-1">
-        <i class="fas fa-pencil-alt fa-lg" onclick="editGender()"></i>
+        <i class="fas fa-pencil-alt fa-lg"></i>
     </div>
     <div class="col-5"></div>
 </div>
@@ -131,7 +131,7 @@
         </div>
     </div>
     <div class="col-1">
-        <i class="fas fa-pencil-alt fa-lg" onclick="editMobileNum()"></i>
+        <i class="fas fa-pencil-alt fa-lg"></i>
     </div>
     <div class="col-5"></div>
 </div>
@@ -154,6 +154,7 @@
 
     function editFirstName(){
         let firstName = document.getElementById("firstName").value;
+
         $.ajax({
             type : "POST",
             url : "${pageContext.request.contextPath}/profile?firstName=" + firstName ,
@@ -172,87 +173,9 @@
         });
     }
 
-    function editLastName(){
-        let lastName = document.getElementById("lastName").value;
-        $.ajax({
-            type : "POST",
-            url : "${pageContext.request.contextPath}/profile?lastName=" + lastName ,
-            data: { },  // data to submit
-            success: function (data, status, xhr) {
-                if (data === "true"){
-                    alert("Edit Success");
-
-                }
-
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-                $('p').append('Error' + errorMessage);
-            }
-
-        });
+    function test(){
+        alert("Hello");
     }
-
-    function editDateOfBirth(){
-        let dateOfBirth = document.getElementById("dateOfBirth").value;
-        $.ajax({
-            type : "POST",
-            url : "${pageContext.request.contextPath}/profile?dateOfBirth=" + dateOfBirth ,
-            data: { },  // data to submit
-            success: function (data, status, xhr) {
-                if (data === "true"){
-                    alert("Edit Success");
-
-                }
-
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-                $('p').append('Error' + errorMessage);
-            }
-
-        });
-    }
-
-    function editGender(){
-        let gender = document.getElementById("gender").value;
-        $.ajax({
-            type : "POST",
-            url : "${pageContext.request.contextPath}/profile?gender=" + gender ,
-            data: { },  // data to submit
-            success: function (data, status, xhr) {
-                if (data === "true"){
-                    alert("Edit Success");
-
-                }
-
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-                $('p').append('Error' + errorMessage);
-            }
-
-        });
-    }
-
-    function editMobileNum(){
-        let mobileNum = document.getElementById("phoneNumber").value;
-        $.ajax({
-            type : "POST",
-            url : "${pageContext.request.contextPath}/profile?mobileNum=" + mobileNum ,
-            data: { },  // data to submit
-            success: function (data, status, xhr) {
-                if (data === "true"){
-                    alert("Edit Success");
-
-                }
-
-            },
-            error: function (jqXhr, textStatus, errorMessage) {
-                $('p').append('Error' + errorMessage);
-            }
-
-        });
-    }
-
-
 
 
 </script>
