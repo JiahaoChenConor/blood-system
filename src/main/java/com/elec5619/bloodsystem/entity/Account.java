@@ -108,4 +108,16 @@ public class Account {
     public void setMessageRecords(List<MessageRecord> messageRecords) {
         this.messageRecords = messageRecords;
     }
+
+
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
+    public Provider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(Provider provider) {
+        this.provider = provider;
+    }
 }

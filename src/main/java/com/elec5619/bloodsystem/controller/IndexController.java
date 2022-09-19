@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,21 +54,7 @@ public class IndexController {
     @GetMapping("/index-user")
     public String indexAfterLogin(Model model){
 
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails)principal).getUsername();
-            model.addAttribute("username", username.split("@")[0]);
-
-            // add attribute about new messages
-            int unreadMessages = messageRecordService.newMessages(username);
-            model.addAttribute("newMessages", unreadMessages);
-
-        } else {
-            throw new IllegalStateException("No user details");
-        }
-
-
+        accountService.addCurrentUser(model);
 
         return "index-user";
     }
@@ -137,6 +124,11 @@ public class IndexController {
         return "login";
     }
 
+
+    @RequestMapping(value = "/user")
+    public Principal user(Principal principal) {
+        return principal;
+    }
 
 
 }

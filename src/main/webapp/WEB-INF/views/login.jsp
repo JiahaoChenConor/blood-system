@@ -62,7 +62,7 @@
                     <!-- Social login -->
                     <p>or sign in with:</p>
 
-                    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+                    <a href="/oauth2/authorization/google" class="mx-2" role="button"><i class="fab fa-google light-blue-text"></i></a>
                     <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
                     <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
                     <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>

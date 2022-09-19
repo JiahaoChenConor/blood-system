@@ -1,6 +1,8 @@
 package com.elec5619.bloodsystem.security;
 
 import com.elec5619.bloodsystem.service.AccountDetailService;
+import com.elec5619.bloodsystem.service.AccountService;
+import com.elec5619.bloodsystem.service.CustomOAuth2UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +12,15 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -25,16 +33,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AccountDetailService accountDetailService;
     private final CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
     private final CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+    private final CustomOAuth2UserService oauthUserService;
+    private final AccountService accountService;
 
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
                                      AccountDetailService accountDetailService,
                                      CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler,
-                                     CustomAuthenticationFailureHandler customAuthenticationFailureHandler){
+                                     CustomAuthenticationFailureHandler customAuthenticationFailureHandler,
+                                     CustomOAuth2UserService oauthUserService, AccountService accountService){
         this.passwordEncoder = passwordEncoder;
         this.accountDetailService = accountDetailService;
         this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
         this.customAuthenticationFailureHandler = customAuthenticationFailureHandler;
+        this.oauthUserService = oauthUserService;
+        this.accountService = accountService;
     }
 
     @Override
@@ -48,6 +61,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/register**").permitAll()
                 .antMatchers( "/api/**").permitAll()
                 .antMatchers("/login**").permitAll()
+                .antMatchers("/oauth/**").permitAll()
                 .antMatchers("/index-admin").hasRole("ADMIN")
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/**").hasRole("USER")
@@ -59,10 +73,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 // login settings
                 .formLogin()
                 .loginPage("/login").permitAll()      // It's important!! Otherwise
-                .usernameParameter("email").passwordParameter("password")
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
                 .and()
+
+
 
                 // remember implementation
                 .rememberMe()
@@ -79,7 +94,34 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID", "remember-me")
-                .logoutSuccessUrl("/index");
+                .logoutSuccessUrl("/index")
+
+                .and()
+
+                // Google
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oauthUserService)
+                .and()
+                .successHandler(new AuthenticationSuccessHandler() {
+
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
+
+                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+
+                        accountService.processOAuthPostLogin(oauthUser.getEmail());
+
+                        response.sendRedirect("/index-user");
+                    }
+                });
+
+
+
+
+
     }
 
     @Override
