@@ -72,11 +72,33 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // login settings
                 .formLogin()
-                .loginPage("/login").permitAll()      // It's important!! Otherwise
+                .loginPage("/login").permitAll() // It's important!! Otherwise
+                .usernameParameter("email").passwordParameter("password")
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
                 .and()
 
+                // Google
+                .oauth2Login()
+                .loginPage("/login")
+                .userInfoEndpoint()
+                .userService(oauthUserService)
+                .and()
+                .successHandler(new AuthenticationSuccessHandler() {
+
+                    @Override
+                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                        Authentication authentication) throws IOException, ServletException {
+
+                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
+
+                        accountService.processOAuthPostLogin(oauthUser.getEmail());
+
+                        response.sendRedirect("/index-user");
+                    }
+                })
+
+                .and()
 
         // remember implementation
                 .rememberMe()
@@ -95,27 +117,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID", "remember-me")
                 .logoutSuccessUrl("/index");
 
-//        // Google
-//                .oauth2Login()
-//                .loginPage("/login")
-//                .userInfoEndpoint()
-//                .userService(oauthUserService)
-//                .and()
-//                .successHandler(new AuthenticationSuccessHandler() {
-//
-//                    @Override
-//                    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
-//                                                        Authentication authentication) throws IOException, ServletException {
-//
-//                        CustomOAuth2User oauthUser = (CustomOAuth2User) authentication.getPrincipal();
-//
-//                        accountService.processOAuthPostLogin(oauthUser.getEmail());
-//
-//                        response.sendRedirect("/index-user");
-//                    }
-//                })
-//
-//                .and()
+
 
 
 
