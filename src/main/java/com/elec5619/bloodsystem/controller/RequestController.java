@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -93,14 +95,30 @@ public class RequestController {
 
         if (subject != null){
             switch (subject) {
-                case "Urgent-request" -> messageRecord.setSubject(Subject.URGENT_REQUEST);
-                case "Blood-Request" -> messageRecord.setSubject(Subject.BLOOD_REQUEST);
+                case "Urgent-request":
+                    messageRecord.setSubject(Subject.URGENT_REQUEST);
+                    request.setHistoryType(HistoryType.URGENT);
+                case "Blood-Request":
+                    messageRecord.setSubject(Subject.BLOOD_REQUEST);
             }
         }else{
             messageRecord.setSubject(null);
         }
 
+
         accountService.addCurrentUser(model);
+
+        String hasFound;
+
+        List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
+
+        if(donates.size() == 0){
+            hasFound = "false";
+        }else{
+            hasFound = "true";
+        }
+
+        model.addAttribute("hasFound", hasFound);
         return "request-step4";
     }
 
@@ -118,6 +136,8 @@ public class RequestController {
         else {return "true";}
     }
 
+
+
     @PostMapping("/book/request-confirm")
     @ResponseBody
     public String requestStepConfirm(Model model,
@@ -133,15 +153,18 @@ public class RequestController {
             System.out.println("save to db");
             // save to db.
             request.setMatched(false);
-            HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
-
+            request.setContent(message);
             // find matchers
             List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
 
 
             if (donates.size() == 0){
-                throw new IllegalStateException("no matchers");
+                request.setHasMatchers(false);
+                historyRecordService.saveHistoryRecord(request);
+
             }else {
+                request.setHasMatchers(true);
+                HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
                 // filter nearest and most recent donate
                 Account matchedDonate = donates.get(0).getAccount();
@@ -186,6 +209,14 @@ public class RequestController {
     {
 
         accountService.addCurrentUser(model);
+
+        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
+        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
+            put("history", historyRecords);
+        }};
+
+        model.addAttribute("history", messages);
+
         return "index-user";
     }
 

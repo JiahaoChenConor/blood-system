@@ -1,5 +1,7 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="com.elec5619.bloodsystem.entity.HistoryRecord" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,6 +60,76 @@
     </div>
     <!-- Carousel wrapper -->
 </div>
+
+
+<div class="container mt-5 mb-5">
+    <div class="row">
+
+
+
+        <div class="col-12 bg-light">
+            <div class="d-flex justify-content-center mt-5 mb-5">
+                <h1>Urgent Case</h1>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<table class="table align-middle mb-0 bg-white ml-3 mt-5 mb-5">
+    <thead class="bg-light">
+    <tr>
+        <th>Blood Type</th>
+        <th>Case Date</th>
+        <th>Case content</th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+
+    <%
+        Map<String, List<HistoryRecord>> data = (Map<String, List<HistoryRecord>>) request.getAttribute("history");
+        List<HistoryRecord> historyRecords = data.get("history");
+        for (HistoryRecord entry : historyRecords) {
+
+            out.println(
+                    "<tr>\n" +
+                            "                <td>\n" +
+                            "                    <div class=\"d-flex align-items-center\">\n" +
+                            "\n" +
+                            "                        <div class=\"ms-3\">\n" +
+                            "                            <p class=\"fw-bold mb-1 \">" + entry.getBloodType() + "</p>\n" +
+                            "\n" +
+                            "                        </div>\n" +
+                            "                    </div>\n" +
+                            "                </td>\n" +
+                            "                <td>\n" +
+                            "                       <p class=\"fw-normal mb-1 \">" + entry.getDate() + "</p>\n" +
+                            "                </td>\n" +
+                            "                <td>\n" +
+                            "                    <p class=\"fw-normal mb-1 \">" + entry.getContent() + "</p>\n" +
+                            "\n" +
+                            "                </td>\n"
+
+
+
+
+            );
+
+
+
+        }
+
+
+
+
+    %>
+
+
+    </tbody>
+</table>
 
 
 <div class="container mt-5 mb-5">

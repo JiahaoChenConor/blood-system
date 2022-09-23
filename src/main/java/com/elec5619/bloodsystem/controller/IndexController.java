@@ -2,10 +2,12 @@ package com.elec5619.bloodsystem.controller;
 
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.HistoryRecord;
 import com.elec5619.bloodsystem.entity.MessageRecord;
 import com.elec5619.bloodsystem.entity.Provider;
 import com.elec5619.bloodsystem.security.PasswordValidation;
 import com.elec5619.bloodsystem.service.AccountService;
+import com.elec5619.bloodsystem.service.HistoryRecordService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -28,6 +30,8 @@ import static com.elec5619.bloodsystem.status.RegisterStatus.*;
 public class IndexController {
 
     @Autowired
+    HistoryRecordService historyRecordService;
+    @Autowired
     AccountService accountService;
 
     @Autowired
@@ -38,7 +42,15 @@ public class IndexController {
     MessageRecordService messageRecordService;
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
+        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
+            put("history", historyRecords);
+        }};
+
+        model.addAttribute("history", messages);
+
+
         return "index";
     }
 
@@ -56,6 +68,12 @@ public class IndexController {
     public String indexAfterLogin(Model model){
 
         accountService.addCurrentUser(model);
+        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
+        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
+            put("history", historyRecords);
+        }};
+
+        model.addAttribute("history", messages);
 
         return "index-user";
     }

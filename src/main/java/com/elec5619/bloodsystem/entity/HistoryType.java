@@ -2,7 +2,9 @@ package com.elec5619.bloodsystem.entity;
 
 public enum HistoryType {
     DONATE("donate"),
-    REQUEST("request");
+    REQUEST("request"),
+
+    URGENT("urgent");
 
 
     private String historyType;

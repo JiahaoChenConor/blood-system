@@ -44,5 +44,12 @@ public class HistoryRecordService {
         historyRecordRepository.updateHistoryRecordStatus(matched, id);
     }
 
+    public  List<HistoryRecord> getUrgentRequestRecordInWaitingList(){
+        List<HistoryRecord> historyRecords = historyRecordRepository.findAll();
+        // add some filter
+        historyRecords = historyRecords.stream().filter(h->h.getHistoryType().equals(HistoryType.URGENT)).collect(Collectors.toList());
+        historyRecords = historyRecords.stream().filter(h->!h.getHasMatchers()).collect(Collectors.toList());
+        return historyRecords;
+    }
 
 }

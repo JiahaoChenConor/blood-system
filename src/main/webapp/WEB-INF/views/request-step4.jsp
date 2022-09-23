@@ -40,7 +40,22 @@
         </div>
 
         <div class="col-8">
-            <p>We get some matching users. Enter your request below</p>
+            <%
+                String hasFound = (String) request.getAttribute("hasFound");
+                if(hasFound.equals("true")){
+                    out.println(
+                            "<p>We get some matching users. Enter your request below</p>"
+                    );
+                }else if(hasFound.equals("false")){
+                    out.println(
+                            "<p>Sorry, there is no matcher for you. Leave your message for potential donators</p>"
+                    );
+                }else{
+                    out.println(
+                            "<p>Error</p>"
+                    );
+                }
+            %>
 
         </div>
 

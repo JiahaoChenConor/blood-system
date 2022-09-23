@@ -27,6 +27,25 @@ public class HistoryRecord {
 
     private Boolean matched;
 
+    private String content;
+
+    private Boolean hasMatchers;
+
+    public Boolean getHasMatchers() {
+        return hasMatchers;
+    }
+
+    public void setHasMatchers(Boolean hasMatchers) {
+        this.hasMatchers = hasMatchers;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 
     @ManyToOne
     @JoinColumn(name = "accountId")
