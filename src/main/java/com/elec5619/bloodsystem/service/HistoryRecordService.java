@@ -34,7 +34,6 @@ public class HistoryRecordService {
                 filter(historyRecord -> !historyRecord.getAccount().getEmail().equals(curr.getEmail())).
                 collect(Collectors.toList());
 
-
         return historyRecords;
     }
 
