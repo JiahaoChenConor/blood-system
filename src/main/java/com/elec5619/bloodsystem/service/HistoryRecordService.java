@@ -19,6 +19,8 @@ public class HistoryRecordService {
     HistoryRecordRepository historyRecordRepository;
 
 
+    @Autowired
+    AccountService accountService;
     public HistoryRecord saveHistoryRecord(HistoryRecord historyRecord){
         return historyRecordRepository.save(historyRecord);
     }
@@ -27,7 +29,11 @@ public class HistoryRecordService {
     public List<HistoryRecord> getMatchDonateRecord(BloodType bloodType){
         List<HistoryRecord> historyRecords = historyRecordRepository.findHistoryRecordByBloodTypeAndHistoryType(bloodType, HistoryType.DONATE);
         // add some filter
-        historyRecords = historyRecords.stream().filter(historyRecord1 -> !historyRecord1.getMatched()).collect(Collectors.toList());
+        Account curr = accountService.getCurrentAccount();
+        historyRecords = historyRecords.stream().filter(historyRecord1 -> !historyRecord1.getMatched()).
+                filter(historyRecord -> !historyRecord.getAccount().getEmail().equals(curr.getEmail())).
+                collect(Collectors.toList());
+
 
         return historyRecords;
     }
