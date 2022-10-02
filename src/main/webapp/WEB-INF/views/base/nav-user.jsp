@@ -93,7 +93,7 @@
                             <a class="dropdown-item" href="/profile">Profile</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Health Info</a>
+                            <a class="dropdown-item" href="/health-info">Health Info</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="/history">History</a>

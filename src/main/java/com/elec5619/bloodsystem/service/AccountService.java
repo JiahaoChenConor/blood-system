@@ -2,10 +2,7 @@ package com.elec5619.bloodsystem.service;
 
 import com.elec5619.bloodsystem.dao.AccountRepository;
 import com.elec5619.bloodsystem.dao.RoleRepository;
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.Profile;
-import com.elec5619.bloodsystem.entity.Provider;
-import com.elec5619.bloodsystem.entity.Role;
+import com.elec5619.bloodsystem.entity.*;
 import com.elec5619.bloodsystem.security.CustomOAuth2User;
 import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,6 +119,9 @@ public class AccountService {
         accountRepository.setProfileId(profile, accountId);
     }
 
+    public void setHealthInfo(HealthInfo healthInfo, Long accountId){
+        accountRepository.setHealthInfoId(healthInfo, accountId);
+    }
 
     public void processOAuthPostLogin(String email) {
         Account account = new Account();

@@ -1,5 +1,6 @@
 package com.elec5619.bloodsystem.dao;
 
+import com.elec5619.bloodsystem.entity.Gender;
 import com.elec5619.bloodsystem.entity.Privilege;
 import com.elec5619.bloodsystem.entity.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,19 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     @Query("UPDATE Profile p set p.firstName = ?1 WHERE p.profileId = ?2")
     void updateFirstNameById(String firstName, Long id);
 
+    @Modifying
+    @Query("UPDATE Profile p set p.lastName = ?1 WHERE p.profileId = ?2")
+    void updateLastNameById(String lastName, Long profileId);
 
+    @Modifying
+    @Query("UPDATE Profile p set p.dateOfBirth = ?1 WHERE p.profileId = ?2")
+    void updateDateOfBirthById(String dateOfBirth, Long profileId);
 
+    @Modifying
+    @Query("UPDATE Profile p set p.mobileNum = ?1 WHERE p.profileId = ?2")
+    void updateMobileNumById(String mobileNum, Long profileId);
+
+    @Modifying
+    @Query("UPDATE Profile p set p.gender = ?1 WHERE p.profileId = ?2")
+    void updateGenderById(Gender gender, Long profileId);
 }

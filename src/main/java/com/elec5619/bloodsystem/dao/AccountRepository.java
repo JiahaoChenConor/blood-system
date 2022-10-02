@@ -1,6 +1,7 @@
 package com.elec5619.bloodsystem.dao;
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.HealthInfo;
 import com.elec5619.bloodsystem.entity.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -30,5 +31,9 @@ public interface AccountRepository
     @Modifying
     @Query("UPDATE Account a set a.profile=?1 WHERE a.id=?2")
     void setProfileId(Profile profile, Long AccountId);
+
+    @Modifying
+    @Query("UPDATE Account a set a.healthInfo=?1 WHERE a.id=?2")
+    void setHealthInfoId(HealthInfo healthInfo, Long AccountId);
 
 }
