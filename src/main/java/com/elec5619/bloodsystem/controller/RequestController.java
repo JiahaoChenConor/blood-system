@@ -156,9 +156,7 @@ public class RequestController {
             request.setMatched(false);
             request.setContent(message);
 
-            //send sms
-            System.out.println("sending sms");
-            SmsService.sendSMS(message);
+
             // find matchers
             List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
 
@@ -169,6 +167,11 @@ public class RequestController {
 
             }else {
                 request.setHasMatchers(true);
+
+                //send sms
+                System.out.println("sending sms");
+                SmsService.sendSMS(message);
+
                 HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
                 // filter nearest and most recent donate
