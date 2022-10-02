@@ -10,15 +10,16 @@ import java.math.BigDecimal;
 
 public class SmsService {
   // Find your Account Sid and Token at twilio.com/console
-  public static final String ACCOUNT_SID =
-      System.getenv("TWILIO_API_SID") == null
-          ? ""
-          : System.getenv("TWILIO_API_SID");
-  public static final String AUTH_TOKEN =
-      System.getenv("TWILIO_API_KEY") == null
-          ? ""
-          : System.getenv("TWILIO_API_KEY");
+
   public static void sendSMS( String smstext) {
+    String ACCOUNT_SID =
+        System.getenv("TWILIO_API_SID") == null
+            ? ""
+            : System.getenv("TWILIO_API_SID");
+    String AUTH_TOKEN =
+        System.getenv("TWILIO_API_KEY") == null
+            ? ""
+            : System.getenv("TWILIO_API_KEY");
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
     Message message = Message.creator(
             new com.twilio.type.PhoneNumber("+61415548977"),
@@ -27,5 +28,6 @@ public class SmsService {
         .create();
 
     System.out.println(message.getSid());
+
   }
 }
