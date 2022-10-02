@@ -12,11 +12,11 @@ public class SmsService {
   // Find your Account Sid and Token at twilio.com/console
   public static final String ACCOUNT_SID =
       System.getenv("TWILIO_API_SID") == null
-          ? "AC665ef3544181cad0a9f94e83992131d4"
+          ? ""
           : System.getenv("TWILIO_API_SID");
   public static final String AUTH_TOKEN =
       System.getenv("TWILIO_API_KEY") == null
-          ? "7a89e554e8564c41a71a2b83cff9c3aa"
+          ? ""
           : System.getenv("TWILIO_API_KEY");
   public static void sendSMS( String smstext) {
     Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
