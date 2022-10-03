@@ -96,8 +96,8 @@
         </div>
 
         <div class="col-sm">
-            <form method="post" action="upload" enctype="multipart/form-data">
-                <label class="form-label" for="customFile">Please upload your health info provement</label>
+            <form method="get" action="/health-info/upload" onsubmit="submit()" enctype="multipart/form-data">
+                <label class="form-label" for="customFile">Please upload your health information</label>
                 <input type="file" name="upload"  class="form-control" id="customFile" />
 
                 <br/><br/>
@@ -198,6 +198,10 @@
         });
     }
 
+
+    function submit() {
+        alert("Upload success");
+    }
 
 
 

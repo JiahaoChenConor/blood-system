@@ -10,10 +10,16 @@ import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.UUID;
 
 @Controller
 public class HealthInfoController {
@@ -123,6 +129,27 @@ public class HealthInfoController {
                 return healthInfo.getBloodType().toString();
             }
         }
+    }
+
+    @RequestMapping("/health-info/upload")
+    public String fileUpLoad(HttpServletRequest request, MultipartFile upload) throws Exception {
+        // TODO: deal with uploaded file
+//        System.out.println("Uploading file...");
+//        String path = request.getSession().getServletContext().getRealPath("/uploads/");
+//        File file = new File(path);
+//        if(!file.exists()){
+//            file.mkdirs();
+//        }
+//
+//        String filename = upload.getOriginalFilename();
+//        // make file name unique
+//        String uuid = UUID.randomUUID().toString().replace("-", "");
+//        filename = uuid+"_"+filename;
+//        upload.transferTo(new File(path,filename));
+//        Path source = Paths.get("src", "main", "webapp", "uploads", filename);
+//        Path dest = Paths.get("data.csv");
+//        Files.copy(source, dest, StandardCopyOption.REPLACE_EXISTING);
+        return "upload-success";
     }
 
 }
