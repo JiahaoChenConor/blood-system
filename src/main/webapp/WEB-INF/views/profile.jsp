@@ -152,6 +152,25 @@
 <!-- Custom scripts -->
 <script type="text/javascript">
 
+    // when loading the page, get the value from server
+    $.ajax({
+        type : "POST",
+        url : "${pageContext.request.contextPath}/profile/get-gender" ,
+        data: { },
+        async: false,
+        success: function (data, status, xhr) {
+            document.getElementById('gender').value=data;
+            console.log("success " + data);
+
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            $('p').append('Error' + errorMessage);
+        }
+
+    });
+
+
+
     function editFirstName(){
         let firstName = document.getElementById("firstName").value;
         $.ajax({

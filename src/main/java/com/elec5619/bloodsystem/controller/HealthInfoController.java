@@ -93,6 +93,36 @@ public class HealthInfoController {
 
 
 
+    @PostMapping("/health-info/age")
+    @ResponseBody
+    public String getAge(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getHealthInfo() == null){
+            return "18";
+        }else{
+            HealthInfo healthInfo = account.getHealthInfo();
+            if (healthInfo.getAge() == null){
+                return "18";
+            }else{
+                return healthInfo.getAge().toString();
+            }
+        }
+    }
 
+    @PostMapping("/health-info/blood-type")
+    @ResponseBody
+    public String getBloodType(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getHealthInfo() == null){
+            return "A";
+        }else{
+            HealthInfo healthInfo = account.getHealthInfo();
+            if (healthInfo.getBloodType() == null){
+                return "A";
+            }else{
+                return healthInfo.getBloodType().toString();
+            }
+        }
+    }
 
 }

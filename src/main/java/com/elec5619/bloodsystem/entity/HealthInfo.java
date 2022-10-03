@@ -1,5 +1,6 @@
 package com.elec5619.bloodsystem.entity;
 
+import io.swagger.models.auth.In;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
@@ -14,7 +15,7 @@ public class HealthInfo {
     @Enumerated(EnumType.STRING)
     private BloodType bloodType;
 
-    private int age;
+    private Integer age;
 
 
     public Long getHealthInfoId() {
@@ -33,11 +34,11 @@ public class HealthInfo {
         this.bloodType = bloodType;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 }

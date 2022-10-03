@@ -122,6 +122,41 @@
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
+
+    // when loading the page, get the value from server
+    $.ajax({
+        type : "POST",
+        url : "${pageContext.request.contextPath}/health-info/blood-type" ,
+        data: { },
+        async: false,
+        success: function (data, status, xhr) {
+            document.getElementById('blood-type').value=data;
+            console.log("success " + data);
+
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            $('p').append('Error' + errorMessage);
+        }
+
+    });
+
+    $.ajax({
+        type : "POST",
+        url : "${pageContext.request.contextPath}/health-info/age" ,
+        data: { },
+        async: false,
+        success: function (data, status, xhr) {
+            document.getElementById('age').value=data;
+            console.log("success " + data);
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            $('p').append('Error' + errorMessage);
+        }
+
+    });
+
+
+
     function editAge(){
         let age = document.getElementById("age").value;
         $.ajax({

@@ -146,4 +146,20 @@ public class ProfileController {
         return "true";
     }
 
+
+    @PostMapping("/profile/get-gender")
+    @ResponseBody
+    public String getGender(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "male";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getGender() == null){
+                return "male";
+            }else{
+                return profile.getGender().toString();
+            }
+        }
+    }
 }
