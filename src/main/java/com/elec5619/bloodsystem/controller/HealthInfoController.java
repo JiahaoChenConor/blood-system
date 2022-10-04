@@ -3,10 +3,8 @@ package com.elec5619.bloodsystem.controller;
 import com.elec5619.bloodsystem.entity.Account;
 import com.elec5619.bloodsystem.entity.BloodType;
 import com.elec5619.bloodsystem.entity.HealthInfo;
-import com.elec5619.bloodsystem.entity.Profile;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.HealthInfoService;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,22 +12,31 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.UUID;
 
+/**
+ * The type Health info controller.
+ */
 @Controller
 public class HealthInfoController {
 
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Health info service.
+     */
     @Autowired
     HealthInfoService healthInfoService;
 
+    /**
+     * Health info page string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/health-info")
     public String healthInfoPage(Model model){
         accountService.addCurrentUser(model);
@@ -37,7 +44,13 @@ public class HealthInfoController {
     }
 
 
-
+    /**
+     * Edit health info string.
+     *
+     * @param bloodType the blood type
+     * @param age       the age
+     * @return the string
+     */
     @PostMapping("/health-info")
     @ResponseBody
     public String editHealthInfo(@RequestParam(value = "bloodType", required = false) String bloodType,
@@ -98,7 +111,11 @@ public class HealthInfoController {
     }
 
 
-
+    /**
+     * Get age string.
+     *
+     * @return the string
+     */
     @PostMapping("/health-info/age")
     @ResponseBody
     public String getAge(){
@@ -115,6 +132,11 @@ public class HealthInfoController {
         }
     }
 
+    /**
+     * Get blood type string.
+     *
+     * @return the string
+     */
     @PostMapping("/health-info/blood-type")
     @ResponseBody
     public String getBloodType(){
@@ -131,24 +153,17 @@ public class HealthInfoController {
         }
     }
 
+    /**
+     * File up load string.
+     *
+     * @param request the request
+     * @param upload  the upload
+     * @return the string
+     * @throws Exception the exception
+     */
     @RequestMapping("/health-info/upload")
     public String fileUpLoad(HttpServletRequest request, MultipartFile upload) throws Exception {
         // TODO: deal with uploaded file
-//        System.out.println("Uploading file...");
-//        String path = request.getSession().getServletContext().getRealPath("/uploads/");
-//        File file = new File(path);
-//        if(!file.exists()){
-//            file.mkdirs();
-//        }
-//
-//        String filename = upload.getOriginalFilename();
-//        // make file name unique
-//        String uuid = UUID.randomUUID().toString().replace("-", "");
-//        filename = uuid+"_"+filename;
-//        upload.transferTo(new File(path,filename));
-//        Path source = Paths.get("src", "main", "webapp", "uploads", filename);
-//        Path dest = Paths.get("data.csv");
-//        Files.copy(source, dest, StandardCopyOption.REPLACE_EXISTING);
         return "upload-success";
     }
 

@@ -13,14 +13,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * The type Profile controller.
+ */
 @Controller
 public class ProfileController {
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Profile service.
+     */
     @Autowired
     ProfileService profileService;
 
+    /**
+     * Profile page string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/profile")
     public String profilePage(Model model){
         accountService.addCurrentUser(model);
@@ -72,6 +87,16 @@ public class ProfileController {
         return "profile";
     }
 
+    /**
+     * Edit profile string.
+     *
+     * @param firstName   the first name
+     * @param lastName    the last name
+     * @param gender      the gender
+     * @param dateOfBirth the date of birth
+     * @param mobileNum   the mobile num
+     * @return the string
+     */
     @PostMapping("/profile")
     @ResponseBody
     public String editProfile(@RequestParam(value = "firstName", required = false) String firstName,
@@ -147,6 +172,11 @@ public class ProfileController {
     }
 
 
+    /**
+     * Get gender string.
+     *
+     * @return the string
+     */
     @PostMapping("/profile/get-gender")
     @ResponseBody
     public String getGender(){

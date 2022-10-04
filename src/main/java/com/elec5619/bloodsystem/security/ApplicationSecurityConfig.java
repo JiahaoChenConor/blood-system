@@ -24,6 +24,9 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
+/**
+ * The type Application security config.
+ */
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -36,6 +39,16 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService oauthUserService;
     private final AccountService accountService;
 
+    /**
+     * Instantiates a new Application security config.
+     *
+     * @param passwordEncoder                    the password encoder
+     * @param accountDetailService               the account detail service
+     * @param customAuthenticationSuccessHandler the custom authentication success handler
+     * @param customAuthenticationFailureHandler the custom authentication failure handler
+     * @param oauthUserService                   the oauth user service
+     * @param accountService                     the account service
+     */
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
                                      AccountDetailService accountDetailService,
@@ -131,6 +144,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    /**
+     * Dao authentication provider dao authentication provider.
+     *
+     * @return the dao authentication provider
+     */
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();

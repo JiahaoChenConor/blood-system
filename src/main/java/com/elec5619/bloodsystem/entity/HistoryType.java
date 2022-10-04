@@ -1,9 +1,21 @@
 package com.elec5619.bloodsystem.entity;
 
+/**
+ * The enum History type.
+ */
 public enum HistoryType {
+    /**
+     * Donate history type.
+     */
     DONATE("donate"),
+    /**
+     * Request history type.
+     */
     REQUEST("request"),
 
+    /**
+     * Urgent history type.
+     */
     URGENT("urgent");
 
 

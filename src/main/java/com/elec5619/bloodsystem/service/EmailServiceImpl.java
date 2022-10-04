@@ -18,6 +18,9 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
+/**
+ * The interface Email service.
+ */
 // Annotation
 @Service
 // Class
@@ -101,6 +104,11 @@ public class EmailServiceImpl implements EmailService {
     }
 
 
+    /**
+     * Gets java mail sender.
+     *
+     * @return the java mail sender
+     */
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

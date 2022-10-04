@@ -2,6 +2,9 @@ package com.elec5619.bloodsystem.other;
 
 import org.hibernate.dialect.PostgreSQLDialect;
 
+/**
+ * The type Improved dialect.
+ */
 public class ImprovedDialect extends PostgreSQLDialect {
     @Override
     public String getDropSequenceString(String sequenceName) {

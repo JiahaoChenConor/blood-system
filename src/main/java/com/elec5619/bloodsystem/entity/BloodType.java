@@ -1,9 +1,24 @@
 package com.elec5619.bloodsystem.entity;
 
+/**
+ * The enum Blood type.
+ */
 public enum BloodType {
+    /**
+     * A blood type.
+     */
     A("A"),
+    /**
+     * B blood type.
+     */
     B("B"),
+    /**
+     * Ab blood type.
+     */
     AB("AB"),
+    /**
+     * O blood type.
+     */
     O("O");
 
 

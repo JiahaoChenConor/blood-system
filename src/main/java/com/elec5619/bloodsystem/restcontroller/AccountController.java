@@ -10,12 +10,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * The type Account controller.
+ */
 @RestController
 @RequestMapping("/api/v1")
 public class AccountController {
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * All accounts list.
+     *
+     * @return the list
+     */
     @GetMapping("/allUsers")
     public List<Account> allAccounts(){
         return accountService.getAllAccounts();

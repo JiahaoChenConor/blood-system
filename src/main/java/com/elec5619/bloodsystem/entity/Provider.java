@@ -1,5 +1,15 @@
 package com.elec5619.bloodsystem.entity;
 
+/**
+ * The enum Provider.
+ */
 public enum Provider {
-    LOCAL, GOOGLE
+    /**
+     * Local provider.
+     */
+    LOCAL,
+    /**
+     * Google provider.
+     */
+    GOOGLE
 }

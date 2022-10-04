@@ -20,18 +20,33 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * The type Donate controller.
+ */
 @Controller
 public class DonateController {
 
+    /**
+     * The History record service.
+     */
     @Autowired
     HistoryRecordService historyRecordService;
 
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
 
     private HistoryRecord donate;
 
+    /**
+     * Login string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/book")
     public String login(Model model)
     {
@@ -40,6 +55,12 @@ public class DonateController {
     }
 
 
+    /**
+     * Donate string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/book/donate")
     public String donate(Model model)
     {
@@ -55,6 +76,14 @@ public class DonateController {
         return "donate-step1";
     }
 
+    /**
+     * Donate step two string.
+     *
+     * @param model     the model
+     * @param bloodType the blood type
+     * @param cc        the cc
+     * @return the string
+     */
     @GetMapping("/book/donate-step2")
     public String donateStepTwo(Model model,
                                 @RequestParam(name="bloodType", required = false) String bloodType,
@@ -79,6 +108,13 @@ public class DonateController {
         return "donate-step2";
     }
 
+    /**
+     * Donate step three string.
+     *
+     * @param model    the model
+     * @param location the location
+     * @return the string
+     */
     @GetMapping("/book/donate-step3")
     public String donateStepThree(Model model,
                                   @RequestParam(name="location", required = false) String location)
@@ -93,6 +129,13 @@ public class DonateController {
         return "donate-step3";
     }
 
+    /**
+     * Donate step four string.
+     *
+     * @param model the model
+     * @param time  the time
+     * @return the string
+     */
     @GetMapping("/book/donate-step4")
     public String donateStepFour(Model model,
                                  @RequestParam(name="time", required = false) String time)
@@ -106,6 +149,12 @@ public class DonateController {
         return "donate-step4";
     }
 
+    /**
+     * Donate step confirm string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/book/donate-confirm")
     public String donateStepConfirm(Model model)
     {

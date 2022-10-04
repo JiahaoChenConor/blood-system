@@ -18,23 +18,44 @@ import java.util.List;
 import java.util.Map;
 
 
+/**
+ * The type Request controller.
+ */
 @Controller
 public class RequestController {
+    /**
+     * The Message record service.
+     */
     @Autowired
     MessageRecordService messageRecordService;
 
+    /**
+     * The Email service.
+     */
     @Autowired
     EmailService emailService;
 
+    /**
+     * The History record service.
+     */
     @Autowired
     HistoryRecordService historyRecordService;
 
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
     private HistoryRecord request;
     private MessageRecord messageRecord;
 
+    /**
+     * Request string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/book/request")
     public String request(Model model)
     {
@@ -50,6 +71,14 @@ public class RequestController {
         return "request-step1";
     }
 
+    /**
+     * Request step two string.
+     *
+     * @param model     the model
+     * @param bloodType the blood type
+     * @param cc        the cc
+     * @return the string
+     */
     @GetMapping("/book/request-step2")
     public String requestStepTwo(Model model,
                                 @RequestParam(name="bloodType", required = false) String bloodType,
@@ -73,6 +102,13 @@ public class RequestController {
         return "request-step2";
     }
 
+    /**
+     * Request step three string.
+     *
+     * @param model    the model
+     * @param location the location
+     * @return the string
+     */
     @GetMapping("/book/request-step3")
     public String requestStepThree(Model model,
                                   @RequestParam(name="location", required = false) String location)
@@ -86,6 +122,13 @@ public class RequestController {
         return "request-step3";
     }
 
+    /**
+     * Request step four string.
+     *
+     * @param model   the model
+     * @param subject the subject
+     * @return the string
+     */
     @GetMapping("/book/request-step4")
     public String requestStepFour(Model model,
                                 @RequestParam(name="subject", required = false) String subject)
@@ -120,6 +163,12 @@ public class RequestController {
     }
 
 
+    /**
+     * Exist matchers string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @PostMapping("/book/getMatchers")
     @ResponseBody
     public String existMatchers(Model model){
@@ -134,7 +183,13 @@ public class RequestController {
     }
 
 
-
+    /**
+     * Request step confirm string.
+     *
+     * @param model   the model
+     * @param message the message
+     * @return the string
+     */
     @PostMapping("/book/request-confirm")
     @ResponseBody
     public String requestStepConfirm(Model model,
@@ -201,6 +256,12 @@ public class RequestController {
         return "success";
     }
 
+    /**
+     * Return index string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/book/request-confirm")
     public String returnIndex(Model model)
     {

@@ -19,22 +19,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type History controller.
+ */
 @Controller
 public class HistoryController {
+    /**
+     * The Email service.
+     */
     @Autowired
     EmailService emailService;
 
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Message record service.
+     */
     @Autowired
     MessageRecordService messageRecordService;
 
+    /**
+     * The History record service.
+     */
     @Autowired
     HistoryRecordService historyRecordService;
 
 
-
+    /**
+     * All history string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/history")
     public String allHistory(Model model){
 
@@ -52,6 +72,13 @@ public class HistoryController {
     }
 
 
+    /**
+     * Change history status string.
+     *
+     * @param matched the matched
+     * @param id      the id
+     * @return the string
+     */
     @PostMapping("/history")
     @ResponseBody
     public String changeHistoryStatus(@RequestParam(name = "matched") String matched,

@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type Custom o auth 2 user service.
+ */
 @Service
 public class CustomOAuth2UserService extends DefaultOAuth2UserService  {
 
