@@ -16,8 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
+
 
 @Controller
 public class RequestController {
@@ -59,8 +58,6 @@ public class RequestController {
 
         if (cc != null){
             request.setMeasure(Double.parseDouble(cc));
-        }else{
-            request.setMeasure(null);
         }
 
         if (bloodType != null){
@@ -70,8 +67,6 @@ public class RequestController {
                 case "AB" -> request.setBloodType(BloodType.AB);
                 case "O" -> request.setBloodType(BloodType.O);
             }
-        }else{
-            request.setBloodType(null);
         }
 
         accountService.addCurrentUser(model);
@@ -83,7 +78,10 @@ public class RequestController {
                                   @RequestParam(name="location", required = false) String location)
     {
 
-        request.setLocation(location);
+        if (location != null){
+            request.setLocation(location);
+        }
+
         accountService.addCurrentUser(model);
         return "request-step3";
     }
@@ -100,9 +98,8 @@ public class RequestController {
                     request.setHistoryType(HistoryType.URGENT);
                 case "Blood-Request":
                     messageRecord.setSubject(Subject.BLOOD_REQUEST);
+                    request.setHistoryType(HistoryType.REQUEST);
             }
-        }else{
-            messageRecord.setSubject(null);
         }
 
 

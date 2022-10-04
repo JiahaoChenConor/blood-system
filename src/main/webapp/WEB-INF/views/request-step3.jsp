@@ -97,7 +97,12 @@
             url : "${pageContext.request.contextPath}/book/getMatchers",
             data: { },  // data to submit
             success: function (data, status, xhr) {
-                location.href = "/book/request-step4?subject=" + document.getElementById("subject").value;
+                if (data === "true"){
+                    // success get some matchers
+                    location.href = "/book/request-step4?subject=" + document.getElementById("subject").value;
+                }else{
+                    $('#non-user-modal').modal('show');
+                }
             },
             error: function (jqXhr, textStatus, errorMessage) {
                 $('p').append('Error' + errorMessage);

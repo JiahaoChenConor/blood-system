@@ -43,7 +43,6 @@
         <th>History ID</th>
         <th>History Type</th>
         <th>Date</th>
-        <th>HasMatchers</th>
         <th>Matched</th>
         <th>Action</th>
 

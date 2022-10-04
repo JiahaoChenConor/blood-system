@@ -70,13 +70,13 @@ public class IndexController {
     @RequestMapping("/faq-user")
     public String faqUser(Model model) {
         accountService.addCurrentUser(model);
-        return "faq";
+        return "faq-user";
     }
 
     @RequestMapping("/about-user")
     public String aboutUser(Model model) {
         accountService.addCurrentUser(model);
-        return "about";
+        return "about-user";
     }
 
 

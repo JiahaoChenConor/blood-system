@@ -63,8 +63,6 @@ public class DonateController {
 
         if (cc != null){
             donate.setMeasure(Double.parseDouble(cc));
-        }else{
-            donate.setMeasure(null);
         }
 
 
@@ -75,8 +73,6 @@ public class DonateController {
                 case "AB" -> donate.setBloodType(BloodType.AB);
                 case "O" -> donate.setBloodType(BloodType.O);
             }
-        }else{
-            donate.setBloodType(null);
         }
 
         accountService.addCurrentUser(model);
@@ -89,9 +85,11 @@ public class DonateController {
                                     // when back, we reset the location into null
                                     // So we can check all in last confirmation
     {
-
-        donate.setLocation(location);
         accountService.addCurrentUser(model);
+
+        if (location != null){
+            donate.setLocation(location);
+        }
         return "donate-step3";
     }
 
@@ -100,8 +98,10 @@ public class DonateController {
                                  @RequestParam(name="time", required = false) String time)
     {
 
-        donate.setDate(time);
-        System.out.println(time);
+        if (time != null){
+            donate.setDate(time);
+        }
+
         accountService.addCurrentUser(model);
         return "donate-step4";
     }
