@@ -83,6 +83,7 @@
         <th>Blood Type</th>
         <th>Case Date</th>
         <th>Case content</th>
+        <th>Action</th>
 
 
     </tr>
@@ -111,7 +112,14 @@
                             "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getContent() + "</p>\n" +
                             "\n" +
+                            "                </td>\n" +
+                            "                <td>\n" +
+                                  "<button type=\"button\" class=\"btn btn-success\">Contact</button>" +
+
                             "                </td>\n"
+
+                        + "</tr>\n"
+
 
 
 

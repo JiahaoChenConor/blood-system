@@ -54,6 +54,29 @@ public class IndexController {
         return "index";
     }
 
+    @RequestMapping("/faq")
+    public String faq(Model model) {
+        try {
+            accountService.addCurrentUser(model);
+        }catch (Exception e){
+
+        }
+
+        return "faq";
+    }
+
+    @RequestMapping("/about")
+    public String about(Model model) {
+        try {
+            accountService.addCurrentUser(model);
+        }catch (Exception e){
+
+        }
+        return "about";
+    }
+
+
+
     @GetMapping("/login")
     // required=false, since if param not exists, there is error.
     public String login(@RequestParam(required=false) boolean loginError,
@@ -62,6 +85,8 @@ public class IndexController {
         model.addAttribute("loginError", loginError);
         return "login";
     }
+
+
 
 
     @GetMapping("/index-user")

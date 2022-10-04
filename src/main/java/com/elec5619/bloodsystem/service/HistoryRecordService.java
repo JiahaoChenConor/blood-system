@@ -53,7 +53,7 @@ public class HistoryRecordService {
         List<HistoryRecord> historyRecords = historyRecordRepository.findAll();
         // add some filter
         historyRecords = historyRecords.stream().filter(h->h.getHistoryType().equals(HistoryType.URGENT)).collect(Collectors.toList());
-        historyRecords = historyRecords.stream().filter(h->!h.getHasMatchers()).collect(Collectors.toList());
+        historyRecords = historyRecords.stream().filter(h->!h.getMatched()).collect(Collectors.toList());
         return historyRecords;
     }
 

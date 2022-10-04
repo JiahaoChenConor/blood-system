@@ -92,10 +92,6 @@
                             "\n" +
                             "                </td>\n" +
                             "                <td>\n" +
-                            "                    <p class=\"fw-normal mb-1 \">" + entry.getHasMatchers() + "</p>\n" +
-                            "\n" +
-                            "                </td>\n" +
-                            "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getMatched() + "</p>\n" +
                             "\n" +
                             "                </td>\n" +

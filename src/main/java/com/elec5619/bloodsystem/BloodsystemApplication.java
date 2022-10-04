@@ -14,8 +14,4 @@ public class BloodsystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(BloodsystemApplication.class, args);
     }
-
-
-
-
 }

@@ -57,7 +57,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
 
                 // permit index page for all users(non-user)
-                .antMatchers("/", "index", "/css/*", "/js/*", "/img/**").permitAll()
+                .antMatchers("/", "index", "/faq", "/about", "/css/*", "/js/*", "/img/**").permitAll()
                 .antMatchers("/v2/api-docs", "/swagger-resources/**", "/webjars/**", "/swagger-ui.html").permitAll()
                 .antMatchers("/register**").permitAll()
                 .antMatchers( "/api/**").permitAll()
