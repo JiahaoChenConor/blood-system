@@ -34,10 +34,10 @@
                         <a class="nav-link" href="/index-user">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
+                        <a class="nav-link" href="/about-user">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/faq">FAQ</a>
+                        <a class="nav-link" href="/faq-user">FAQ</a>
                     </li>
                 </ul>
                 <!-- Left links -->

@@ -56,24 +56,29 @@ public class IndexController {
 
     @RequestMapping("/faq")
     public String faq(Model model) {
-        try {
-            accountService.addCurrentUser(model);
-        }catch (Exception e){
 
-        }
 
         return "faq";
     }
 
     @RequestMapping("/about")
     public String about(Model model) {
-        try {
-            accountService.addCurrentUser(model);
-        }catch (Exception e){
 
-        }
         return "about";
     }
+
+    @RequestMapping("/faq-user")
+    public String faqUser(Model model) {
+        accountService.addCurrentUser(model);
+        return "faq";
+    }
+
+    @RequestMapping("/about-user")
+    public String aboutUser(Model model) {
+        accountService.addCurrentUser(model);
+        return "about";
+    }
+
 
 
 

@@ -8,7 +8,7 @@
     <jsp:include page="base/header.jsp"/>
 </head>
 
-<jsp:include page="base/nav-non-user.jsp"/>
+<jsp:include page="base/nav-user.jsp"/>
 
 <br/>
 <br/>
