@@ -37,6 +37,12 @@ public class RequestController {
     EmailService emailService;
 
     /**
+     * The Sms service.
+     */
+    @Autowired
+    SmsService smsService;
+
+    /**
      * The History record service.
      */
     @Autowired
@@ -222,7 +228,7 @@ public class RequestController {
 
                 //send sms
                 System.out.println("sending sms");
-                SmsService.sendSMS(message);
+                smsService.sendSMS(message, "+61415548977");
 
                 HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
