@@ -20,15 +20,16 @@ import java.util.List;
 
 /**
  * This class is used for filtering by user role and authorities
- *  load the user details during authentication
+ * load the user details during authentication
  * The filter is implemented in `Security/ApplicationSecurityConfig`
- *
- *
- * */
+ */
 @Service
 @Transactional  // WARNING: this is necessary!
 public class AccountDetailService implements UserDetailsService {
 
+    /**
+     * The Account repository.
+     */
     @Autowired
     AccountRepository accountRepository;
 

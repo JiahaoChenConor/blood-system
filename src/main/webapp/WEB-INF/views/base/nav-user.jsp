@@ -34,10 +34,10 @@
                         <a class="nav-link" href="/index-user">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="/about-user">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">FAQ</a>
+                        <a class="nav-link" href="/faq-user">FAQ</a>
                     </li>
                 </ul>
                 <!-- Left links -->
@@ -93,7 +93,7 @@
                             <a class="dropdown-item" href="/profile">Profile</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">Health Info</a>
+                            <a class="dropdown-item" href="/health-info">Health Info</a>
                         </li>
                         <li>
                             <a class="dropdown-item" href="/history">History</a>

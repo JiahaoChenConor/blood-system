@@ -18,10 +18,16 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * The type Setup data loader.
+ */
 @Component
 public class SetupDataLoader implements
         ApplicationListener<ContextRefreshedEvent> {
 
+    /**
+     * The Already setup.
+     */
     boolean alreadySetup = false;
 
     @Autowired
@@ -82,6 +88,12 @@ public class SetupDataLoader implements
         alreadySetup = true;
     }
 
+    /**
+     * Create privilege if not found privilege.
+     *
+     * @param name the name
+     * @return the privilege
+     */
     @Transactional
     Privilege createPrivilegeIfNotFound(String name) {
 
@@ -93,6 +105,13 @@ public class SetupDataLoader implements
         return privilege;
     }
 
+    /**
+     * Create role if not found role.
+     *
+     * @param name       the name
+     * @param privileges the privileges
+     * @return the role
+     */
     @Transactional
     Role createRoleIfNotFound(
             String name,

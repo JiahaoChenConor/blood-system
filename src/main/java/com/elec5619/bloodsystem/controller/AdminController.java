@@ -14,15 +14,31 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Admin controller.
+ */
 @Controller
 public class AdminController {
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Message record service.
+     */
     @Autowired
     MessageRecordService messageRecordService;
 
 
+    /**
+     * User messages string.
+     *
+     * @param userId the user id
+     * @param model  the model
+     * @return the string
+     */
     @GetMapping("/admin/user-message/{userId}")
     public String userMessages(@PathVariable String userId, Model model){
         accountService.addCurrentUser(model);
@@ -41,6 +57,13 @@ public class AdminController {
         return "admin-user-message";
     }
 
+    /**
+     * Specific message string.
+     *
+     * @param messageId the message id
+     * @param model     the model
+     * @return the string
+     */
     @GetMapping("/admin/messages/{messageId}")
     public String specificMessage(@PathVariable String messageId, Model model){
         accountService.addCurrentUser(model);
@@ -52,6 +75,12 @@ public class AdminController {
         return "admin-specific-message";
     }
 
+    /**
+     * Delete message string.
+     *
+     * @param messageId the message id
+     * @return the string
+     */
     @PostMapping("/admin/delete")
     @ResponseBody
     public String deleteMessage(@RequestParam(name = "messageId") String messageId){

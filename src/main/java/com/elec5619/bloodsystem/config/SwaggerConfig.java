@@ -9,9 +9,17 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
+/**
+ * The type Swagger config.
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
+    /**
+     * Product api docket.
+     *
+     * @return the docket
+     */
     @Bean
     public Docket productApi() {
         return new Docket(DocumentationType.SWAGGER_2)

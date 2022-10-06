@@ -1,9 +1,18 @@
 package com.elec5619.bloodsystem.entity;
 
+/**
+ * The enum Subject.
+ */
 public enum Subject {
 
 
+    /**
+     * The Blood request.
+     */
     BLOOD_REQUEST("Blood request"),
+    /**
+     * The Urgent request.
+     */
     URGENT_REQUEST("urgent request");
 
 

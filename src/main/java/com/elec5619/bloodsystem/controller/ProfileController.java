@@ -1,6 +1,7 @@
 package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.entity.Account;
+import com.elec5619.bloodsystem.entity.Gender;
 import com.elec5619.bloodsystem.entity.Profile;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.ProfileService;
@@ -12,14 +13,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+/**
+ * The type Profile controller.
+ */
 @Controller
 public class ProfileController {
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Profile service.
+     */
     @Autowired
     ProfileService profileService;
 
+    /**
+     * Profile page string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/profile")
     public String profilePage(Model model){
         accountService.addCurrentUser(model);
@@ -71,25 +87,109 @@ public class ProfileController {
         return "profile";
     }
 
+    /**
+     * Edit profile string.
+     *
+     * @param firstName   the first name
+     * @param lastName    the last name
+     * @param gender      the gender
+     * @param dateOfBirth the date of birth
+     * @param mobileNum   the mobile num
+     * @return the string
+     */
     @PostMapping("/profile")
     @ResponseBody
-    public String editProfile(@RequestParam("firstName") String firstName){
+    public String editProfile(@RequestParam(value = "firstName", required = false) String firstName,
+                              @RequestParam(value = "lastName", required = false) String lastName,
+                              @RequestParam(value = "gender", required = false) String gender,
+                              @RequestParam(value = "dateOfBirth", required = false) String dateOfBirth,
+                              @RequestParam(value = "mobileNum", required = false) String mobileNum){
+
         Account account = accountService.getCurrentAccount();
-        System.out.println(firstName + "XXXXXXX");
 
         if (account.getProfile() == null){
             Profile profile = new Profile();
-            profile.setFirstName(firstName);
+            if (firstName != null){
+                profile.setFirstName(firstName);
+            }
+            if (lastName != null){
+                profile.setLastName(lastName);
+            }
+
+            if (gender != null){
+                if (gender.equals("male")){
+                    profile.setGender(Gender.MALE);
+                }else if (gender.equals("female")){
+                    profile.setGender(Gender.FEMALE);
+                }else{
+                    profile.setGender(Gender.OTHER);
+                }
+            }
+
+            if (dateOfBirth != null){
+                profile.setDateOfBirth(dateOfBirth);
+            }
+
+            if (mobileNum != null){
+                profile.setMobileNum(mobileNum);
+            }
+
             profileService.saveProfile(profile);
             accountService.setProfile(profile, account.getId());
+
         }else{
             Profile profile = account.getProfile();
             Long profileId = profile.getProfileId();
-            profileService.updateFirstNameById(profileId, firstName);
+
+            if (firstName != null){
+                profileService.updateFirstNameById(profileId, firstName);
+            }
+            if (lastName != null){
+                profileService.updateLastNameById(profileId, lastName);
+            }
+
+            if (gender != null){
+                if (gender.equals("male")){
+                    profileService.updateGenderById(profileId, Gender.MALE);
+                }else if (gender.equals("female")){
+                    profileService.updateGenderById(profileId, Gender.FEMALE);
+                }else{
+                    profileService.updateGenderById(profileId, Gender.OTHER);
+                }
+            }
+
+            if (dateOfBirth != null){
+                profileService.updateDateOfBirthById(profileId, dateOfBirth);
+            }
+
+            if (mobileNum != null){
+                profileService.updateMobileNumById(profileId, mobileNum);
+            }
+
             // edit profile
         }
         return "true";
     }
 
 
+    /**
+     * Get gender string.
+     *
+     * @return the string
+     */
+    @PostMapping("/profile/get-gender")
+    @ResponseBody
+    public String getGender(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "male";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getGender() == null){
+                return "male";
+            }else{
+                return profile.getGender().toString();
+            }
+        }
+    }
 }

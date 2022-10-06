@@ -19,21 +19,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The type Message controller.
+ */
 @Controller
 public class MessageController {
+    /**
+     * The Email service.
+     */
     @Autowired
     EmailService emailService;
 
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Message record service.
+     */
     @Autowired
     MessageRecordService messageRecordService;
 
+    /**
+     * The History record service.
+     */
     @Autowired
     HistoryRecordService historyRecordService;
 
 
+    /**
+     * All messages string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/messages")
     public String allMessages(Model model){
 
@@ -50,6 +71,13 @@ public class MessageController {
     }
 
 
+    /**
+     * Specific message string.
+     *
+     * @param messageId the message id
+     * @param model     the model
+     * @return the string
+     */
     @GetMapping("/messages/{messageId}")
     public String specificMessage(@PathVariable String messageId, Model model){
         accountService.addCurrentUser(model);
@@ -65,6 +93,13 @@ public class MessageController {
     }
 
 
+    /**
+     * To reply page string.
+     *
+     * @param messageId the message id
+     * @param model     the model
+     * @return the string
+     */
     @GetMapping("messages/{messageId}/reply")
     public String toReplyPage(@PathVariable String messageId, Model model){
         accountService.addCurrentUser(model);
@@ -74,6 +109,14 @@ public class MessageController {
         return "reply";
     }
 
+    /**
+     * Reply string.
+     *
+     * @param model     the model
+     * @param message   the message
+     * @param messageId the message id
+     * @return the string
+     */
     @PostMapping("/messages/{messageId}/reply")
     @ResponseBody
     public String reply(Model model,

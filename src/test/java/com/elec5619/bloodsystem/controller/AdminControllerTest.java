@@ -12,6 +12,7 @@ import com.elec5619.bloodsystem.entity.HistoryRecord;
 import com.elec5619.bloodsystem.entity.HistoryType;
 import com.elec5619.bloodsystem.entity.MessageRecord;
 import com.elec5619.bloodsystem.entity.Profile;
+import com.elec5619.bloodsystem.entity.Provider;
 import com.elec5619.bloodsystem.entity.Subject;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
@@ -86,6 +87,7 @@ class AdminControllerTest {
         account.setMessageRecords(new ArrayList<>());
         account.setPassword("iloveyou");
         account.setProfile(profile);
+        account.setProvider(Provider.LOCAL);
         account.setRoles(new ArrayList<>());
 
         HealthInfo healthInfo1 = new HealthInfo();
@@ -109,12 +111,15 @@ class AdminControllerTest {
         account1.setMessageRecords(new ArrayList<>());
         account1.setPassword("iloveyou");
         account1.setProfile(profile1);
+        account1.setProvider(Provider.LOCAL);
         account1.setRoles(new ArrayList<>());
 
         HistoryRecord historyRecord = new HistoryRecord();
         historyRecord.setAccount(account1);
         historyRecord.setBloodType(BloodType.A);
+        historyRecord.setContent("Not all who wander are lost");
         historyRecord.setDate("2020-03-01");
+        historyRecord.setHasMatchers(true);
         historyRecord.setHistoryId(123L);
         historyRecord.setHistoryType(HistoryType.DONATE);
         historyRecord.setLocation("Location");
@@ -170,6 +175,7 @@ class AdminControllerTest {
         account.setMessageRecords(new ArrayList<>());
         account.setPassword("iloveyou");
         account.setProfile(profile);
+        account.setProvider(Provider.LOCAL);
         account.setRoles(new ArrayList<>());
         when(accountService.getAccountById((Long) any())).thenReturn(account);
         doNothing().when(accountService).addCurrentUser((Model) any());

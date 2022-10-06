@@ -3,14 +3,29 @@ package com.elec5619.bloodsystem.service;
 
 import com.elec5619.bloodsystem.entity.EmailDetails;
 
+/**
+ * The interface Email service.
+ */
 // Interface
 public interface EmailService {
 
-    // Method
+    /**
+     * Send simple mail string.
+     *
+     * @param details the details
+     * @return the string
+     */
+// Method
     // To send a simple email
     String sendSimpleMail(EmailDetails details);
 
-    // Method
+    /**
+     * Send mail with attachment string.
+     *
+     * @param details the details
+     * @return the string
+     */
+// Method
     // To send an email with attachment
     String sendMailWithAttachment(EmailDetails details);
 

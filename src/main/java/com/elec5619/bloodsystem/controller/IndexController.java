@@ -26,21 +26,42 @@ import java.util.Map;
 
 import static com.elec5619.bloodsystem.status.RegisterStatus.*;
 
+/**
+ * The type Index controller.
+ */
 @Controller
 public class IndexController {
 
+    /**
+     * The History record service.
+     */
     @Autowired
     HistoryRecordService historyRecordService;
+    /**
+     * The Account service.
+     */
     @Autowired
     AccountService accountService;
 
+    /**
+     * The Password encoder.
+     */
     @Autowired
     PasswordEncoder passwordEncoder;
 
 
+    /**
+     * The Message record service.
+     */
     @Autowired
     MessageRecordService messageRecordService;
 
+    /**
+     * Index string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @RequestMapping("/")
     public String index(Model model) {
         List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
@@ -54,6 +75,63 @@ public class IndexController {
         return "index";
     }
 
+    /**
+     * Faq string.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping("/faq")
+    public String faq(Model model) {
+
+
+        return "faq";
+    }
+
+    /**
+     * About string.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping("/about")
+    public String about(Model model) {
+
+        return "about";
+    }
+
+    /**
+     * Faq user string.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping("/faq-user")
+    public String faqUser(Model model) {
+        accountService.addCurrentUser(model);
+        return "faq-user";
+    }
+
+    /**
+     * About user string.
+     *
+     * @param model the model
+     * @return the string
+     */
+    @RequestMapping("/about-user")
+    public String aboutUser(Model model) {
+        accountService.addCurrentUser(model);
+        return "about-user";
+    }
+
+
+    /**
+     * Login string.
+     *
+     * @param loginError the login error
+     * @param model      the model
+     * @return the string
+     */
     @GetMapping("/login")
     // required=false, since if param not exists, there is error.
     public String login(@RequestParam(required=false) boolean loginError,
@@ -64,6 +142,12 @@ public class IndexController {
     }
 
 
+    /**
+     * Index after login string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/index-user")
     public String indexAfterLogin(Model model){
 
@@ -78,6 +162,12 @@ public class IndexController {
         return "index-user";
     }
 
+    /**
+     * Index after login admin string.
+     *
+     * @param model the model
+     * @return the string
+     */
     @GetMapping("/index-admin")
     public String indexAfterLoginAdmin(Model model){
 
@@ -94,16 +184,35 @@ public class IndexController {
         return "index-admin";
     }
 
+    /**
+     * Index after logout string.
+     *
+     * @return the string
+     */
     @GetMapping("/logout")
     public String indexAfterLogout(){
         return "index";
     }
 
+    /**
+     * Redirect register page string.
+     *
+     * @return the string
+     */
     @GetMapping("/register")
     public String redirectRegisterPage(){
         return "register";
     }
 
+    /**
+     * Register string.
+     *
+     * @param email      the email
+     * @param password   the password
+     * @param rePassword the re password
+     * @param model      the model
+     * @return the string
+     */
     @PostMapping("/register")
     public String register(@Param("email") String email,
                             @Param("password") String password,
@@ -144,6 +253,12 @@ public class IndexController {
     }
 
 
+    /**
+     * User principal.
+     *
+     * @param principal the principal
+     * @return the principal
+     */
     @RequestMapping(value = "/user")
     public Principal user(Principal principal) {
         return principal;
