@@ -7,7 +7,9 @@ import com.twilio.type.PhoneNumber;
 
 import java.net.URI;
 import java.math.BigDecimal;
+import org.springframework.stereotype.Service;
 
+@Service
 public class SmsService {
   // Find your Account Sid and Token at twilio.com/console
 
