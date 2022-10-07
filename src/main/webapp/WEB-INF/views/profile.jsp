@@ -134,6 +134,10 @@
         <i class="fas fa-pencil-alt fa-lg" onclick="editMobileNum()"></i>
     </div>
     <div class="col-5"></div>
+    <div style="width: 50%">
+        <button  style="width: 25%" onclick="saveAll();">Save all changes</button>
+    </div>
+
 </div>
 
 
@@ -271,6 +275,30 @@
         });
     }
 
+    function saveAll(){
+      let firstName = document.getElementById("firstName").value;
+      let lastName = document.getElementById("lastName").value;
+      let dateOfBirth = document.getElementById("dateOfBirth").value;
+      let mobileNum = document.getElementById("phoneNumber").value;
+      let gender = document.getElementById("gender").value;
+        console.log('first name ', firstName, ' last name ', lastName, ' date ', dateOfBirth, ' mobileNum ', mobileNum, ' gender ', gender);
+      $.ajax({
+        type : "POST",
+        url : "${pageContext.request.contextPath}/profile",
+        data: {firstName: firstName, lastName : lastName, dateOfBirth : dateOfBirth,  mobileNum: mobileNum, gender : gender},  // data to submit
+        success: function (data, status, xhr) {
+          if (data === "true"){
+            alert("Edit Success");
+
+          }
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+          $('p').append('Error' + errorMessage);
+        }
+
+      });
+
+    }
 
 
 
