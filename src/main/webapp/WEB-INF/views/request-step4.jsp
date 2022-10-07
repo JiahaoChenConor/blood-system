@@ -144,6 +144,7 @@
 
 
     $("#confirm").click(function(){
+
         $.post("/book/request-confirm",
             {
                 message: document.getElementById("message").value
