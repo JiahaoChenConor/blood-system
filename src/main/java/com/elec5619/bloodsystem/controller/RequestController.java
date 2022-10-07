@@ -145,8 +145,11 @@ public class RequestController {
         if (subject != null){
             switch (subject) {
                 case "Urgent-request":
+                    System.out.println("THIS CASE IS URGENT URGENT URGENT");
                     messageRecord.setSubject(Subject.URGENT_REQUEST);
                     request.setHistoryType(HistoryType.URGENT);
+                    System.out.println("Subject is " + messageRecord.getSubject());
+                    break;
                 case "Blood-Request":
                     messageRecord.setSubject(Subject.BLOOD_REQUEST);
                     request.setHistoryType(HistoryType.REQUEST);
@@ -228,8 +231,6 @@ public class RequestController {
             }else {
                 request.setHasMatchers(true);
 
-                //send sms
-                System.out.println("sending sms");
 
 
                 HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
@@ -249,7 +250,11 @@ public class RequestController {
 
                     messageRecord.setReceiver(matchedDonate.getEmail());
                     String number = matchedDonate.getProfile().getMobileNum();
-                    smsService.sendSMS(message, number);
+                    if (messageRecord.getSubject().toString() == "urgent request") {
+                        smsService.sendSMS("You have urgent blood request: " + message, number);
+                    } else {
+                        System.out.println("Case is not urgent " + messageRecord.getSubject());
+                    }
                     messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
                     messageRecord.setSender(accountService.getCurrentUserEmail());
                     messageRecord.setDate(accountService.getCurDate());
