@@ -12,20 +12,18 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SmsServiceImpl implements SmsService{
-  @Value("${twilio.account.sid}") String ACCOUNT_SID;
-  @Value("${twilio.auth.token}") String AUTH_TOKEN;
 
   // Find your Account Sid and Token at twilio.com/console
   @Lazy
   public void sendSMS(String smstext, String phoneNumber) {
-//    String ACCOUNT_SID =
-//        System.getenv("TWILIO_API_SID") == null
-//            ? ""
-//            : System.getenv("TWILIO_API_SID");
-//    String AUTH_TOKEN =
-//        System.getenv("TWILIO_API_KEY") == null
-//            ? ""
-//            : System.getenv("TWILIO_API_KEY");
+    String ACCOUNT_SID =
+        System.getenv("TWILIO_API_SID") == null
+            ? ""
+            : System.getenv("TWILIO_API_SID");
+    String AUTH_TOKEN =
+        System.getenv("TWILIO_API_KEY") == null
+            ? ""
+            : System.getenv("TWILIO_API_KEY");
     if (AUTH_TOKEN.length() > 0 && ACCOUNT_SID.length() > 0){
       Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
       Message message = Message.creator(
