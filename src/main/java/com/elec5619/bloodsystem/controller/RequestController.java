@@ -228,7 +228,7 @@ public class RequestController {
 
                 //send sms
                 System.out.println("sending sms");
-                smsService.sendSMS(message, "+61415548977");
+
 
                 HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
