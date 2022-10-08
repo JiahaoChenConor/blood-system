@@ -91,6 +91,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(customAuthenticationSuccessHandler)
                 .failureHandler(customAuthenticationFailureHandler)
                 .and()
+                .rememberMe()
+                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(21))
+                .key("3231kjhgh312yy213gGGGKKSA")// for md5
+                .userDetailsService(accountDetailService)
+
+
+                .and()
 
                 // Google
                 .oauth2Login()
