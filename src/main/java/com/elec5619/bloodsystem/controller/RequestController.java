@@ -250,11 +250,17 @@ public class RequestController {
 
                     messageRecord.setReceiver(matchedDonate.getEmail());
                     String number = matchedDonate.getProfile().getMobileNum();
-                    if (messageRecord.getSubject().toString() == "urgent request") {
-                        smsService.sendSMS("You have urgent blood request: " + message, number);
+                    if (!number.isEmpty()){
+                        number ="+61" + number.substring(1);
+                        if (messageRecord.getSubject().toString() == "urgent request") {
+                            smsService.sendSMS("You have urgent blood request: " + message, number);
+                        } else {
+                            System.out.println("Case is not urgent " + messageRecord.getSubject());
+                        }
                     } else {
-                        System.out.println("Case is not urgent " + messageRecord.getSubject());
+                        System.out.println("Mobile number is not provided");
                     }
+
                     messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
                     messageRecord.setSender(accountService.getCurrentUserEmail());
                     messageRecord.setDate(accountService.getCurDate());
