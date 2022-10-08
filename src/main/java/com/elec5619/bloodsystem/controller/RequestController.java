@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 
 /**
@@ -249,12 +250,23 @@ public class RequestController {
                             + message);
 
                     messageRecord.setReceiver(matchedDonate.getEmail());
-                    String number = matchedDonate.getProfile().getMobileNum();
-                    if (messageRecord.getSubject().toString() == "urgent request") {
-                        smsService.sendSMS("You have urgent blood request: " + message, number);
-                    } else {
-                        System.out.println("Case is not urgent " + messageRecord.getSubject());
+
+                    if (matchedDonate.getProfile() != null && matchedDonate.getProfile().getMobileNum() != null){
+                        String number = matchedDonate.getProfile().getMobileNum();
+                        if (!number.isEmpty()){
+                            number ="+61" + number.substring(1);
+                            if (Objects.equals(messageRecord.getSubject().toString(), "urgent request")) {
+                                smsService.sendSMS("You have urgent blood request: " + message, number);
+                            } else {
+                                System.out.println("Case is not urgent " + messageRecord.getSubject());
+                            }
+                        } else {
+                            System.out.println("Mobile number is not provided");
+                        }
+                    }else {
+                        System.out.println("Mobile number is not set");
                     }
+
                     messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
                     messageRecord.setSender(accountService.getCurrentUserEmail());
                     messageRecord.setDate(accountService.getCurDate());
