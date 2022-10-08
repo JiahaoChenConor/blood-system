@@ -134,11 +134,21 @@
         <i class="fas fa-pencil-alt fa-lg" onclick="editMobileNum()"></i>
     </div>
     <div class="col-5"></div>
-    <div style="width: 50%">
-        <button  style="width: 25%" onclick="saveAll();">Save all changes</button>
+</div>
+
+
+<div class="row mt-3 mb-5">
+    <div class="col-8"></div>
+
+    <div class="col-2">
+
+        <button type="button" class="btn btn-info mt-3 mb-5 align-items-center" onclick="saveAll()">Save All</button>
     </div>
 
+    <div class="col-4"></div>
+
 </div>
+
 
 
 
@@ -339,6 +349,7 @@
       let dateOfBirth = document.getElementById("dateOfBirth").value;
       let mobileNum = document.getElementById("phoneNumber").value;
       let gender = document.getElementById("gender").value;
+
         console.log('first name ', firstName, ' last name ', lastName, ' date ', dateOfBirth, ' mobileNum ', mobileNum, ' gender ', gender);
       $.ajax({
         type : "POST",

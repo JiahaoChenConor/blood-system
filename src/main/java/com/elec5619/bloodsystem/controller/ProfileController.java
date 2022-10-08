@@ -109,10 +109,10 @@ public class ProfileController {
 
         if (account.getProfile() == null){
             Profile profile = new Profile();
-            if (firstName != null){
+            if (firstName != null && !firstName.equals("")){
                 profile.setFirstName(firstName);
             }
-            if (lastName != null){
+            if (lastName != null && !lastName.equals("")){
                 profile.setLastName(lastName);
             }
 
@@ -126,11 +126,11 @@ public class ProfileController {
                 }
             }
 
-            if (dateOfBirth != null){
+            if (dateOfBirth != null && !dateOfBirth.equals("")){
                 profile.setDateOfBirth(dateOfBirth);
             }
 
-            if (mobileNum != null){
+            if (mobileNum != null && !mobileNum.equals("")){
                 profile.setMobileNum(mobileNum);
             }
 
