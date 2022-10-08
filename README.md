@@ -112,6 +112,10 @@
 
        <img src="README.assets/image-20221004220735925.png" alt="image-20221004220735925" style="zoom:50%;" />
 
+     + Urgent request will enable our system to send SMS as well
+
+       ![image-20221008211419335](README.assets/image-20221008211419335.png)
+
      + Urgent records which haven't been matched will be displayed in the home page
 
        <img src="README.assets/image-20221004221255731.png" alt="image-20221004221255731" style="zoom:50%;" />
