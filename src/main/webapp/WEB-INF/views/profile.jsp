@@ -172,9 +172,67 @@
         }
 
     });
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-first-name" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('firstName').value=data;
+        console.log("success " + data);
 
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
 
+    });
 
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-last-name" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('lastName').value=data;
+        console.log("success " + data);
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
+
+    });
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-dob" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('dateOfBirth').value=data;
+        console.log("success " + data);
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
+
+    });
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-mob-number" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('phoneNumber').value=data;
+        console.log("success " + data);
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
+
+    });
     function editFirstName(){
         let firstName = document.getElementById("firstName").value;
         $.ajax({

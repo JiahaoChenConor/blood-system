@@ -192,4 +192,64 @@ public class ProfileController {
             }
         }
     }
+    @PostMapping("/profile/get-first-name")
+    @ResponseBody
+    public String getFirstName(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getFirstName() == null){
+                return "";
+            }else{
+                return profile.getFirstName().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-last-name")
+    @ResponseBody
+    public String getLastName(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getLastName() == null){
+                return "";
+            }else{
+                return profile.getLastName().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-dob")
+    @ResponseBody
+    public String getDob(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getDateOfBirth() == null){
+                return "";
+            }else{
+                return profile.getDateOfBirth().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-mob-number")
+    @ResponseBody
+    public String getMobNumber(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getMobileNum() == null){
+                return "";
+            }else{
+                return profile.getMobileNum().toString();
+            }
+        }
+    }
 }
