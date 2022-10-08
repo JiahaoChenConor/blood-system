@@ -66,24 +66,19 @@ public class SetupDataLoader implements
 
         account.setRoles(List.of(adminRole));
 
+        accountRepository.save(account);
+
 
         Role userRole = roleRepository.findByName("ROLE_USER");
         Account accountUser = new Account();
 
-        accountUser.setPassword(passwordEncoder.encode("Password123"));
-        accountUser.setEmail("jche4519@uni.sydney.edu.au");
-
-        accountUser.setRoles(List.of(userRole));
-        accountRepository.save(accountUser);
-
-        accountUser = new Account();
         accountUser.setPassword(passwordEncoder.encode("Password123"));
         accountUser.setEmail("jiahaochen775@gmail.com");
 
         accountUser.setRoles(List.of(userRole));
 
 
-        accountRepository.save(account);
+
         accountRepository.save(accountUser);
         alreadySetup = true;
     }
