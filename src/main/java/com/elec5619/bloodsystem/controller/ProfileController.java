@@ -109,10 +109,10 @@ public class ProfileController {
 
         if (account.getProfile() == null){
             Profile profile = new Profile();
-            if (firstName != null){
+            if (firstName != null && !firstName.equals("")){
                 profile.setFirstName(firstName);
             }
-            if (lastName != null){
+            if (lastName != null && !lastName.equals("")){
                 profile.setLastName(lastName);
             }
 
@@ -126,11 +126,11 @@ public class ProfileController {
                 }
             }
 
-            if (dateOfBirth != null){
+            if (dateOfBirth != null && !dateOfBirth.equals("")){
                 profile.setDateOfBirth(dateOfBirth);
             }
 
-            if (mobileNum != null){
+            if (mobileNum != null && !mobileNum.equals("")){
                 profile.setMobileNum(mobileNum);
             }
 
@@ -189,6 +189,66 @@ public class ProfileController {
                 return "male";
             }else{
                 return profile.getGender().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-first-name")
+    @ResponseBody
+    public String getFirstName(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getFirstName() == null){
+                return "";
+            }else{
+                return profile.getFirstName().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-last-name")
+    @ResponseBody
+    public String getLastName(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getLastName() == null){
+                return "";
+            }else{
+                return profile.getLastName().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-dob")
+    @ResponseBody
+    public String getDob(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getDateOfBirth() == null){
+                return "";
+            }else{
+                return profile.getDateOfBirth().toString();
+            }
+        }
+    }
+    @PostMapping("/profile/get-mob-number")
+    @ResponseBody
+    public String getMobNumber(){
+        Account account = accountService.getCurrentAccount();
+        if (account.getProfile() == null){
+            return "";
+        }else{
+            Profile profile = account.getProfile();
+            if (profile.getMobileNum() == null){
+                return "";
+            }else{
+                return profile.getMobileNum().toString();
             }
         }
     }

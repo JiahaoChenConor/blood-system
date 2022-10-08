@@ -137,6 +137,20 @@
 </div>
 
 
+<div class="row mt-3 mb-5">
+    <div class="col-8"></div>
+
+    <div class="col-2">
+
+        <button type="button" class="btn btn-info mt-3 mb-5 align-items-center" onclick="saveAll()">Save All</button>
+    </div>
+
+    <div class="col-4"></div>
+
+</div>
+
+
+
 
 
 
@@ -168,9 +182,67 @@
         }
 
     });
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-first-name" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('firstName').value=data;
+        console.log("success " + data);
 
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
 
+    });
 
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-last-name" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('lastName').value=data;
+        console.log("success " + data);
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
+
+    });
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-dob" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('dateOfBirth').value=data;
+        console.log("success " + data);
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
+
+    });
+    $.ajax({
+      type : "POST",
+      url : "${pageContext.request.contextPath}/profile/get-mob-number" ,
+      data: { },
+      async: false,
+      success: function (data, status, xhr) {
+        document.getElementById('phoneNumber').value=data;
+        console.log("success " + data);
+
+      },
+      error: function (jqXhr, textStatus, errorMessage) {
+        $('p').append('Error' + errorMessage);
+      }
+
+    });
     function editFirstName(){
         let firstName = document.getElementById("firstName").value;
         $.ajax({
@@ -271,6 +343,31 @@
         });
     }
 
+    function saveAll(){
+      let firstName = document.getElementById("firstName").value;
+      let lastName = document.getElementById("lastName").value;
+      let dateOfBirth = document.getElementById("dateOfBirth").value;
+      let mobileNum = document.getElementById("phoneNumber").value;
+      let gender = document.getElementById("gender").value;
+
+        console.log('first name ', firstName, ' last name ', lastName, ' date ', dateOfBirth, ' mobileNum ', mobileNum, ' gender ', gender);
+      $.ajax({
+        type : "POST",
+        url : "${pageContext.request.contextPath}/profile",
+        data: {firstName: firstName, lastName : lastName, dateOfBirth : dateOfBirth,  mobileNum: mobileNum, gender : gender},  // data to submit
+        success: function (data, status, xhr) {
+          if (data === "true"){
+            alert("Edit Success");
+
+          }
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+          $('p').append('Error' + errorMessage);
+        }
+
+      });
+
+    }
 
 
 
