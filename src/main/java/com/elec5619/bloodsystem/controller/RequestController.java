@@ -5,6 +5,8 @@ import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.EmailService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
+import com.elec5619.bloodsystem.service.SmsService;
+import com.elec5619.bloodsystem.service.SmsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,12 @@ public class RequestController {
      */
     @Autowired
     EmailService emailService;
+
+    /**
+     * The Sms service.
+     */
+    @Autowired
+    SmsService smsService;
 
     /**
      * The History record service.
@@ -137,8 +145,11 @@ public class RequestController {
         if (subject != null){
             switch (subject) {
                 case "Urgent-request":
+                    System.out.println("THIS CASE IS URGENT URGENT URGENT");
                     messageRecord.setSubject(Subject.URGENT_REQUEST);
                     request.setHistoryType(HistoryType.URGENT);
+                    System.out.println("Subject is " + messageRecord.getSubject());
+                    break;
                 case "Blood-Request":
                     messageRecord.setSubject(Subject.BLOOD_REQUEST);
                     request.setHistoryType(HistoryType.REQUEST);
@@ -195,6 +206,7 @@ public class RequestController {
     public String requestStepConfirm(Model model,
                                     @RequestParam(name="message") String message){
 
+
         System.out.println(message);
 
         request.setDate(accountService.getCurDate());
@@ -206,6 +218,8 @@ public class RequestController {
             // save to db.
             request.setMatched(false);
             request.setContent(message);
+
+
             // find matchers
             List<HistoryRecord> donates = historyRecordService.getMatchDonateRecord(request.getBloodType());
 
@@ -216,6 +230,9 @@ public class RequestController {
 
             }else {
                 request.setHasMatchers(true);
+
+
+
                 HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
                 // filter nearest and most recent donate
@@ -232,6 +249,18 @@ public class RequestController {
                             + message);
 
                     messageRecord.setReceiver(matchedDonate.getEmail());
+                    String number = matchedDonate.getProfile().getMobileNum();
+                    if (!number.isEmpty()){
+                        number ="+61" + number.substring(1);
+                        if (messageRecord.getSubject().toString() == "urgent request") {
+                            smsService.sendSMS("You have urgent blood request: " + message, number);
+                        } else {
+                            System.out.println("Case is not urgent " + messageRecord.getSubject());
+                        }
+                    } else {
+                        System.out.println("Mobile number is not provided");
+                    }
+
                     messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
                     messageRecord.setSender(accountService.getCurrentUserEmail());
                     messageRecord.setDate(accountService.getCurDate());
