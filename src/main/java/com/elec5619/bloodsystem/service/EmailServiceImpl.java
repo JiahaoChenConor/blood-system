@@ -115,8 +115,8 @@ public class EmailServiceImpl implements EmailService {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("bloodsystemnoreply@gmail.com");
-        mailSender.setPassword("tyxwjhepjtrbmuij");
+        mailSender.setUsername("usydbloodsystemnoreply@gmail.com");
+        mailSender.setPassword("tahedspbtdetteou");
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
