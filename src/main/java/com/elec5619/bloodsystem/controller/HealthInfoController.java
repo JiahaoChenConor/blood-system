@@ -162,8 +162,8 @@ public class HealthInfoController {
      * @throws Exception the exception
      */
     @RequestMapping("/health-info/upload")
-    public String fileUpLoad(HttpServletRequest request, MultipartFile upload) throws Exception {
-        // TODO: deal with uploaded file
+    public String fileUpLoad(HttpServletRequest request, MultipartFile upload, Model model) throws Exception {
+        accountService.addCurrentUser(model);
         return "upload-success";
     }
 
