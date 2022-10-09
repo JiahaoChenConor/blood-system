@@ -59,7 +59,7 @@
                             "                    <div class=\"d-flex align-items-center\">\n" +
                             "\n" +
                             "                        <div class=\"ms-3\">\n" +
-                            "                            <p class=\"fw-bold mb-1 \">" + entry.getSender() + "</p>\n" +
+                            "                            <p class=\"fw-bold mb-1 \">" + entry.getSender().substring(0,7) + "..." + "</p>\n" +
                             "\n" +
                             "                        </div>\n" +
                             "                    </div>\n" +
