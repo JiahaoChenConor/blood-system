@@ -1,11 +1,7 @@
 package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.domain.*;
-import com.elec5619.bloodsystem.service.AccountService;
-import com.elec5619.bloodsystem.service.EmailService;
-import com.elec5619.bloodsystem.service.HistoryRecordService;
-import com.elec5619.bloodsystem.service.MessageRecordService;
-import com.elec5619.bloodsystem.service.SmsService;
+import com.elec5619.bloodsystem.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -55,8 +51,16 @@ public class RequestController {
     @Autowired
     AccountService accountService;
 
+    /**
+     * The UrgentPost service
+     */
+    @Autowired
+    UrgentPostService urgentPostService;
+
     private HistoryRecord request;
     private MessageRecord messageRecord;
+
+    private UrgentPost urgentPost;
 
     /**
      * Request string.
@@ -69,11 +73,14 @@ public class RequestController {
     {
         request = new HistoryRecord();
         messageRecord = new MessageRecord();
+        urgentPost = new UrgentPost();
+        urgentPost.setCorrespondHistoryRecordId(request.getHistoryId());
 
         request.setHistoryType(HistoryType.REQUEST);
 
         Account curUser = accountService.getAccountByEmail(accountService.getCurrentUserEmail());
         request.setAccount(curUser);
+        urgentPost.setAccount(curUser);
 
         accountService.addCurrentUser(model);
         return "request-step1";
@@ -95,6 +102,7 @@ public class RequestController {
 
         if (cc != null){
             request.setMeasure(Double.parseDouble(cc));
+            urgentPost.setMeasure(Double.parseDouble(cc));
         }
 
         if (bloodType != null){
@@ -104,6 +112,8 @@ public class RequestController {
                 case "AB" -> request.setBloodType(BloodType.AB);
                 case "O" -> request.setBloodType(BloodType.O);
             }
+
+            urgentPost.setBloodType(request.getBloodType());
         }
 
         accountService.addCurrentUser(model);
@@ -124,6 +134,7 @@ public class RequestController {
 
         if (location != null){
             request.setLocation(location);
+            urgentPost.setLocation(location);
         }
 
         accountService.addCurrentUser(model);
@@ -210,6 +221,7 @@ public class RequestController {
         System.out.println(message);
 
         request.setDate(accountService.getCurDate());
+        urgentPost.setDate(accountService.getCurDate());
         if (request != null
                 && request.getAccount() != null
                 && request.getLocation() != null
@@ -217,7 +229,10 @@ public class RequestController {
             System.out.println("save to db");
             // save to db.
             request.setMatched(false);
+            urgentPost.setMatched(false);
             request.setContent(message);
+            urgentPost.setContent(message);
+
 
 
             // find matchers
@@ -227,6 +242,7 @@ public class RequestController {
             if (donates.size() == 0){
                 request.setHasMatchers(false);
                 historyRecordService.saveHistoryRecord(request);
+                urgentPostService.saveUrgentPost(urgentPost);
 
             }else {
                 request.setHasMatchers(true);
@@ -301,13 +317,12 @@ public class RequestController {
     {
 
         accountService.addCurrentUser(model);
-
-        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
-        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
-            put("history", historyRecords);
+        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+        Map<String, List<UrgentPost>> messages = new HashMap<>() {{
+            put("urgent", urgentPosts);
         }};
 
-        model.addAttribute("history", messages);
+        model.addAttribute("urgent", messages);
 
         return "index-user";
     }

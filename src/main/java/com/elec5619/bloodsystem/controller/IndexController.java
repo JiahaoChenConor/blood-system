@@ -3,10 +3,12 @@ package com.elec5619.bloodsystem.controller;
 
 import com.elec5619.bloodsystem.domain.Account;
 import com.elec5619.bloodsystem.domain.HistoryRecord;
+import com.elec5619.bloodsystem.domain.UrgentPost;
 import com.elec5619.bloodsystem.security.PasswordValidation;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
+import com.elec5619.bloodsystem.service.UrgentPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -53,6 +55,12 @@ public class IndexController {
     MessageRecordService messageRecordService;
 
     /**
+     * The Urgent post service
+     */
+    @Autowired
+    UrgentPostService urgentPostService;
+
+    /**
      * Index string.
      *
      * @param model the model
@@ -60,12 +68,15 @@ public class IndexController {
      */
     @RequestMapping("/")
     public String index(Model model) {
-        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
-        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
-            put("history", historyRecords);
+
+        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+
+        Map<String, List<UrgentPost>> messages = new HashMap<>() {{
+            put("urgent", urgentPosts);
         }};
 
-        model.addAttribute("history", messages);
+
+        model.addAttribute("urgent", messages);
 
 
         return "index";
@@ -148,12 +159,15 @@ public class IndexController {
     public String indexAfterLogin(Model model){
 
         accountService.addCurrentUser(model);
-        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
-        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
-            put("history", historyRecords);
+
+        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+
+        Map<String, List<UrgentPost>> messages = new HashMap<>() {{
+            put("urgent", urgentPosts);
         }};
 
-        model.addAttribute("history", messages);
+
+        model.addAttribute("urgent", messages);
 
         return "index-user";
     }
@@ -186,7 +200,17 @@ public class IndexController {
      * @return the string
      */
     @GetMapping("/logout")
-    public String indexAfterLogout(){
+    public String indexAfterLogout(Model model){
+
+        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+
+        Map<String, List<UrgentPost>> messages = new HashMap<>() {{
+            put("urgent", urgentPosts);
+        }};
+
+
+        model.addAttribute("urgent", messages);
+
         return "index";
     }
 

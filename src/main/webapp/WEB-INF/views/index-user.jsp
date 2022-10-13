@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="com.elec5619.bloodsystem.domain.HistoryRecord" %>
+<%@ page import="com.elec5619.bloodsystem.domain.UrgentPost" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +62,7 @@
 </div>
 
 
+
 <div class="container mt-5 mb-5">
     <div class="row">
 
@@ -69,7 +70,7 @@
 
         <div class="col-12 bg-light">
             <div class="d-flex justify-content-center mt-5 mb-5">
-                <h1>Urgent Case</h1>
+                <h1>Waiting for your help</h1>
             </div>
 
         </div>
@@ -81,9 +82,10 @@
     <thead class="bg-light">
     <tr>
         <th>Blood Type</th>
-        <th>Case Date</th>
-        <th>Case content</th>
-
+        <th>Post Date</th>
+        <th>Cc</th>
+        <th>Post Location</th>
+        <th>Post content</th>
 
 
     </tr>
@@ -91,9 +93,9 @@
     <tbody>
 
     <%
-        Map<String, List<HistoryRecord>> data = (Map<String, List<HistoryRecord>>) request.getAttribute("history");
-        List<HistoryRecord> historyRecords = data.get("history");
-        for (HistoryRecord entry : historyRecords) {
+        Map<String, List<UrgentPost>> data = (Map<String, List<UrgentPost>>) request.getAttribute("urgent");
+        List<UrgentPost> urgentPosts = data.get("urgent");
+        for (UrgentPost entry : urgentPosts) {
 
             out.println(
                     "<tr>\n" +
@@ -110,13 +112,16 @@
                             "                       <p class=\"fw-normal mb-1 \">" + entry.getDate() + "</p>\n" +
                             "                </td>\n" +
                             "                <td>\n" +
+                            "                       <p class=\"fw-normal mb-1 \">" + entry.getMeasure() + "</p>\n" +
+                            "                </td>\n" +
+                            "                <td>\n" +
+                            "                <td>\n" +
+                            "                       <p class=\"fw-normal mb-1 \">" + entry.getLocation() + "</p>\n" +
+                            "                </td>\n" +
+                            "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getContent() + "</p>\n" +
                             "\n" +
                             "                </td>\n"
-
-
-                        + "</tr>\n"
-
 
 
 

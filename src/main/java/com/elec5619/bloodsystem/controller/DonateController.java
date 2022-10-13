@@ -1,11 +1,9 @@
 package com.elec5619.bloodsystem.controller;
 
-import com.elec5619.bloodsystem.domain.Account;
-import com.elec5619.bloodsystem.domain.BloodType;
-import com.elec5619.bloodsystem.domain.HistoryRecord;
-import com.elec5619.bloodsystem.domain.HistoryType;
+import com.elec5619.bloodsystem.domain.*;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
+import com.elec5619.bloodsystem.service.UrgentPostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +33,8 @@ public class DonateController {
     @Autowired
     AccountService accountService;
 
+    @Autowired
+    UrgentPostService urgentPostService;
 
     private HistoryRecord donate;
 
@@ -167,12 +167,12 @@ public class DonateController {
         }
         accountService.addCurrentUser(model);
 
-        List<HistoryRecord> historyRecords = historyRecordService.getUrgentRequestRecordInWaitingList();
-        Map<String, List<HistoryRecord>> messages = new HashMap<>() {{
-            put("history", historyRecords);
+        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+        Map<String, List<UrgentPost>> messages = new HashMap<>() {{
+            put("urgent", urgentPosts);
         }};
 
-        model.addAttribute("history", messages);
+        model.addAttribute("urgent", messages);
         
         return "index-user";
     }
