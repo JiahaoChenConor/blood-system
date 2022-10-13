@@ -1,6 +1,6 @@
 package com.elec5619.bloodsystem.dao;
 
-import com.elec5619.bloodsystem.entity.Privilege;
+import com.elec5619.bloodsystem.domain.Privilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

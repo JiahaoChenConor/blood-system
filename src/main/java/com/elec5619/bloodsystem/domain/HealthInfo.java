@@ -1,7 +1,4 @@
-package com.elec5619.bloodsystem.entity;
-
-import io.swagger.models.auth.In;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+package com.elec5619.bloodsystem.domain;
 
 import javax.persistence.*;
 

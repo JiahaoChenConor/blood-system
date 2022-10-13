@@ -2,13 +2,11 @@ package com.elec5619.bloodsystem.service;
 
 import com.elec5619.bloodsystem.dao.AccountRepository;
 import com.elec5619.bloodsystem.dao.RoleRepository;
-import com.elec5619.bloodsystem.entity.*;
+import com.elec5619.bloodsystem.domain.*;
 import com.elec5619.bloodsystem.security.CustomOAuth2User;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;

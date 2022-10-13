@@ -6,7 +6,7 @@ import java.util.Properties;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
-import com.elec5619.bloodsystem.entity.EmailDetails;
+import com.elec5619.bloodsystem.domain.EmailDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +30,8 @@ public class EmailServiceImpl implements EmailService {
     @Autowired private JavaMailSender javaMailSender;
 
     @Value("${spring.mail.username}") private String sender;
+
+    @Value("${spring.mail.password}") private String emailPassword;
 
     // Method 1
     // To send a simple email
@@ -115,8 +117,8 @@ public class EmailServiceImpl implements EmailService {
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        mailSender.setUsername("usydbloodsystemnoreply@gmail.com");
-        mailSender.setPassword("tahedspbtdetteou");
+        mailSender.setUsername(sender);
+        mailSender.setPassword(emailPassword);
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");

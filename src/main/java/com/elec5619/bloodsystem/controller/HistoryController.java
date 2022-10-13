@@ -1,9 +1,7 @@
 package com.elec5619.bloodsystem.controller;
 
 
-import com.elec5619.bloodsystem.entity.EmailDetails;
-import com.elec5619.bloodsystem.entity.HistoryRecord;
-import com.elec5619.bloodsystem.entity.MessageRecord;
+import com.elec5619.bloodsystem.domain.HistoryRecord;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.EmailService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
@@ -13,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

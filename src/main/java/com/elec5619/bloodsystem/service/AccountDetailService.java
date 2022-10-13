@@ -1,8 +1,8 @@
 package com.elec5619.bloodsystem.service;
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.Privilege;
-import com.elec5619.bloodsystem.entity.Role;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.Privilege;
+import com.elec5619.bloodsystem.domain.Role;
 import com.elec5619.bloodsystem.dao.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

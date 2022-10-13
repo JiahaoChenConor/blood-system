@@ -2,8 +2,8 @@ package com.elec5619.bloodsystem.service;
 
 
 import com.elec5619.bloodsystem.dao.HealthInfoRepository;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.HealthInfo;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.HealthInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

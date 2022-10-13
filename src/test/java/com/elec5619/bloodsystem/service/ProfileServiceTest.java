@@ -7,8 +7,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.elec5619.bloodsystem.dao.ProfileRepository;
-import com.elec5619.bloodsystem.entity.Gender;
-import com.elec5619.bloodsystem.entity.Profile;
+import com.elec5619.bloodsystem.domain.Gender;
+import com.elec5619.bloodsystem.domain.Profile;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

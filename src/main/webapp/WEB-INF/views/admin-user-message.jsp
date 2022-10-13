@@ -1,4 +1,4 @@
-<%@ page import="com.elec5619.bloodsystem.entity.MessageRecord" %>
+<%@ page import="com.elec5619.bloodsystem.domain.MessageRecord" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <!DOCTYPE html>

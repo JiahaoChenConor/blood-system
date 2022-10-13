@@ -1,18 +1,15 @@
 package com.elec5619.bloodsystem.controller;
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.HistoryRecord;
-import com.elec5619.bloodsystem.entity.HistoryType;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.HistoryRecord;
+import com.elec5619.bloodsystem.domain.HistoryType;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.HashMap;

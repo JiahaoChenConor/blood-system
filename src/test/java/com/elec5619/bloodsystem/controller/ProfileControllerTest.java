@@ -4,18 +4,16 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.Gender;
-import com.elec5619.bloodsystem.entity.HealthInfo;
-import com.elec5619.bloodsystem.entity.Profile;
-import com.elec5619.bloodsystem.entity.Provider;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.Gender;
+import com.elec5619.bloodsystem.domain.HealthInfo;
+import com.elec5619.bloodsystem.domain.Profile;
+import com.elec5619.bloodsystem.domain.Provider;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.ProfileService;
 
 import java.util.ArrayList;
-
-import org.junit.jupiter.api.Disabled;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -29,8 +27,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.ContentResultMatchers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.ConcurrentModel;
-import org.springframework.ui.Model;
 
 @ContextConfiguration(classes = {ProfileController.class})
 @ExtendWith(SpringExtension.class)

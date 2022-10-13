@@ -8,12 +8,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.elec5619.bloodsystem.entity.EmailDetails;
+import com.elec5619.bloodsystem.domain.EmailDetails;
 
 import javax.mail.Session;
 import javax.mail.internet.MimeMessage;
-
-import org.junit.jupiter.api.Disabled;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

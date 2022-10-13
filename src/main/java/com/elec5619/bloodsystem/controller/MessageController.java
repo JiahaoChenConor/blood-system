@@ -1,9 +1,8 @@
 package com.elec5619.bloodsystem.controller;
 
 
-import com.elec5619.bloodsystem.entity.EmailDetails;
-import com.elec5619.bloodsystem.entity.HistoryRecord;
-import com.elec5619.bloodsystem.entity.MessageRecord;
+import com.elec5619.bloodsystem.domain.EmailDetails;
+import com.elec5619.bloodsystem.domain.MessageRecord;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.EmailService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;

@@ -1,12 +1,11 @@
 package com.elec5619.bloodsystem.controller;
 
-import com.elec5619.bloodsystem.entity.*;
+import com.elec5619.bloodsystem.domain.*;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.EmailService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
 import com.elec5619.bloodsystem.service.SmsService;
-import com.elec5619.bloodsystem.service.SmsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

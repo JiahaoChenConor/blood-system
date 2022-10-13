@@ -1,4 +1,4 @@
-package com.elec5619.bloodsystem.entity;
+package com.elec5619.bloodsystem.domain;
 
 import javax.persistence.*;
 

@@ -1,7 +1,7 @@
-<%@ page import="com.elec5619.bloodsystem.entity.MessageRecord" %>
+<%@ page import="com.elec5619.bloodsystem.domain.MessageRecord" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="com.elec5619.bloodsystem.entity.Account" %>
+<%@ page import="com.elec5619.bloodsystem.domain.Account" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

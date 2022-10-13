@@ -1,10 +1,10 @@
 package com.elec5619.bloodsystem.service;
 
 import com.elec5619.bloodsystem.dao.HistoryRecordRepository;
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.HistoryRecord;
-import com.elec5619.bloodsystem.entity.HistoryType;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.HistoryRecord;
+import com.elec5619.bloodsystem.domain.HistoryType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

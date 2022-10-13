@@ -1,8 +1,8 @@
 package com.elec5619.bloodsystem.controller;
 
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.MessageRecord;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.MessageRecord;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.MessageRecordService;
 import org.springframework.beans.factory.annotation.Autowired;

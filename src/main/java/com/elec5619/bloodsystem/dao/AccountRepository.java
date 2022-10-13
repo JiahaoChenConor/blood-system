@@ -1,8 +1,8 @@
 package com.elec5619.bloodsystem.dao;
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.HealthInfo;
-import com.elec5619.bloodsystem.entity.Profile;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.HealthInfo;
+import com.elec5619.bloodsystem.domain.Profile;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

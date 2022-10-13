@@ -7,8 +7,8 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.elec5619.bloodsystem.dao.HealthInfoRepository;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.HealthInfo;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.HealthInfo;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,5 @@
-package com.elec5619.bloodsystem.entity;
+package com.elec5619.bloodsystem.domain;
 
-
-import org.w3c.dom.ls.LSInput;
 
 import javax.persistence.*;
 import java.util.Collection;

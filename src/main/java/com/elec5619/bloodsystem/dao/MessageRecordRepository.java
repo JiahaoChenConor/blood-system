@@ -1,10 +1,6 @@
 package com.elec5619.bloodsystem.dao;
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.HistoryRecord;
-import com.elec5619.bloodsystem.entity.MessageRecord;
-import org.springframework.data.domain.Sort;
+import com.elec5619.bloodsystem.domain.MessageRecord;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

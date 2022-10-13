@@ -4,12 +4,12 @@ import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.Gender;
-import com.elec5619.bloodsystem.entity.HealthInfo;
-import com.elec5619.bloodsystem.entity.Profile;
-import com.elec5619.bloodsystem.entity.Provider;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.Gender;
+import com.elec5619.bloodsystem.domain.HealthInfo;
+import com.elec5619.bloodsystem.domain.Profile;
+import com.elec5619.bloodsystem.domain.Provider;
 import com.elec5619.bloodsystem.service.AccountService;
 import com.elec5619.bloodsystem.service.HistoryRecordService;
 
@@ -27,7 +27,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.ui.ConcurrentModel;
 import org.springframework.ui.Model;
 
 @ContextConfiguration(classes = {DonateController.class})

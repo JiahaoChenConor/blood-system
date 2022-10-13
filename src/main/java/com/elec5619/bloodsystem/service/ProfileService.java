@@ -2,8 +2,8 @@ package com.elec5619.bloodsystem.service;
 
 
 import com.elec5619.bloodsystem.dao.ProfileRepository;
-import com.elec5619.bloodsystem.entity.Gender;
-import com.elec5619.bloodsystem.entity.Profile;
+import com.elec5619.bloodsystem.domain.Gender;
+import com.elec5619.bloodsystem.domain.Profile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

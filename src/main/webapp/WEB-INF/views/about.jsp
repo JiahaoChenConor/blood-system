@@ -1,7 +1,7 @@
 <%@page language="java" contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="com.elec5619.bloodsystem.entity.HistoryRecord" %>
+<%@ page import="com.elec5619.bloodsystem.domain.HistoryRecord" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

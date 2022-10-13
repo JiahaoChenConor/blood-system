@@ -12,21 +12,19 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import com.elec5619.bloodsystem.dao.HistoryRecordRepository;
-import com.elec5619.bloodsystem.entity.Account;
-import com.elec5619.bloodsystem.entity.BloodType;
-import com.elec5619.bloodsystem.entity.Gender;
-import com.elec5619.bloodsystem.entity.HealthInfo;
-import com.elec5619.bloodsystem.entity.HistoryRecord;
-import com.elec5619.bloodsystem.entity.HistoryType;
-import com.elec5619.bloodsystem.entity.MessageRecord;
-import com.elec5619.bloodsystem.entity.Profile;
-import com.elec5619.bloodsystem.entity.Provider;
+import com.elec5619.bloodsystem.domain.Account;
+import com.elec5619.bloodsystem.domain.BloodType;
+import com.elec5619.bloodsystem.domain.Gender;
+import com.elec5619.bloodsystem.domain.HealthInfo;
+import com.elec5619.bloodsystem.domain.HistoryRecord;
+import com.elec5619.bloodsystem.domain.HistoryType;
+import com.elec5619.bloodsystem.domain.MessageRecord;
+import com.elec5619.bloodsystem.domain.Profile;
+import com.elec5619.bloodsystem.domain.Provider;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import org.junit.jupiter.api.Disabled;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

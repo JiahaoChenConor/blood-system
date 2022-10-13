@@ -1,7 +1,7 @@
 package com.elec5619.bloodsystem.service;
 
 
-import com.elec5619.bloodsystem.entity.EmailDetails;
+import com.elec5619.bloodsystem.domain.EmailDetails;
 
 /**
  * The interface Email service.
