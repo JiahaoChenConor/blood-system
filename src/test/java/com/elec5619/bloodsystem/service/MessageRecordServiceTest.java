@@ -116,7 +116,7 @@ class MessageRecordServiceTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
         when(messageRecordRepository.save((MessageRecord) any())).thenReturn(messageRecord);
 
         HealthInfo healthInfo2 = new HealthInfo();
@@ -189,7 +189,7 @@ class MessageRecordServiceTest {
         messageRecord1.setMessageId(123L);
         messageRecord1.setReceiver("Receiver");
         messageRecord1.setSender("Sender");
-        messageRecord1.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord1.setSubject(Subject.NORMAL_CASE);
         assertSame(messageRecord, messageRecordService.saveMessageRecord(messageRecord1));
         verify(messageRecordRepository).save((MessageRecord) any());
     }
@@ -283,7 +283,7 @@ class MessageRecordServiceTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
         Optional<MessageRecord> ofResult = Optional.of(messageRecord);
         when(messageRecordRepository.findById((Long) any())).thenReturn(ofResult);
         assertSame(messageRecord, messageRecordService.findMessageById(123L));
@@ -395,7 +395,7 @@ class MessageRecordServiceTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
 
         ArrayList<MessageRecord> messageRecordList = new ArrayList<>();
         messageRecordList.add(messageRecord);
@@ -479,7 +479,7 @@ class MessageRecordServiceTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
 
         HealthInfo healthInfo2 = new HealthInfo();
         healthInfo2.setAge(1);
@@ -551,7 +551,7 @@ class MessageRecordServiceTest {
         messageRecord1.setMessageId(123L);
         messageRecord1.setReceiver("Receiver");
         messageRecord1.setSender("Sender");
-        messageRecord1.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord1.setSubject(Subject.NORMAL_CASE);
 
         ArrayList<MessageRecord> messageRecordList = new ArrayList<>();
         messageRecordList.add(messageRecord1);
@@ -645,7 +645,7 @@ class MessageRecordServiceTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
 
         ArrayList<MessageRecord> messageRecordList = new ArrayList<>();
         messageRecordList.add(messageRecord);

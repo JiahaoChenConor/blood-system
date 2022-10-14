@@ -156,12 +156,12 @@ public class RequestController {
             switch (subject) {
                 case "Urgent-request":
                     System.out.println("THIS CASE IS URGENT URGENT URGENT");
-                    messageRecord.setSubject(Subject.URGENT_REQUEST);
+                    messageRecord.setSubject(Subject.URGENT_CASE);
                     request.setHistoryType(HistoryType.URGENT);
                     System.out.println("Subject is " + messageRecord.getSubject());
                     break;
                 case "Blood-Request":
-                    messageRecord.setSubject(Subject.BLOOD_REQUEST);
+                    messageRecord.setSubject(Subject.NORMAL_CASE);
                     request.setHistoryType(HistoryType.REQUEST);
             }
         }
@@ -258,8 +258,7 @@ public class RequestController {
                     messageRecord.setHaveRead(false);
                     messageRecord.setHistoryRecord(historyRecord);
 
-                    long historyRecordId = messageRecord.getHistoryRecord().getHistoryId();
-                    messageRecord.setContent("[The matched donated ID: " + historyRecordId + " ]\n"
+                    messageRecord.setContent("[The matched donated ID: " + donates.get(0).getHistoryId() + " ]\n"
                             + message);
 
                     messageRecord.setReceiver(matchedDonate.getEmail());

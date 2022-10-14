@@ -156,7 +156,7 @@ class MessageControllerTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
 
         HealthInfo healthInfo3 = new HealthInfo();
         healthInfo3.setAge(1);
@@ -228,7 +228,7 @@ class MessageControllerTest {
         messageRecord1.setMessageId(123L);
         messageRecord1.setReceiver("Receiver");
         messageRecord1.setSender("Sender");
-        messageRecord1.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord1.setSubject(Subject.NORMAL_CASE);
         when(messageRecordService.saveMessageRecord((MessageRecord) any())).thenReturn(messageRecord1);
         when(messageRecordService.findMessageById((Long) any())).thenReturn(messageRecord);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/messages/{messageId}/reply", "42")
@@ -318,7 +318,7 @@ class MessageControllerTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
         doNothing().when(messageRecordService).setMessageAsRead((Long) any());
         when(messageRecordService.findMessageById((Long) any())).thenReturn(messageRecord);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/messages/{messageId}", "42");

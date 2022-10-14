@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * The type Urgent Donate controller.
@@ -122,7 +119,7 @@ public class UrgentDonateController {
             historyRecordService.saveHistoryRecord(donate);
         }
 
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
         messageRecord.setHaveRead(false);
         messageRecord.setHistoryRecord(donate);
         messageRecord.setReceiver(request.getAccount().getEmail());

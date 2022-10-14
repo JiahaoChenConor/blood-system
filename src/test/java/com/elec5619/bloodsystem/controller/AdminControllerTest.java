@@ -136,7 +136,7 @@ class AdminControllerTest {
         messageRecord.setMessageId(123L);
         messageRecord.setReceiver("Receiver");
         messageRecord.setSender("Sender");
-        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setSubject(Subject.NORMAL_CASE);
         when(messageRecordService.findMessageById((Long) any())).thenReturn(messageRecord);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/admin/messages/{messageId}", "42");
         MockMvcBuilders.standaloneSetup(adminController)

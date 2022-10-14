@@ -63,76 +63,7 @@
 </div>
 
 
-<div class="container mt-5 mb-5">
-    <div class="row">
 
-
-
-        <div class="col-12 bg-light">
-            <div class="d-flex justify-content-center mt-5 mb-5">
-                <h1>Waiting for your help</h1>
-            </div>
-
-        </div>
-
-
-    </div>
-</div>
-<table class="table align-middle mb-0 bg-white ml-3 mt-5 mb-5">
-    <thead class="bg-light">
-    <tr>
-        <th>Blood Type</th>
-        <th>Post Date</th>
-        <th>Post content</th>
-        <th>Action</th>
-
-
-    </tr>
-    </thead>
-    <tbody>
-
-    <%
-        Map<String, List<UrgentPost>> data = (Map<String, List<UrgentPost>>) request.getAttribute("urgent");
-        List<UrgentPost> urgentPosts = data.get("urgent");
-        for (UrgentPost entry : urgentPosts) {
-
-            out.println(
-                    "<tr>\n" +
-                            "                <td>\n" +
-                            "                    <div class=\"d-flex align-items-center\">\n" +
-                            "\n" +
-                            "                        <div class=\"ms-3\">\n" +
-                            "                            <p class=\"fw-bold mb-1 \">" + entry.getBloodType() + "</p>\n" +
-                            "\n" +
-                            "                        </div>\n" +
-                            "                    </div>\n" +
-                            "                </td>\n" +
-                            "                <td>\n" +
-                            "                       <p class=\"fw-normal mb-1 \">" + entry.getDate() + "</p>\n" +
-                            "                </td>\n" +
-                            "                <td>\n" +
-                            "                    <p class=\"fw-normal mb-1 \">" + entry.getContent() + "</p>\n" +
-                            "\n" +
-                            "                </td>\n"
-
-
-
-
-
-            );
-
-
-
-        }
-
-
-
-
-    %>
-
-
-    </tbody>
-</table>
 
 <div class="container mt-5 mb-5">
     <div class="row">

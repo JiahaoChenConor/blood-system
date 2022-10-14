@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <jsp:include page="base/header.jsp"/>
+    <link rel="stylesheet" href="/css/progress-bar-2.css" />
 </head>
 <body>
 <!-- Start your project here-->
@@ -24,45 +25,48 @@
 
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-5">
         </div>
 
+
+        <div class="col-5">
+            <h3>Blood Type</h3>
+            <p class="font-monospace"><%=request.getAttribute("bloodType")%></p>
+        </div>
 
         <div class="col-2">
-            Blood Type: <%=request.getAttribute("bloodType")%>
-        </div>
-
-        <div class="col-3">
         </div>
     </div>
 </div>
 
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-5">
         </div>
 
+
+        <div class="col-5">
+            <h3>Cc</h3>
+            <p class="font-monospace"><%=request.getAttribute("cc")%></p>
+        </div>
 
         <div class="col-2">
-            Cc: <%=request.getAttribute("cc")%>
-        </div>
-
-        <div class="col-3">
         </div>
     </div>
 </div>
 
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-5">
         </div>
 
+
+        <div class="col-5">
+            <h3>Location</h3>
+            <p class="font-monospace"><%=request.getAttribute("location")%></p>
+        </div>
 
         <div class="col-2">
-            Location: <%=request.getAttribute("location")%>
-        </div>
-
-        <div class="col-3">
         </div>
     </div>
 </div>
@@ -70,15 +74,17 @@
 
 <div class="container mt-5 mb-5">
     <div class="row">
-        <div class="col-3">
+        <div class="col-5">
         </div>
 
+
+        <div class="col-5">
+            <h3>Date</h3>
+            <p class="font-monospace"><%=request.getAttribute("date")%></p>
+
+        </div>
 
         <div class="col-2">
-            Date: <%=request.getAttribute("date")%>
-        </div>
-
-        <div class="col-3">
         </div>
     </div>
 </div>

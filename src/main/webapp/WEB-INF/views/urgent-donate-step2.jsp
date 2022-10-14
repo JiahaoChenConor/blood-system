@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <jsp:include page="base/header.jsp"/>
+    <link rel="stylesheet" href="/css/progress-bar-2.css" />
 </head>
 <body>
 <!-- Start your project here-->
@@ -91,7 +92,7 @@
 <div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-8">
-            <button type="button" class="btn btn-primary" id="prev">Prev</button>
+
         </div>
 
 
@@ -117,9 +118,7 @@
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
-    document.getElementById("prev").onclick = function () {
-        location.href = "/urgentDonate/step2";
-    };
+
 
     document.getElementById("confirm").onclick = function () {
         location.href = "/urgentDonate/confirm?message="+document.getElementById("message").value;
