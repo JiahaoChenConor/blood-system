@@ -64,6 +64,8 @@ public class UrgentDonateController {
 
     private MessageRecord messageRecord;
 
+    private HistoryRecord request;
+
 
     @GetMapping("/urgentDonate")
     public String urgentDonate(Model model,
@@ -71,6 +73,7 @@ public class UrgentDonateController {
         donate = new HistoryRecord();
         messageRecord = new MessageRecord();
         urgentPost = urgentPostService.findUrgentPostById(urgentId);
+        request = historyRecordService.findHistoryRecordById(urgentPost.getCorrespondHistoryRecordId());
 
         donate.setHistoryType(HistoryType.DONATE);
 
@@ -88,12 +91,64 @@ public class UrgentDonateController {
 
         donate.setDate(urgentPost.getDate());
 
-        model.addAttribute("cc", Double.toString(donate.getMeasure()));
-        model.addAttribute("bloodType", donate.getBloodType().toString());
-        model.addAttribute("location", donate.getLocation());
-        model.addAttribute("date", donate.getDate());
+        model.addAttribute("cc", Double.toString(request.getMeasure()));
+        model.addAttribute("bloodType", request.getBloodType().toString());
+        model.addAttribute("location", request.getLocation());
+        model.addAttribute("date", request.getDate());
 
         return "urgent-donate-step1";
-
     }
+
+    @GetMapping("/urgentDonate/step2")
+    public String urgentDonateStep2(Model model){
+        accountService.addCurrentUser(model);
+        return "urgent-donate-step2";
+    }
+    @GetMapping("/urgentDonate/confirm")
+    public String urgentDonateConfirm(Model model,
+                                    @RequestParam(name="message", required = false) String message){
+        accountService.addCurrentUser(model);
+        // save to db
+        if (donate != null
+                && donate.getAccount() != null
+                && donate.getLocation() != null
+                && donate.getDate() != null
+                && donate.getMeasure() != null){
+            // save to db.
+            donate.setMatched(false);
+            donate.setHasMatchers(true);
+            historyRecordService.updateHistoryRecordHasMatchersStatus(request.getHistoryId(), true);
+            urgentPostService.updateUrgentPostStatus(urgentPost.getUrgentId(),true);
+            historyRecordService.saveHistoryRecord(donate);
+        }
+
+        messageRecord.setSubject(Subject.BLOOD_REQUEST);
+        messageRecord.setHaveRead(false);
+        messageRecord.setHistoryRecord(donate);
+        messageRecord.setReceiver(request.getAccount().getEmail());
+        messageRecord.setAccount(accountService.getAccountByEmail(accountService.getCurrentUserEmail()));
+        messageRecord.setSender(accountService.getCurrentUserEmail());
+        messageRecord.setContent(message);
+        messageRecord.setDate(accountService.getCurDate());
+        messageRecordService.saveMessageRecord(messageRecord);
+
+        EmailDetails notifyEmailDetail = new EmailDetails();
+        notifyEmailDetail.setRecipient(request.getAccount().getEmail());
+        notifyEmailDetail.setSubject("Donator Notification");
+        notifyEmailDetail.setMsgBody("Hi, we found a donator for you. Please go back our website and check that.\n"
+                + "Donater: "+message);
+        emailService.sendSimpleMail(notifyEmailDetail);
+
+
+        List<UrgentPost> urgentPosts = urgentPostService.getAvailableUrgentPost(accountService.getCurrentAccount());
+        Map<String, List<UrgentPost>> messages = new HashMap<>() {{
+            put("urgent", urgentPosts);
+        }};
+
+        model.addAttribute("urgent", messages);
+
+        return "index-user";
+    }
+
+
 }

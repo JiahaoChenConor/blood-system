@@ -160,7 +160,7 @@ public class IndexController {
 
         accountService.addCurrentUser(model);
 
-        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+        List<UrgentPost> urgentPosts = urgentPostService.getAvailableUrgentPost(accountService.getCurrentAccount());
 
         Map<String, List<UrgentPost>> messages = new HashMap<>() {{
             put("urgent", urgentPosts);

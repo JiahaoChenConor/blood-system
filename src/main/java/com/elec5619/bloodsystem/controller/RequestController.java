@@ -74,7 +74,6 @@ public class RequestController {
         request = new HistoryRecord();
         messageRecord = new MessageRecord();
         urgentPost = new UrgentPost();
-        urgentPost.setCorrespondHistoryRecordId(request.getHistoryId());
 
         request.setHistoryType(HistoryType.REQUEST);
 
@@ -242,12 +241,11 @@ public class RequestController {
             if (donates.size() == 0){
                 request.setHasMatchers(false);
                 historyRecordService.saveHistoryRecord(request);
+                urgentPost.setCorrespondHistoryRecordId(request.getHistoryId());
                 urgentPostService.saveUrgentPost(urgentPost);
 
             }else {
                 request.setHasMatchers(true);
-
-
 
                 HistoryRecord historyRecord = historyRecordService.saveHistoryRecord(request);
 
@@ -317,7 +315,7 @@ public class RequestController {
     {
 
         accountService.addCurrentUser(model);
-        List<UrgentPost> urgentPosts = urgentPostService.getAllUrgentPost();
+        List<UrgentPost> urgentPosts = urgentPostService.getAvailableUrgentPost(accountService.getCurrentAccount());
         Map<String, List<UrgentPost>> messages = new HashMap<>() {{
             put("urgent", urgentPosts);
         }};

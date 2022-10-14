@@ -95,10 +95,7 @@
         Map<String, List<UrgentPost>> data = (Map<String, List<UrgentPost>>) request.getAttribute("urgent");
         List<UrgentPost> urgentPosts = data.get("urgent");
         for (UrgentPost entry : urgentPosts) {
-            String button;
-            button = "<button type=\"button\" class=\"btn btn-outline-success\" data-mdb-ripple-color=\"dark\" onclick=donate(" +
-                    entry.getUrgentId() +
-                    ")>Donate</button>";
+
             out.println(
                     "<tr>\n" +
                             "                <td>\n" +
@@ -115,10 +112,6 @@
                             "                </td>\n" +
                             "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getContent() + "</p>\n" +
-                            "\n" +
-                            "                </td>\n"+
-                            "                <td>\n" +
-                            button +
                             "\n" +
                             "                </td>\n"
 
@@ -162,11 +155,6 @@
 <!-- MDB -->
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
-<script type="text/javascript">
-    function donate(urgentId){
 
-    }
-
-</script>
 </body>
 </html>

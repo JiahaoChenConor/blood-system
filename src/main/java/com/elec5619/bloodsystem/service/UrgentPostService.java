@@ -34,6 +34,7 @@ public class UrgentPostService {
         return urgentPostRepository.findUrgentPostByAccount(account);
     }
 
+
     public UrgentPost findUrgentPostById(long id){
         return urgentPostRepository.findById(id).get();
     }
@@ -44,5 +45,15 @@ public class UrgentPostService {
 
     public List<UrgentPost> getAllUrgentPost(){
         return urgentPostRepository.findAll();
+    }
+
+    public List<UrgentPost> getAvailableUrgentPost(Account curUser){
+        List<UrgentPost> urgentPosts = getAllUrgentPost();
+        List<UrgentPost> availablePosts = urgentPosts.
+                stream().
+                filter(post->!post.getMatched()
+                        && !post.getAccount().getId().equals(curUser.getId())).toList();
+
+        return availablePosts;
     }
 }

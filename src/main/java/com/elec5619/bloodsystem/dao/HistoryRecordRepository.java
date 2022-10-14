@@ -66,4 +66,7 @@ public interface HistoryRecordRepository
     @Query("UPDATE HistoryRecord r set r.matched = ?1 WHERE r.historyId = ?2")
     void updateHistoryRecordStatus(boolean matched, long id);
 
+    @Modifying
+    @Query("UPDATE HistoryRecord r set r.hasMatchers = ?1 WHERE r.historyId = ?2")
+    void updateHistoryRecordHasMatchersStatus(boolean matched, long id);
 }

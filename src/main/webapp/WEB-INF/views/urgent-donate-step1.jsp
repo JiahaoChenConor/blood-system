@@ -113,11 +113,16 @@
 <!-- MDB -->
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
+
+
 <script type="text/javascript">
+
     document.getElementById("next").onclick = function () {
-        location.href = "/book/request-step2?bloodType=" + document.getElementById("blood-type").value
-            + "&cc=" + document.getElementById("cc").value;
+        location.href = "/urgentDonate/step2";
     };
+
 </script>
+
+
 </body>
 </html>

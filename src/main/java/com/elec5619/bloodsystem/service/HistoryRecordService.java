@@ -89,6 +89,9 @@ public class HistoryRecordService {
         historyRecordRepository.updateHistoryRecordStatus(matched, id);
     }
 
+    public void updateHistoryRecordHasMatchersStatus(long id, boolean matched){
+        historyRecordRepository.updateHistoryRecordHasMatchersStatus(matched, id);
+    }
     /**
      * Get urgent request record in waiting list list.
      *

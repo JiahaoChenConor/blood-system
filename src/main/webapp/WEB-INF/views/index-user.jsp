@@ -83,9 +83,8 @@
     <tr>
         <th>Blood Type</th>
         <th>Post Date</th>
-        <th>Cc</th>
-        <th>Post Location</th>
         <th>Post content</th>
+        <th>Action</th>
 
 
     </tr>
@@ -96,7 +95,10 @@
         Map<String, List<UrgentPost>> data = (Map<String, List<UrgentPost>>) request.getAttribute("urgent");
         List<UrgentPost> urgentPosts = data.get("urgent");
         for (UrgentPost entry : urgentPosts) {
-
+            String button;
+            button = "<button type=\"button\" class=\"btn btn-outline-success\" data-mdb-ripple-color=\"dark\" onclick=donate(" +
+                    entry.getUrgentId() +
+                    ")>Donate</button>";
             out.println(
                     "<tr>\n" +
                             "                <td>\n" +
@@ -112,16 +114,14 @@
                             "                       <p class=\"fw-normal mb-1 \">" + entry.getDate() + "</p>\n" +
                             "                </td>\n" +
                             "                <td>\n" +
-                            "                       <p class=\"fw-normal mb-1 \">" + entry.getMeasure() + "</p>\n" +
-                            "                </td>\n" +
-                            "                <td>\n" +
-                            "                <td>\n" +
-                            "                       <p class=\"fw-normal mb-1 \">" + entry.getLocation() + "</p>\n" +
-                            "                </td>\n" +
-                            "                <td>\n" +
                             "                    <p class=\"fw-normal mb-1 \">" + entry.getContent() + "</p>\n" +
                             "\n" +
+                            "                </td>\n"+
+                            "                <td>\n" +
+                            button +
+                            "\n" +
                             "                </td>\n"
+
 
 
 
@@ -163,6 +163,9 @@
 <script type="text/javascript" src="/js/mdb.min.js"></script>
 <!-- Custom scripts -->
 <script type="text/javascript">
+    function donate(urgentId){
+        location.href="/urgentDonate?urgentId="+urgentId;
+    }
 </script>
 </body>
 </html>
