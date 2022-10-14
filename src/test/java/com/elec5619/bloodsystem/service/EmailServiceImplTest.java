@@ -99,19 +99,5 @@ class EmailServiceImplTest {
         verify(emailDetails).setSubject((String) any());
     }
 
-    /**
-     * Method under test: {@link EmailServiceImpl#getJavaMailSender()}
-     */
-    @Test
-    void testGetJavaMailSender() {
-        assertEquals("conorfortesting@gmail.com",
-                ((JavaMailSenderImpl) emailServiceImpl.getJavaMailSender()).getUsername());
-        assertTrue(((JavaMailSenderImpl) emailServiceImpl.getJavaMailSender())
-                .getDefaultFileTypeMap() instanceof ConfigurableMimeFileTypeMap);
-        assertEquals(4, ((JavaMailSenderImpl) emailServiceImpl.getJavaMailSender()).getJavaMailProperties().size());
-        assertEquals("lyhhbzmqtqwulygp", ((JavaMailSenderImpl) emailServiceImpl.getJavaMailSender()).getPassword());
-        assertEquals("smtp.gmail.com", ((JavaMailSenderImpl) emailServiceImpl.getJavaMailSender()).getHost());
-        assertEquals(587, ((JavaMailSenderImpl) emailServiceImpl.getJavaMailSender()).getPort());
-    }
 }
 
